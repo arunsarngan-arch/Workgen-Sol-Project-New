@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Workgen Solutions - Best BPO Services in India</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'dark-blue': '#1e40af',
+            'light-blue': '#60a5fa',
+            'very-light-blue': '#eff6ff',
+          },
+          fontFamily: {
+            sans: ['Josefin Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-white font-sans antialiased">
+
+  <style>
+    #mobile-menu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+      opacity: 0;
+    }
+    #mobile-menu.open {
+      max-height: 420px;
+      opacity: 1;
+    }
+    .ham-line {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #1e40af;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+    #hamburger.active .ham-line:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    #hamburger.active .ham-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    #hamburger.active .ham-line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  </style>
+
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+    <div class="container mx-auto px-4 lg:px-8 py-3 flex items-center justify-between max-w-7xl">
+
+      <a href="indexNew.html">
+        <img src="workgenLogo.jpg" alt="Workgen Solutions" style="height:54px;width:auto;object-fit:contain;">
+      </a>
+
+      <div class="hidden md:flex items-center space-x-10 text-gray-700 font-semibold text-lg">
+        <a href="indexNew.html" class="text-dark-blue border-b-2 border-dark-blue pb-0.5 transition">Home</a>
+        <a href="aboutUsNew.html" class="hover:text-dark-blue transition">About Us</a>
+        <div class="relative group">
+          <a href="servicesNew.html" class="hover:text-dark-blue transition flex items-center">
+            Services
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </a>
+          <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-2 py-2 w-52">
+            <a href="servicesNew.html#back-office" class="block px-4 py-2 text-base hover:bg-very-light-blue">Back Office</a>
+            <a href="servicesNew.html#data-annotation" class="block px-4 py-2 text-base hover:bg-very-light-blue">Data Annotation</a>
+            <a href="servicesNew.html#qa-qc" class="block px-4 py-2 text-base hover:bg-very-light-blue">QA/QC Monitoring</a>
+            <a href="servicesNew.html#customer-support" class="block px-4 py-2 text-base hover:bg-very-light-blue">Customer Support</a>
+            <a href="servicesNew.html#ml-annotation" class="block px-4 py-2 text-base hover:bg-very-light-blue">ML Annotation</a>
+            <a href="servicesNew.html#case-studies" class="block px-4 py-2 text-base hover:bg-very-light-blue">Case Studies</a>
+          </div>
+        </div>
+        <a href="contact.php" class="hover:text-dark-blue transition">Contact Us</a>
+      </div>
+
+      <a href="contact.php"
+         class="hero-cta hidden md:inline-block bg-dark-blue text-white font-semibold px-6 py-3 rounded-full text-base shadow-md transition">
+        Get Started
+      </a>
+
+      <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg focus:outline-none" onclick="toggleMenu()" aria-label="Toggle menu">
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+      </button>
+    </div>
+
+    <div id="mobile-menu">
+      <div style="background:white;border-top:1px solid #e2e8f0;padding:8px 16px 16px;">
+        <a href="indexNew.html" class="block py-3 px-2 text-dark-blue font-semibold text-base border-b border-gray-100 hover:text-dark-blue transition">Home</a>
+        <a href="aboutUsNew.html" class="block py-3 px-2 text-gray-700 font-semibold text-base border-b border-gray-100 hover:text-dark-blue transition">About Us</a>
+        <div>
+          <button onclick="toggleServices()" class="w-full flex items-center justify-between py-3 px-2 text-gray-700 font-semibold text-base border-b border-gray-100 hover:text-dark-blue transition focus:outline-none">
+            Services
+            <svg id="services-arrow" class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div id="services-sub" style="max-height:0;overflow:hidden;transition:max-height 0.3s ease;background:#f8fafc;border-radius:8px;margin:0 4px;">
+            <a href="servicesNew.html#back-office" class="block py-2 px-6 text-sm text-gray-600 hover:text-dark-blue transition">Back Office</a>
+            <a href="servicesNew.html#data-annotation" class="block py-2 px-6 text-sm text-gray-600 hover:text-dark-blue transition">Data Annotation</a>
+            <a href="servicesNew.html#qa-qc" class="block py-2 px-6 text-sm text-gray-600 hover:text-dark-blue transition">QA/QC Monitoring</a>
+            <a href="servicesNew.html#customer-support" class="block py-2 px-6 text-sm text-gray-600 hover:text-dark-blue transition">Customer Support</a>
+            <a href="servicesNew.html#ml-annotation" class="block py-2 px-6 text-sm text-gray-600 hover:text-dark-blue transition">ML Annotation</a>
+            <a href="servicesNew.html#case-studies" class="block py-2 px-6 text-sm text-gray-600 hover:text-dark-blue transition">Case Studies</a>
+          </div>
+        </div>
+        <a href="contact.php" class="block py-3 px-2 text-gray-700 font-semibold text-base border-b border-gray-100 hover:text-dark-blue transition">Contact Us</a>
+        <div class="pt-4 px-2">
+          <a href="contact.php" class="block text-center bg-dark-blue text-white font-semibold py-3 rounded-full text-base shadow-md hover:bg-blue-800 transition">
+            Get Started
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const btn  = document.getElementById('hamburger');
+      menu.classList.toggle('open');
+      btn.classList.toggle('active');
+    }
+    function toggleServices() {
+      const sub   = document.getElementById('services-sub');
+      const arrow = document.getElementById('services-arrow');
+      const isOpen = sub.style.maxHeight && sub.style.maxHeight !== '0px';
+      sub.style.maxHeight = isOpen ? '0px' : '200px';
+      arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+    }
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.remove('open');
+        document.getElementById('hamburger').classList.remove('active');
+      });
+    });
+  </script>
+
+  <div class="h-20"></div>
+
+  <style>
+    /* ---------- galaxy background ---------- */
+    #hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(14, 60, 140, 0.55) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 20%, rgba(30, 30, 100, 0.5) 0%, transparent 50%),
+        radial-gradient(ellipse at 60% 80%, rgba(10, 40, 110, 0.45) 0%, transparent 50%),
+        linear-gradient(160deg, #020818 0%, #071232 30%, #0a1a4a 60%, #060e28 100%);
+      color: white;
+      padding: 7rem 0 5rem;
+    }
+
+    /* star canvas sits behind everything */
+    #star-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* nebula glow blobs */
+    .nebula-blob {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: nebulaPulse ease-in-out infinite alternate;
+    }
+    @keyframes nebulaPulse {
+      0%   { opacity: 0.12; transform: scale(1); }
+      100% { opacity: 0.22; transform: scale(1.08); }
+    }
+
+
+
+    /* ---------- floating stat chips ---------- */
+    .stat-chip {
+      position: absolute;
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 14px;
+      padding: 9px 16px;
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 600;
+      white-space: nowrap;
+      animation: chipFloat ease-in-out infinite;
+      pointer-events: none;
+      z-index: 2;
+    }
+    @keyframes chipFloat {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+
+    .shimmer-badge {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 999px;
+      padding: 6px 18px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #bfdbfe;
+      margin-bottom: 20px;
+    }
+    .shimmer-badge::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 55%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+      animation: shimmerSlide 2.8s ease-in-out infinite;
+    }
+    @keyframes shimmerSlide {
+      0%   { left: -100%; }
+      100% { left: 210%; }
+    }
+
+    /* ---------- live dot ---------- */
+    .live-dot {
+      width: 8px; height: 8px;
+      background: #4ade80;
+      border-radius: 50%;
+      display: inline-block;
+      animation: livePulse 1.6s ease-in-out infinite;
+      box-shadow: 0 0 0 0 rgba(74,222,128,0.6);
+    }
+    @keyframes livePulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.45); }
+      50%      { box-shadow: 0 0 0 8px rgba(74,222,128,0); }
+    }
+
+    /* ---------- typing cursor ---------- */
+    #typed-cursor {
+      display: inline-block;
+      width: 3px;
+      height: 0.85em;
+      background: #93c5fd;
+      margin-left: 3px;
+      vertical-align: middle;
+      border-radius: 2px;
+      animation: cursorBlink 1s step-end infinite;
+    }
+    @keyframes cursorBlink {
+      from,to { opacity: 1; }
+      50%      { opacity: 0; }
+    }
+
+    /* ---------- CTA glow on hover ---------- */
+    .hero-cta {
+      position: relative;
+      transition: all 0.3s ease;
+      z-index: 0;
+    }
+    .hero-cta::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #60a5fa, #a5b4fc, #60a5fa);
+      background-size: 200% auto;
+      opacity: 0;
+      transition: opacity 0.35s;
+      animation: glowSpin 3s linear infinite;
+      z-index: -1;
+    }
+    @keyframes glowSpin {
+      0%   { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+    .hero-cta:hover::before { opacity: 1; }
+    .hero-cta:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(96,165,250,0.35); }
+
+  </style>
+
+  <section id="hero">
+
+    <canvas id="star-canvas"></canvas>
+
+    <div class="nebula-blob" style="width:700px;height:700px;background:radial-gradient(circle,rgba(29,78,216,0.5),transparent 70%);top:-200px;right:-150px;filter:blur(90px);animation-duration:9s;"></div>
+    <div class="nebula-blob" style="width:500px;height:500px;background:radial-gradient(circle,rgba(67,56,202,0.4),transparent 70%);bottom:-150px;left:-100px;filter:blur(80px);animation-duration:12s;animation-delay:2s;"></div>
+    <div class="nebula-blob" style="width:350px;height:350px;background:radial-gradient(circle,rgba(14,116,144,0.25),transparent 70%);top:35%;left:38%;filter:blur(70px);animation-duration:7s;animation-delay:1s;"></div>
+
+
+    <div class="stat-chip hidden lg:block" style="top:20%;left:4%;animation-duration:6s;animation-delay:0s;">✅ 99.8% Accuracy Rate</div>
+    <div class="stat-chip hidden lg:block" style="top:24%;right:5%;animation-duration:7.5s;animation-delay:1s;">🌍 30+ Countries Served</div>
+    <div class="stat-chip hidden lg:block" style="bottom:24%;left:4%;animation-duration:8s;animation-delay:2s;">⏱️ On-Time Delivery</div>
+    <div class="stat-chip hidden lg:block" style="bottom:20%;right:5%;animation-duration:6.5s;animation-delay:0.5s;">🔒 Enterprise Security</div>
+
+    <div style="position:relative;z-index:10;" class="container mx-auto px-6 lg:px-8 max-w-5xl text-center">
+
+      <div style="display:flex;justify-content:center;">
+        <div class="shimmer-badge animate__animated animate__fadeInDown">
+          <span class="live-dot"></span>
+          Trusted Since 2017 &nbsp;·&nbsp; India's Leading BPO
+        </div>
+      </div>
+
+      <h1 class="animate__animated animate__fadeInDown text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight" style="animation-delay:0.25s;">
+        Empowering Businesses<br/>
+        with <span style="color:#93c5fd;" id="typed-word"></span><span id="typed-cursor"></span>
+      </h1>
+
+      <p class="animate__animated animate__fadeInUp text-lg md:text-xl mb-10 max-w-3xl mx-auto leading-relaxed" style="opacity:0.88; animation-delay:0.5s;">
+        Since 2017, Workgen Solutions has delivered high-quality data entry, analytics, customer support, mystery shopping, software testing, and back-office services with precision and care.
+      </p>
+
+      <div class="animate__animated animate__fadeInUp flex flex-wrap justify-center gap-4" style="animation-delay:0.8s;">
+        <a href="contact.php" class="hero-cta inline-block bg-white font-bold px-10 py-4 rounded-full text-lg shadow-xl" style="color:#1e40af;">
+          Request a Free Quote
+        </a>
+        <a href="servicesNew.html"
+           class="inline-block font-semibold px-10 py-4 rounded-full text-lg border-2 transition-all"
+           style="border-color:rgba(255,255,255,0.35);color:white;background:rgba(255,255,255,0.07);"
+           onmouseover="this.style.background='rgba(255,255,255,0.15)';this.style.transform='translateY(-2px)'"
+           onmouseout="this.style.background='rgba(255,255,255,0.07)';this.style.transform='translateY(0)'">
+          Explore Services ↓
+        </a>
+      </div>
+
+      <div class="animate__animated animate__fadeIn mt-14 flex flex-col items-center gap-2" style="animation-delay:1.3s;opacity:0.4;">
+        <span style="font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;">Scroll to explore</span>
+        <div style="width:1px;height:34px;background:linear-gradient(180deg,white,transparent);"></div>
+      </div>
+    </div>
+
+    <div style="position:absolute;bottom:-1px;left:0;right:0;line-height:0;z-index:5;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 70" preserveAspectRatio="none" style="width:100%;height:55px;display:block;"></svg>
+    </div>
+  </section>
+
+  <script>
+    (function() {
+      const words = ["Reliable BPO Solutions", "Data Annotation", "Customer Support", "Back Office Ops", "ML Annotation", "QA/QC Monitoring"];
+      let wi = 0, ci = 0, deleting = false;
+      const el = document.getElementById('typed-word');
+      function loop() {
+        const word = words[wi];
+        if (!deleting) {
+          el.textContent = word.slice(0, ++ci);
+          if (ci === word.length) { deleting = true; setTimeout(loop, 1900); return; }
+          setTimeout(loop, 70);
+        } else {
+          el.textContent = word.slice(0, --ci);
+          if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; setTimeout(loop, 320); return; }
+          setTimeout(loop, 40);
+        }
+      }
+      setTimeout(loop, 900);
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const canvas = document.getElementById('star-canvas');
+      const ctx    = canvas.getContext('2d');
+      const hero   = document.getElementById('hero');
+      let stars = [], W, H, t = 0;
+
+      function resize() {
+        W = canvas.width  = hero.offsetWidth;
+        H = canvas.height = hero.offsetHeight;
+        buildStars();
+      }
+
+      function buildStars() {
+        stars = [];
+        const count = Math.floor((W * H) / 2800);
+        for (let i = 0; i < count; i++) {
+          stars.push(makeStar());
+        }
+        // schedule first wave of launches after 1.5s
+        scheduleLaunches();
+      }
+
+      function makeStar(launched) {
+        return {
+          x:        Math.random() * W,
+          y:        Math.random() * H,
+          r:        Math.random() * 1.4 + 0.2,
+          alpha:    Math.random() * 0.7 + 0.2,
+          twSpeed:  Math.random() * 0.4 + 0.05,
+          phase:    Math.random() * Math.PI * 2,
+          hue:      Math.random() < 0.7 ? 210 : 190 + Math.random() * 40,
+          // launch state
+          launching:  false,
+          launchDone: false,
+          lx: 0, ly: 0,         // current launch position offset
+          lAngle: 0,            // direction in radians
+          lSpeed: 0,            // px per frame
+          lAlpha: 1,            // fade as it flies
+          lLen:   0,            // tail length grows
+        };
+      }
+
+      // ---- launch logic ----
+      // pick 5 random stars one by one, 0.8s apart, then pause 4s and repeat
+      function scheduleLaunches() {
+        const BETWEEN = 800;   // ms between each launch
+        const PAUSE   = 4000;  // ms pause before next wave
+        const COUNT   = 5;
+
+        function wave(n) {
+          if (n >= COUNT) {
+            // wait, then new wave — respawn launched stars and go again
+            setTimeout(() => {
+              stars.forEach(s => {
+                if (s.launchDone) {
+                  // place a fresh star back
+                  const fresh = makeStar();
+                  Object.assign(s, fresh);
+                }
+              });
+              wave(0);
+            }, PAUSE);
+            return;
+          }
+          // pick a random idle star
+          const idle = stars.filter(s => !s.launching && !s.launchDone);
+          if (idle.length === 0) { wave(COUNT); return; }
+          const s = idle[Math.floor(Math.random() * idle.length)];
+          launchStar(s);
+          setTimeout(() => wave(n + 1), BETWEEN);
+        }
+
+        setTimeout(() => wave(0), 1500);
+      }
+
+      function launchStar(s) {
+        s.launching = true;
+        s.lx = 0; s.ly = 0; s.lAlpha = 1; s.lLen = 0;
+        // random diagonal direction — bias toward upper-right quadrant for variety
+        const angles = [
+          -Math.PI / 5,          // upper-right gentle
+          -Math.PI / 3.5,        // upper-right steep
+          -Math.PI / 6,          // upper-right shallow
+          Math.PI / 8,           // lower-right
+          -Math.PI * 0.7,        // upper-left
+        ];
+        s.lAngle = angles[Math.floor(Math.random() * angles.length)];
+        s.lSpeed = 3 + Math.random() * 4;  // px/frame, subtly fast
+      }
+
+      // ---- draw loop ----
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        t += 0.012;
+
+        for (const s of stars) {
+          if (s.launching) {
+            // advance position
+            s.lx += Math.cos(s.lAngle) * s.lSpeed;
+            s.ly += Math.sin(s.lAngle) * s.lSpeed;
+            s.lLen = Math.min(s.lLen + 2, 55);  // tail grows to max 55px
+            s.lAlpha -= 0.012;                   // gentle fade
+
+            if (s.lAlpha <= 0) {
+              s.launching  = false;
+              s.launchDone = true;
+              continue;
+            }
+
+            // draw tail (streak)
+            const tx1 = s.x + s.lx;
+            const ty1 = s.y + s.ly;
+            const tx0 = tx1 - Math.cos(s.lAngle) * s.lLen;
+            const ty0 = ty1 - Math.sin(s.lAngle) * s.lLen;
+
+            const grad = ctx.createLinearGradient(tx0, ty0, tx1, ty1);
+            grad.addColorStop(0, `hsla(${s.hue}, 80%, 95%, 0)`);
+            grad.addColorStop(1, `hsla(${s.hue}, 80%, 95%, ${s.lAlpha * 0.9})`);
+
+            ctx.beginPath();
+            ctx.moveTo(tx0, ty0);
+            ctx.lineTo(tx1, ty1);
+            ctx.strokeStyle = grad;
+            ctx.lineWidth   = s.r * 1.3;
+            ctx.lineCap     = 'round';
+            ctx.stroke();
+
+            // bright head dot
+            ctx.beginPath();
+            ctx.arc(tx1, ty1, s.r * 1.5, 0, Math.PI * 2);
+            ctx.fillStyle = `hsla(${s.hue}, 90%, 98%, ${s.lAlpha})`;
+            ctx.fill();
+
+          } else if (!s.launchDone) {
+            // normal stationary twinkling star
+            const a = s.alpha * (0.55 + 0.45 * Math.sin(t * s.twSpeed + s.phase));
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+            ctx.fillStyle = `hsla(${s.hue}, 80%, 95%, ${a})`;
+            ctx.fill();
+
+            // soft glow on bigger stars
+            if (s.r > 1.1) {
+              const grd = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 4);
+              grd.addColorStop(0, `hsla(${s.hue}, 90%, 95%, ${a * 0.4})`);
+              grd.addColorStop(1, 'transparent');
+              ctx.beginPath();
+              ctx.arc(s.x, s.y, s.r * 4, 0, Math.PI * 2);
+              ctx.fillStyle = grd;
+              ctx.fill();
+            }
+          }
+          // launchDone stars are invisible until respawned in scheduleLaunches
+        }
+        requestAnimationFrame(draw);
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+      draw();
+    })();
+  </script>
+
+  <style>
+    .svc-card {
+      background: #ffffff;
+      border: 1px solid #e8eef6;
+      border-radius: 20px;
+      padding: 36px 32px 32px;
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .svc-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #1e40af, #60a5fa);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .svc-card:hover::after { transform: scaleX(1); }
+    .svc-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(30, 64, 175, 0.12);
+      border-color: #bfdbfe;
+    }
+    .svc-icon-wrap {
+      width: 68px; height: 68px;
+      border-radius: 18px;
+      background: #eff6ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+      transition: all 0.35s ease;
+    }
+    .svc-card:hover .svc-icon-wrap {
+      background: #1e40af;
+    }
+    .svc-icon-wrap i {
+      font-size: 1.7rem;
+      color: #1e40af;
+      transition: color 0.35s ease;
+    }
+    .svc-card:hover .svc-icon-wrap i { color: #ffffff; }
+    .svc-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 20px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #1e40af;
+      border: 1.5px solid #bfdbfe;
+      border-radius: 999px;
+      padding: 8px 20px;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    .svc-btn:hover {
+      background: #1e40af;
+      color: white;
+      border-color: #1e40af;
+      gap: 10px;
+    }
+  </style>
+
+  <section id="services" class="py-24 md:py-28" style="background:#f8fafc;">
+    <div class="container mx-auto px-6 lg:px-8 max-w-7xl">
+
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span style="display:inline-block;background:#eff6ff;color:#1e40af;font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:5px 16px;border-radius:999px;border:1px solid #bfdbfe;margin-bottom:14px;">What We Offer</span>
+        <h2 class="text-4xl md:text-5xl font-bold text-dark-blue mb-4">Our Core Services</h2>
+        <p class="text-lg text-gray-500 max-w-5xl mx-auto">Comprehensive, tailored solutions designed to scale your business operations with precision.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+
+        <div class="svc-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="svc-icon-wrap">
+            <i class="fa-solid fa-briefcase"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Back Office Operations</h3>
+          <p class="text-gray-500 text-1xl leading-relaxed">Efficient handling of administrative tasks to streamline your business and reduce operational overhead.</p>
+          <a href="servicesNew.html#back-office" class="svc-btn">Learn More <i class="fa-solid fa-arrow-right text-xs"></i></a>
+        </div>
+
+        <div class="svc-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="svc-icon-wrap">
+            <i class="fa-solid fa-database"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Data Annotation</h3>
+          <p class="text-gray-500 text-1xl leading-relaxed">High-quality labeling and annotation for training accurate machine learning models at scale.</p>
+          <a href="servicesNew.html#data-annotation" class="svc-btn">Learn More <i class="fa-solid fa-arrow-right text-xs"></i></a>
+        </div>
+
+        <div class="svc-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="svc-icon-wrap">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">QA/QC Monitoring</h3>
+          <p class="text-gray-500 text-1xl leading-relaxed">Rigorous quality assurance and control processes to ensure consistent excellence in every deliverable.</p>
+          <a href="servicesNew.html#qa-qc" class="svc-btn">Learn More <i class="fa-solid fa-arrow-right text-xs"></i></a>
+        </div>
+
+        <div class="svc-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="svc-icon-wrap">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Customer Support</h3>
+          <p class="text-gray-500 text-1xl leading-relaxed">24/7 multi-channel support solutions to enhance customer satisfaction and build lasting relationships.</p>
+          <a href="servicesNew.html#customer-support" class="svc-btn">Learn More <i class="fa-solid fa-arrow-right text-xs"></i></a>
+        </div>
+
+        <div class="svc-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="svc-icon-wrap">
+            <i class="fa-solid fa-robot"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">ML Annotation Services</h3>
+          <p class="text-gray-500 text-1xl leading-relaxed">Specialized annotation for machine learning datasets including image, text, audio &amp; video content.</p>
+          <a href="servicesNew.html#ml-annotation" class="svc-btn">Learn More <i class="fa-solid fa-arrow-right text-xs"></i></a>
+        </div>
+
+        <div class="svc-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="svc-icon-wrap">
+            <i class="fa-solid fa-book-open"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">Case Studies</h3>
+          <p class="text-gray-500 text-1xl leading-relaxed">Real-world examples showcasing our successful projects, measurable outcomes, and satisfied clients.</p>
+          <a href="servicesNew.html#case-studies" class="svc-btn">Learn More <i class="fa-solid fa-arrow-right text-xs"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .why-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 36px 24px;
+      transition: transform 0.3s ease;
+    }
+    .why-item:hover { transform: translateY(-6px); }
+    .why-icon-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #1e40af;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 24px rgba(30, 64, 175, 0.25);
+    }
+    .why-item:hover .why-icon-circle {
+      background: #1d4ed8;
+      box-shadow: 0 12px 32px rgba(30, 64, 175, 0.4);
+      transform: scale(1.08);
+    }
+    .why-icon-circle i {
+      font-size: 1.7rem;
+      color: #ffffff;
+    }
+    .why-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 10px;
+    }
+    .why-desc {
+      font-size: 1.12rem;
+      color: #64748b;
+      line-height: 1.65;
+      max-width: 220px;
+    }
+    /* vertical dividers between columns on desktop */
+    .why-grid > .why-item:not(:last-child) {
+      border-right: none;
+    }
+    @media (min-width: 1024px) {
+      .why-grid > .why-item:nth-child(1),
+      .why-grid > .why-item:nth-child(2),
+      .why-grid > .why-item:nth-child(4),
+      .why-grid > .why-item:nth-child(5) {
+        border-right: 1px solid #dbeafe;
+      }
+    }
+    /* horizontal divider between rows */
+    @media (min-width: 1024px) {
+      .why-grid > .why-item:nth-child(1),
+      .why-grid > .why-item:nth-child(2),
+      .why-grid > .why-item:nth-child(3) {
+        border-bottom: 1px solid #dbeafe;
+      }
+    }
+  </style>
+
+  <section class="py-20 md:py-28" style="background:#eff6ff;">
+    <div class="container mx-auto px-6 lg:px-8 max-w-6xl">
+
+      <div class="text-center mb-14" data-aos="fade-up">
+        <h2 class="text-4xl md:text-5xl font-bold text-dark-blue mb-3">Why Workgen Solutions?</h2>
+        <div style="width:60px;height:3px;background:#1e40af;margin:12px auto 0;border-radius:2px;"></div>
+      </div>
+
+      <div class="why-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="why-item">
+          <div class="why-icon-circle">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+          <div class="why-title">Accuracy Guarantee</div>
+          <p class="why-desc">Multi-level quality checks ensure error-free deliverables every time.</p>
+        </div>
+
+        <div class="why-item">
+          <div class="why-icon-circle">
+            <i class="fa-solid fa-clock"></i>
+          </div>
+          <div class="why-title">On-Time Delivery</div>
+          <p class="why-desc">We value your time with strict adherence to deadlines.</p>
+        </div>
+
+        <div class="why-item">
+          <div class="why-icon-circle">
+            <i class="fa-solid fa-lock"></i>
+          </div>
+          <div class="why-title">Data Security</div>
+          <p class="why-desc">Advanced security measures to protect your sensitive information.</p>
+        </div>
+
+        <div class="why-item">
+          <div class="why-icon-circle">
+            <i class="fa-solid fa-dollar-sign"></i>
+          </div>
+          <div class="why-title">Cost-Effective</div>
+          <p class="why-desc">High-quality services at competitive prices.</p>
+        </div>
+
+        <div class="why-item">
+          <div class="why-icon-circle">
+            <i class="fa-solid fa-users"></i>
+          </div>
+          <div class="why-title">Experienced Team</div>
+          <p class="why-desc">Skilled professionals with years of industry expertise.</p>
+        </div>
+
+        <div class="why-item">
+          <div class="why-icon-circle">
+            <i class="fa-solid fa-globe"></i>
+          </div>
+          <div class="why-title">Global Reach</div>
+          <p class="why-desc">Serving clients worldwide with localized solutions.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="text-center py-20" style="background:#60a5fa;">
+    <div class="container mx-auto px-6 lg:px-8 max-w-4xl" data-aos="fade-up">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-5">Ready to Outsource with Confidence?</h2>
+      <p class="text-2xl mb-10 max-w-3xl mx-auto" style="color:rgba(255,255,255,0.9);">Let's discuss how we can help scale your operations efficiently.</p>
+      <a href="contact.php"
+         class="inline-block bg-white font-bold px-14 py-5 rounded-full text-xl shadow-xl transition transform hover:scale-105 hover:shadow-2xl"
+         style="color:#1e40af;">
+        Contact Us Today
+      </a>
+    </div>
+  </section>
+
+  <footer style="background: #163498;;">
+    <div class="container mx-auto px-6 lg:px-12 py-14 max-w-7xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+        <div class="lg:col-span-1">
+          <img src="workgenLogo.jpg" alt="Workgen Solutions" style="height:52px;width:auto;object-fit:contain;margin-bottom:16px;background:white;padding:4px 8px;border-radius:8px;">
+          <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.75;">
+            Workgen, founded in 2017, came into existence with a vision of providing high-quality business process outsourcing and back-office support services across the globe.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Links</h4>
+          <ul class="space-y-3">
+            <li><a href="indexNew.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Home</a></li>
+            <li><a href="aboutUsNew.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">About Us</a></li>
+            <li><a href="servicesNew.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Services</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Our Services</h4>
+          <ul class="space-y-3">
+            <li><a href="servicesNew.html#back-office" style="color:rgba(255,255,255,0.8);font: size 1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Back Office Operation</a></li>
+            <li><a href="servicesNew.html#data-annotation" style="color:rgba(255,255,255,0.8);font: size 1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Data Annotation</a></li>
+            <li><a href="servicesNew.html#qa-qc" style="color:rgba(255,255,255,0.8);font: size 1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">QA/QC Monitoring</a></li>
+            <li><a href="servicesNew.html#customer-support" style="color:rgba(255,255,255,0.8);font: size 1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Customer Support</a></li>
+            <li><a href="servicesNew.html#ml-annotation" style="color:rgba(255,255,255,0.8);font: size 1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">ML Annotation Services</a></li>
+            <li><a href="servicesNew.html#case-studies" style="color:rgba(255,255,255,0.8);font: size 1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Case Studies</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Contact Info</h4>
+          <div class="flex items-start gap-3 mb-4">
+            <span style="color:white;margin-top:2px;">📍</span>
+            <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.65;margin:0;">918, 9th Floor Tower 2, Assotech Business Cresterra, Sec 135, Noida, 201305</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span style="color:white;">✉️</span>
+            <a href="mailto:info@workgen.in" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">info@workgen.in</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="border-top:1px solid rgba(255,255,255,0.15);padding:16px 0;text-align:center;">
+      <p style="color:rgba(255,255,255,0.7);font-size:0.85rem;margin:0;">© 2021 Workgen Solutions. All Copyright Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    AOS.init({ once: true, duration: 800 });
+  </script>
+
+</body>
+</html>
