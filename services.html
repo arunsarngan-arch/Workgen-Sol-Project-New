@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Services - Workgen Solutions</title>
+  <meta name="description" content="Explore Workgen Solutions' full range of BPO services — Back Office, Data Annotation, QA/QC, Customer Support, ML Annotation and more."/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'dark-blue': '#1e40af',
+            'light-blue': '#60a5fa',
+            'very-light-blue': '#eff6ff',
+          },
+          fontFamily: { sans: ['Josefin Sans', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Navbar */
+    #mobile-menu { max-height:0; overflow:hidden; transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1),opacity 0.3s ease; opacity:0; }
+    #mobile-menu.open { max-height:420px; opacity:1; }
+    .ham-line { display:block; width:24px; height:2px; background:#1e40af; border-radius:2px; transition:all 0.3s ease; transform-origin:center; }
+    #hamburger.active .ham-line:nth-child(1) { transform:translateY(8px) rotate(45deg); }
+    #hamburger.active .ham-line:nth-child(2) { opacity:0; transform:scaleX(0); }
+    #hamburger.active .ham-line:nth-child(3) { transform:translateY(-8px) rotate(-45deg); }
+
+    /* Hero */
+    .svc-hero {
+      background: linear-gradient(135deg,#020818 0%,#071232 30%,#0a1a4a 60%,#060e28 100%);
+      position:relative; overflow:hidden;
+    }
+    .hero-grid {
+      position:absolute; inset:0;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+      background-size:55px 55px; pointer-events:none;
+    }
+    .hero-cta { position:relative; transition:all 0.3s ease; z-index:0; }
+    .hero-cta::before {
+      content:''; position:absolute; inset:-3px; border-radius:999px;
+      background:linear-gradient(90deg,#60a5fa,#a5b4fc,#60a5fa); background-size:200% auto;
+      opacity:0; transition:opacity 0.35s; animation:glowSpin 3s linear infinite; z-index:-1;
+    }
+    @keyframes glowSpin { 0%{background-position:0% center} 100%{background-position:200% center} }
+    .hero-cta:hover::before { opacity:1; }
+    .hero-cta:hover { transform:translateY(-3px); box-shadow:0 14px 40px rgba(96,165,250,0.35); }
+
+    /* Section tag */
+    .section-tag {
+      display:inline-block; background:#eff6ff; color:#1e40af;
+      font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+      padding:5px 16px; border-radius:999px; border:1px solid #bfdbfe; margin-bottom:14px;
+    }
+
+    /* Service detail card */
+    .svc-detail-card {
+      background:white; border:1px solid #e8eef6; border-radius:24px;
+      overflow:hidden; transition:all 0.35s cubic-bezier(0.175,0.885,0.32,1.275);
+    }
+    .svc-detail-card:hover {
+      transform:translateY(-6px);
+      box-shadow:0 24px 60px rgba(30,64,175,0.12);
+      border-color:#bfdbfe;
+    }
+    .svc-detail-header {
+      padding:36px 32px 28px;
+      border-bottom:1px solid #f1f5f9;
+    }
+    .svc-icon-lg {
+      width:72px; height:72px; border-radius:20px; background:#eff6ff;
+      display:flex; align-items:center; justify-content:center; margin-bottom:20px;
+      transition:all 0.3s;
+    }
+    .svc-detail-card:hover .svc-icon-lg { background:#1e40af; }
+    .svc-detail-card:hover .svc-icon-lg i { color:white !important; }
+    .svc-detail-body { padding:24px 32px 32px; }
+    .svc-check-item {
+      display:flex; align-items:flex-start; gap:10px; margin-bottom:10px;
+    }
+    .svc-check-dot {
+      width:20px; height:20px; border-radius:50%; background:#eff6ff;
+      display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px;
+    }
+
+    /* Process steps */
+    .process-step {
+      display:flex; align-items:flex-start; gap:20px; padding:24px;
+      background:white; border-radius:18px; border:1px solid #e8eef6;
+      transition:all 0.3s;
+    }
+    .process-step:hover {
+      border-color:#bfdbfe;
+      box-shadow:0 8px 30px rgba(30,64,175,0.08);
+      transform:translateX(6px);
+    }
+    .process-num {
+      width:44px; height:44px; border-radius:14px; background:#1e40af;
+      display:flex; align-items:center; justify-content:center;
+      color:white; font-weight:800; font-size:1rem; flex-shrink:0;
+    }
+
+    /* Tab navigation */
+    .tab-btn {
+      padding:10px 20px; border-radius:999px; font-weight:600; font-size:0.88rem;
+      border:1.5px solid #e2e8f0; color:#64748b; cursor:pointer;
+      transition:all 0.25s; background:white;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background:#1e40af; color:white; border-color:#1e40af;
+    }
+    .tab-panel { display:none; }
+    .tab-panel.active { display:block; }
+  </style>
+</head>
+<body class="bg-white font-sans antialiased">
+
+  <!-- NAVBAR -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+    <div class="container mx-auto px-4 lg:px-8 py-3 flex items-center justify-between max-w-7xl">
+      <a href="index.html">
+        <img src="workgenLogo.jpg" alt="Workgen Solutions" style="height:54px;width:auto;object-fit:contain;">
+      </a>
+      <div class="hidden md:flex items-center space-x-10 text-gray-700 font-semibold text-lg">
+        <a href="index.html" class="hover:text-dark-blue transition">Home</a>
+        <a href="aboutUs.html" class="hover:text-dark-blue transition">About Us</a>
+        <div class="relative group">
+          <a href="services.html" class="text-dark-blue border-b-2 border-dark-blue pb-0.5 flex items-center">
+            Services
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </a>
+          <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-2 py-2 w-52">
+            <a href="#back-office" class="block px-4 py-2 text-base hover:bg-very-light-blue">Back Office</a>
+            <a href="#data-annotation" class="block px-4 py-2 text-base hover:bg-very-light-blue">Data Annotation</a>
+            <a href="#qa-qc" class="block px-4 py-2 text-base hover:bg-very-light-blue">QA/QC Monitoring</a>
+            <a href="#customer-support" class="block px-4 py-2 text-base hover:bg-very-light-blue">Customer Support</a>
+            <a href="#ml-annotation" class="block px-4 py-2 text-base hover:bg-very-light-blue">ML Annotation</a>
+            <a href="#case-studies" class="block px-4 py-2 text-base hover:bg-very-light-blue">Case Studies</a>
+          </div>
+        </div>
+        <a href="#" class="hover:text-dark-blue transition">Contact Us</a>
+      </div>
+      <a href="contact.php" class="hero-cta hidden md:inline-block bg-dark-blue text-white font-semibold px-6 py-3 rounded-full text-base shadow-md transition">Get Started</a>
+      <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg focus:outline-none" onclick="toggleMenu()" aria-label="Toggle menu">
+        <span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span>
+      </button>
+    </div>
+    <div id="mobile-menu">
+      <div style="background:white;border-top:1px solid #e2e8f0;padding:8px 16px 16px;">
+        <a href="index.html" class="block py-3 px-2 text-gray-700 font-semibold text-base border-b border-gray-100 hover:text-dark-blue transition">Home</a>
+        <a href="aboutUs.html" class="block py-3 px-2 text-gray-700 font-semibold text-base border-b border-gray-100 hover:text-dark-blue transition">About Us</a>
+        <div>
+          <button onclick="toggleServices()" class="w-full flex items-center justify-between py-3 px-2 text-dark-blue font-semibold text-base border-b border-gray-100 focus:outline-none">
+            Services
+            <svg id="services-arrow" class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div id="services-sub" style="max-height:0;overflow:hidden;transition:max-height 0.3s ease;background:#f8fafc;border-radius:8px;margin:0 4px;">
+            <a href="#back-office" class="block py-2 px-6 text-sm text-gray-600 hover:text-dark-blue transition">Back Office</a>
+            <a href="#data-annotation" class="block py-2 px-6 text-sm text-gray-600 hover:text-dark-blue transition">Data Annotation</a>
+            <a href="#qa-qc" class="block py-2 px-6 text-sm text-gray-600 hover:text-dark-blue transition">QA/QC Monitoring</a>
+            <a href="#customer-support" class="block py-2 px-6 text-sm text-gray-600 hover:text-dark-blue transition">Customer Support</a>
+            <a href="#ml-annotation" class="block py-2 px-6 text-sm text-gray-600 hover:text-dark-blue transition">ML Annotation</a>
+            <a href="#case-studies" class="block py-2 px-6 text-sm text-gray-600 hover:text-dark-blue transition">Case Studies</a>
+          </div>
+        </div>
+        <a href="#" class="block py-3 px-2 text-gray-700 font-semibold text-base border-b border-gray-100 hover:text-dark-blue transition">Contact Us</a>
+        <div class="pt-4 px-2">
+          <a href="contact.php" class="block text-center bg-dark-blue text-white font-semibold py-3 rounded-full text-base shadow-md hover:bg-blue-800 transition">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="h-20"></div>
+
+  <!-- HERO -->
+  <section class="svc-hero py-24 md:py-32">
+    <div class="hero-grid"></div>
+    <div style="position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(29,78,216,0.4),transparent 70%);top:-150px;right:-100px;filter:blur(80px);border-radius:50%;pointer-events:none;"></div>
+    <div style="position:absolute;width:350px;height:350px;background:radial-gradient(circle,rgba(67,56,202,0.3),transparent 70%);bottom:-100px;left:-80px;filter:blur(70px);border-radius:50%;pointer-events:none;"></div>
+    <div class="container mx-auto px-6 max-w-5xl text-center relative z-10">
+      <div class="animate__animated animate__fadeInDown" style="display:flex;justify-content:center;margin-bottom:20px;">
+        <span style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:999px;padding:6px 18px;font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#bfdbfe;">
+          6 Core Services · Tailored for You
+        </span>
+      </div>
+      <h1 class="animate__animated animate__fadeInDown text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight" style="animation-delay:0.2s;">
+        Solutions Built Around<br/>
+        <span style="color:#93c5fd;">Your Business Needs</span>
+      </h1>
+      <p class="animate__animated animate__fadeInUp text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-10" style="animation-delay:0.4s;">
+        From back-office operations to cutting-edge ML annotation, our full suite of BPO services is designed to help you scale with precision, speed, and confidence.
+      </p>
+      <!-- Quick-jump tabs -->
+      <div class="animate__animated animate__fadeInUp flex flex-wrap justify-center gap-3" style="animation-delay:0.6s;">
+        <a href="#back-office" class="tab-btn active">Back Office</a>
+        <a href="#data-annotation" class="tab-btn active">Data Annotation</a>
+        <a href="#qa-qc" class="tab-btn active">QA/QC</a>
+        <a href="#customer-support" class="tab-btn active">Customer Support</a>
+        <a href="#ml-annotation" class="tab-btn active">ML Annotation</a>
+        <a href="#case-studies" class="tab-btn active">Case Studies</a>
+      </div>
+    </div>
+    <div style="position:absolute;bottom:0;left:0;right:0;line-height:0;z-index:5;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 70" preserveAspectRatio="none" style="width:100%;height:55px;display:block;">
+        <path d="M0,0 L1440,0 L1440,70 L0,70 Z" fill="#f8fafc"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- SERVICES OVERVIEW GRID -->
+  <section class="py-20" style="background:#f8fafc;">
+    <div class="container mx-auto px-6 max-w-7xl">
+      <div class="text-center mb-14" data-aos="fade-up">
+        <span class="section-tag">What We Offer</span>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mt-2 mb-4">Our Core Services</h2>
+        <p class="text-gray-500 text-lg max-w-2xl mx-auto">Comprehensive, tailored solutions designed to scale your business with precision.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <a href="#back-office" class="svc-detail-card block" data-aos="fade-up" data-aos-delay="0">
+          <div class="svc-detail-header">
+            <div class="svc-icon-lg"><i class="fa-solid fa-briefcase text-2xl" style="color:#1e40af;"></i></div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Back Office Operations</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Efficient handling of administrative tasks to streamline your business and reduce operational overhead.</p>
+          </div>
+          <div class="svc-detail-body">
+            <div class="svc-check-item"><div class="svc-check-dot"><i class="fa-solid fa-check text-xs" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Data Entry & Processing</span></div>
+            <div class="svc-check-item"><div class="svc-check-dot"><i class="fa-solid fa-check text-xs" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Document Management</span></div>
+            <div class="svc-check-item"><div class="svc-check-dot"><i class="fa-solid fa-check text-xs" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Administrative Support</span></div>
+            <span class="inline-flex items-center gap-2 mt-4 text-dark-blue font-semibold text-sm">Learn More <i class="fa-solid fa-arrow-right text-xs"></i></span>
+          </div>
+        </a>
+        <a href="#data-annotation" class="svc-detail-card block" data-aos="fade-up" data-aos-delay="100">
+          <div class="svc-detail-header">
+            <div class="svc-icon-lg"><i class="fa-solid fa-database text-2xl" style="color:#1e40af;"></i></div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Data Annotation</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">High-quality labeling and annotation for training accurate machine learning models at scale.</p>
+          </div>
+          <div class="svc-detail-body">
+            <div class="svc-check-item"><div class="svc-check-dot"><i class="fa-solid fa-check text-xs" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Image & Video Labeling</span></div>
+            <div class="svc-check-item"><div class="svc-check-dot"><i class="fa-solid fa-check text-xs" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Text Classification</span></div>
+            <div class="svc-check-item"><div class="svc-check-dot"><i class="fa-solid fa-check text-xs" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Named Entity Recognition</span></div>
+            <span class="inline-flex items-center gap-2 mt-4 text-dark-blue font-semibold text-sm">Learn More <i class="fa-solid fa-arrow-right text-xs"></i></span>
+          </div>
+        </a>
+        <a href="#qa-qc" class="svc-detail-card block" data-aos="fade-up" data-aos-delay="200">
+          <div class="svc-detail-header">
+            <div class="svc-icon-lg"><i class="fa-solid fa-circle-check text-2xl" style="color:#1e40af;"></i></div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">QA/QC Monitoring</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Rigorous quality assurance and control processes ensuring consistent excellence across deliverables.</p>
+          </div>
+          <div class="svc-detail-body">
+            <div class="svc-check-item"><div class="svc-check-dot"><i class="fa-solid fa-check text-xs" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Multi-layer QA Checks</span></div>
+            <div class="svc-check-item"><div class="svc-check-dot"><i class="fa-solid fa-check text-xs" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Error Rate Monitoring</span></div>
+            <div class="svc-check-item"><div class="svc-check-dot"><i class="fa-solid fa-check text-xs" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Compliance Reporting</span></div>
+            <span class="inline-flex items-center gap-2 mt-4 text-dark-blue font-semibold text-sm">Learn More <i class="fa-solid fa-arrow-right text-xs"></i></span>
+          </div>
+        </a>
+        <a href="#customer-support" class="svc-detail-card block" data-aos="fade-up" data-aos-delay="300">
+          <div class="svc-detail-header">
+            <div class="svc-icon-lg"><i class="fa-solid fa-headset text-2xl" style="color:#1e40af;"></i></div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Customer Support</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">24/7 multi-channel support to enhance customer satisfaction and build lasting relationships.</p>
+          </div>
+          <div class="svc-detail-body">
+            <div class="svc-check-item"><div class="svc-check-dot"><i class="fa-solid fa-check text-xs" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Email & Chat Support</span></div>
+            <div class="svc-check-item"><div class="svc-check-dot"><i class="fa-solid fa-check text-xs" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Inbound Call Handling</span></div>
+            <div class="svc-check-item"><div class="svc-check-dot"><i class="fa-solid fa-check text-xs" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Ticket Management</span></div>
+            <span class="inline-flex items-center gap-2 mt-4 text-dark-blue font-semibold text-sm">Learn More <i class="fa-solid fa-arrow-right text-xs"></i></span>
+          </div>
+        </a>
+        <a href="#ml-annotation" class="svc-detail-card block" data-aos="fade-up" data-aos-delay="400">
+          <div class="svc-detail-header">
+            <div class="svc-icon-lg"><i class="fa-solid fa-robot text-2xl" style="color:#1e40af;"></i></div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">ML Annotation Services</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Specialized annotation for ML datasets including image, text, audio and video content.</p>
+          </div>
+          <div class="svc-detail-body">
+            <div class="svc-check-item"><div class="svc-check-dot"><i class="fa-solid fa-check text-xs" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Bounding Box & Segmentation</span></div>
+            <div class="svc-check-item"><div class="svc-check-dot"><i class="fa-solid fa-check text-xs" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Audio Transcription</span></div>
+            <div class="svc-check-item"><div class="svc-check-dot"><i class="fa-solid fa-check text-xs" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Sentiment & Intent Labeling</span></div>
+            <span class="inline-flex items-center gap-2 mt-4 text-dark-blue font-semibold text-sm">Learn More <i class="fa-solid fa-arrow-right text-xs"></i></span>
+          </div>
+        </a>
+        <a href="#case-studies" class="svc-detail-card block" data-aos="fade-up" data-aos-delay="500">
+          <div class="svc-detail-header">
+            <div class="svc-icon-lg"><i class="fa-solid fa-book-open text-2xl" style="color:#1e40af;"></i></div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Case Studies</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Real-world examples showcasing our successful projects, measurable outcomes and satisfied clients.</p>
+          </div>
+          <div class="svc-detail-body">
+            <div class="svc-check-item"><div class="svc-check-dot"><i class="fa-solid fa-check text-xs" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Client Success Stories</span></div>
+            <div class="svc-check-item"><div class="svc-check-dot"><i class="fa-solid fa-check text-xs" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Measurable ROI Results</span></div>
+            <div class="svc-check-item"><div class="svc-check-dot"><i class="fa-solid fa-check text-xs" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Industry-Specific Insights</span></div>
+            <span class="inline-flex items-center gap-2 mt-4 text-dark-blue font-semibold text-sm">Learn More <i class="fa-solid fa-arrow-right text-xs"></i></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW WE WORK — PROCESS -->
+  <section class="py-24 bg-white">
+    <div class="container mx-auto px-6 max-w-5xl">
+      <div class="text-center mb-14" data-aos="fade-up">
+        <span class="section-tag">Our Process</span>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mt-2 mb-4">How We Deliver Results</h2>
+        <p class="text-gray-500 text-lg max-w-xl mx-auto">A simple, transparent process that keeps you in control from day one.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="process-step" data-aos="fade-right" data-aos-delay="0">
+          <div class="process-num">01</div>
+          <div>
+            <h4 class="font-bold text-gray-900 mb-2">Discovery & Scoping</h4>
+            <p class="text-gray-500 text-sm leading-relaxed">We start by deeply understanding your business requirements, data types, volume, timelines, and quality benchmarks before writing a single line of process.</p>
+          </div>
+        </div>
+        <div class="process-step" data-aos="fade-right" data-aos-delay="100">
+          <div class="process-num">02</div>
+          <div>
+            <h4 class="font-bold text-gray-900 mb-2">Team Assembly & Training</h4>
+            <p class="text-gray-500 text-sm leading-relaxed">We assign a dedicated team of specialists, train them on your specific guidelines, tools, and quality standards to ensure consistency from the start.</p>
+          </div>
+        </div>
+        <div class="process-step" data-aos="fade-right" data-aos-delay="200">
+          <div class="process-num">03</div>
+          <div>
+            <h4 class="font-bold text-gray-900 mb-2">Execution & QA</h4>
+            <p class="text-gray-500 text-sm leading-relaxed">Work is carried out in structured batches with multi-layer QA checks at every stage. Error rates are tracked in real time against your agreed benchmarks.</p>
+          </div>
+        </div>
+        <div class="process-step" data-aos="fade-right" data-aos-delay="300">
+          <div class="process-num">04</div>
+          <div>
+            <h4 class="font-bold text-gray-900 mb-2">Delivery & Feedback Loop</h4>
+            <p class="text-gray-500 text-sm leading-relaxed">Completed work is delivered on schedule with detailed quality reports. We review feedback together and continuously improve the process for the next cycle.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE DETAIL SECTIONS -->
+  <section id="back-office" class="py-20" style="background:#f8fafc;">
+    <div class="container mx-auto px-6 max-w-6xl">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div data-aos="fade-right">
+          <span class="section-tag">Service 01</span>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2 mb-5">Back Office Operations</h2>
+          <p class="text-gray-500 leading-relaxed mb-6">Let your core team focus on what matters most. Our back-office experts handle the administrative workload with speed, accuracy, and complete confidentiality — so nothing slips through the cracks.</p>
+          <div class="space-y-3 mb-8">
+            <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Data Entry, Cleansing & Verification</span></div>
+            <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Document Digitization & Management</span></div>
+            <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Invoice & Order Processing</span></div>
+            <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">HR & Payroll Administration Support</span></div>
+          </div>
+          <a href="contact.php" class="hero-cta inline-flex items-center gap-2 bg-dark-blue text-white font-semibold px-8 py-4 rounded-full shadow-md">Get a Quote <i class="fa-solid fa-arrow-right text-sm"></i></a>
+        </div>
+        <div data-aos="fade-left" data-aos-delay="100">
+          <div class="rounded-3xl p-10 text-center" style="background:linear-gradient(135deg,#1e3a8a,#1e40af);">
+            <i class="fa-solid fa-briefcase text-8xl mb-6" style="color:rgba(147,197,253,0.8);"></i>
+            <div class="grid grid-cols-2 gap-4 mt-4">
+              <div style="background:rgba(255,255,255,0.1);border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,0.15);">
+                <div class="text-2xl font-extrabold text-white">60%</div>
+                <div class="text-blue-200 text-xs mt-1">Cost Reduction</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.1);border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,0.15);">
+                <div class="text-2xl font-extrabold text-white">99.8%</div>
+                <div class="text-blue-200 text-xs mt-1">Accuracy Rate</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.1);border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,0.15);">
+                <div class="text-2xl font-extrabold text-white">24/7</div>
+                <div class="text-blue-200 text-xs mt-1">Availability</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.1);border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,0.15);">
+                <div class="text-2xl font-extrabold text-white">NDA</div>
+                <div class="text-blue-200 text-xs mt-1">Data Protected</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="data-annotation" class="py-20 bg-white">
+    <div class="container mx-auto px-6 max-w-6xl">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div data-aos="fade-left" class="order-2 lg:order-1">
+          <div class="rounded-3xl p-10 text-center" style="background:linear-gradient(135deg,#1e3a8a,#1e40af);">
+            <i class="fa-solid fa-database text-8xl mb-6" style="color:rgba(147,197,253,0.8);"></i>
+            <div class="flex flex-wrap justify-center gap-3 mt-4">
+              <span style="background:rgba(255,255,255,0.1);border-radius:999px;padding:6px 14px;color:white;font-size:0.78rem;border:1px solid rgba(255,255,255,0.15);">Image Labeling</span>
+              <span style="background:rgba(255,255,255,0.1);border-radius:999px;padding:6px 14px;color:white;font-size:0.78rem;border:1px solid rgba(255,255,255,0.15);">Text Classification</span>
+              <span style="background:rgba(255,255,255,0.1);border-radius:999px;padding:6px 14px;color:white;font-size:0.78rem;border:1px solid rgba(255,255,255,0.15);">NER Tagging</span>
+              <span style="background:rgba(255,255,255,0.1);border-radius:999px;padding:6px 14px;color:white;font-size:0.78rem;border:1px solid rgba(255,255,255,0.15);">Video Annotation</span>
+              <span style="background:rgba(255,255,255,0.1);border-radius:999px;padding:6px 14px;color:white;font-size:0.78rem;border:1px solid rgba(255,255,255,0.15);">OCR & Form Extraction</span>
+              <span style="background:rgba(255,255,255,0.1);border-radius:999px;padding:6px 14px;color:white;font-size:0.78rem;border:1px solid rgba(255,255,255,0.15);">Bounding Boxes</span>
+            </div>
+          </div>
+        </div>
+        <div data-aos="fade-right" class="order-1 lg:order-2">
+          <span class="section-tag">Service 02</span>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2 mb-5">Data Annotation</h2>
+          <p class="text-gray-500 leading-relaxed mb-6">Quality training data is the backbone of every successful AI model. Our annotation specialists deliver accurate, consistent labels across any data type at any scale — enabling your models to learn faster and perform better.</p>
+          <div class="space-y-3 mb-8">
+            <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Image, Video & LiDAR Annotation</span></div>
+            <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Text Classification & NER Tagging</span></div>
+            <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">OCR & Document Extraction</span></div>
+            <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Custom Annotation Workflows</span></div>
+          </div>
+          <a href="contact.php" class="hero-cta inline-flex items-center gap-2 bg-dark-blue text-white font-semibold px-8 py-4 rounded-full shadow-md">Get a Quote <i class="fa-solid fa-arrow-right text-sm"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="qa-qc" class="py-20" style="background:#f8fafc;">
+    <div class="container mx-auto px-6 max-w-6xl">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div data-aos="fade-right">
+          <span class="section-tag">Service 03</span>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2 mb-5">QA/QC Monitoring</h2>
+          <p class="text-gray-500 leading-relaxed mb-6">Quality is never an accident — it's the result of deliberate process. Our QA/QC teams apply rigorous multi-layer checks to ensure every deliverable meets your exact standards, consistently, at scale.</p>
+          <div class="space-y-3 mb-8">
+            <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Multi-stage Quality Checkpoints</span></div>
+            <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Real-time Error Rate Dashboards</span></div>
+            <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Compliance & Audit Reporting</span></div>
+            <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Corrective Action Workflows</span></div>
+          </div>
+          <a href="contact.php" class="hero-cta inline-flex items-center gap-2 bg-dark-blue text-white font-semibold px-8 py-4 rounded-full shadow-md">Get a Quote <i class="fa-solid fa-arrow-right text-sm"></i></a>
+        </div>
+        <div data-aos="fade-left" data-aos-delay="100">
+          <div class="rounded-3xl p-10" style="background:linear-gradient(135deg,#1e3a8a,#1e40af);">
+            <div class="text-center mb-6"><i class="fa-solid fa-circle-check text-7xl" style="color:rgba(147,197,253,0.8);"></i></div>
+            <div class="space-y-3">
+              <div style="background:rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;gap:12px;">
+                <i class="fa-solid fa-circle-check" style="color:#4ade80;"></i>
+                <span class="text-white text-sm font-medium">99.9% accuracy standard maintained</span>
+              </div>
+              <div style="background:rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;gap:12px;">
+                <i class="fa-solid fa-circle-check" style="color:#4ade80;"></i>
+                <span class="text-white text-sm font-medium">Double-blind review on all outputs</span>
+              </div>
+              <div style="background:rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;gap:12px;">
+                <i class="fa-solid fa-circle-check" style="color:#4ade80;"></i>
+                <span class="text-white text-sm font-medium">Weekly quality audit reports delivered</span>
+              </div>
+              <div style="background:rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;gap:12px;">
+                <i class="fa-solid fa-circle-check" style="color:#4ade80;"></i>
+                <span class="text-white text-sm font-medium">Dedicated QA lead per project</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="customer-support" class="py-20 bg-white">
+    <div class="container mx-auto px-6 max-w-6xl">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div data-aos="fade-left" class="order-2 lg:order-1">
+          <div class="rounded-3xl p-10" style="background:linear-gradient(135deg,#1e3a8a,#1e40af);">
+            <div class="text-center mb-6"><i class="fa-solid fa-headset text-7xl" style="color:rgba(147,197,253,0.8);"></i></div>
+            <div class="grid grid-cols-3 gap-4">
+              <div style="background:rgba(255,255,255,0.1);border-radius:14px;padding:16px;text-align:center;border:1px solid rgba(255,255,255,0.15);">
+                <div class="text-xl font-extrabold text-white">24/7</div>
+                <div class="text-blue-200 text-xs mt-1">Coverage</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.1);border-radius:14px;padding:16px;text-align:center;border:1px solid rgba(255,255,255,0.15);">
+                <div class="text-xl font-extrabold text-white">Email</div>
+                <div class="text-blue-200 text-xs mt-1">Support</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.1);border-radius:14px;padding:16px;text-align:center;border:1px solid rgba(255,255,255,0.15);">
+                <div class="text-xl font-extrabold text-white">Chat</div>
+                <div class="text-blue-200 text-xs mt-1">Support</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div data-aos="fade-right" class="order-1 lg:order-2">
+          <span class="section-tag">Service 04</span>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2 mb-5">Customer Support</h2>
+          <p class="text-gray-500 leading-relaxed mb-6">Your customers deserve prompt, professional, and empathetic responses — every time. Our trained support teams represent your brand with care across all channels, around the clock.</p>
+          <div class="space-y-3 mb-8">
+            <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">24/7 Email, Chat & Phone Support</span></div>
+            <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Helpdesk & Ticket Management</span></div>
+            <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Escalation & Complaint Handling</span></div>
+            <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">CSAT Monitoring & Reporting</span></div>
+          </div>
+          <a href="contact.php" class="hero-cta inline-flex items-center gap-2 bg-dark-blue text-white font-semibold px-8 py-4 rounded-full shadow-md">Get a Quote <i class="fa-solid fa-arrow-right text-sm"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ml-annotation" class="py-20" style="background:#f8fafc;">
+    <div class="container mx-auto px-6 max-w-6xl">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div data-aos="fade-right">
+          <span class="section-tag">Service 05</span>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2 mb-5">ML Annotation Services</h2>
+          <p class="text-gray-500 leading-relaxed mb-6">Power your AI with high-fidelity training data. Our ML annotation specialists handle complex, domain-specific datasets at volume — enabling your models to achieve breakthrough accuracy faster.</p>
+          <div class="space-y-3 mb-8">
+            <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Bounding Box, Polygon & Segmentation</span></div>
+            <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Speech & Audio Transcription</span></div>
+            <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Sentiment, Intent & Entity Labeling</span></div>
+            <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">RLHF & Model Feedback Loops</span></div>
+          </div>
+          <a href="contact.php" class="hero-cta inline-flex items-center gap-2 bg-dark-blue text-white font-semibold px-8 py-4 rounded-full shadow-md">Get a Quote <i class="fa-solid fa-arrow-right text-sm"></i></a>
+        </div>
+        <div data-aos="fade-left" data-aos-delay="100">
+          <div class="rounded-3xl p-10 text-center" style="background:linear-gradient(135deg,#1e3a8a,#1e40af);">
+            <i class="fa-solid fa-robot text-8xl mb-6" style="color:rgba(147,197,253,0.8);"></i>
+            <div class="flex flex-wrap justify-center gap-2">
+              <span style="background:rgba(255,255,255,0.1);border-radius:999px;padding:5px 12px;color:white;font-size:0.75rem;border:1px solid rgba(255,255,255,0.15);">Computer Vision</span>
+              <span style="background:rgba(255,255,255,0.1);border-radius:999px;padding:5px 12px;color:white;font-size:0.75rem;border:1px solid rgba(255,255,255,0.15);">NLP</span>
+              <span style="background:rgba(255,255,255,0.1);border-radius:999px;padding:5px 12px;color:white;font-size:0.75rem;border:1px solid rgba(255,255,255,0.15);">Speech AI</span>
+              <span style="background:rgba(255,255,255,0.1);border-radius:999px;padding:5px 12px;color:white;font-size:0.75rem;border:1px solid rgba(255,255,255,0.15);">LLM Training</span>
+              <span style="background:rgba(255,255,255,0.1);border-radius:999px;padding:5px 12px;color:white;font-size:0.75rem;border:1px solid rgba(255,255,255,0.15);">RLHF</span>
+              <span style="background:rgba(255,255,255,0.1);border-radius:999px;padding:5px 12px;color:white;font-size:0.75rem;border:1px solid rgba(255,255,255,0.15);">Autonomous Vehicles</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="case-studies" class="py-20 bg-white">
+    <div class="container mx-auto px-6 max-w-6xl">
+      <div class="text-center mb-14" data-aos="fade-up">
+        <span class="section-tag">Service 06</span>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mt-2 mb-4">Case Studies</h2>
+        <p class="text-gray-500 text-lg max-w-2xl mx-auto">Real results for real clients. Detailed project outcomes you can learn from.</p>
+      </div>
+      <!-- Placeholder cards — to be filled with actual projects -->
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="svc-detail-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="svc-detail-header">
+            <div class="svc-icon-lg"><i class="fa-solid fa-briefcase text-2xl" style="color:#1e40af;"></i></div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Back Office Transformation</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">How we helped a US-based logistics company reduce data processing time by 70% through streamlined back-office outsourcing.</p>
+          </div>
+          <div class="svc-detail-body">
+            <div class="flex gap-4">
+              <div class="text-center"><div class="text-xl font-bold" style="color:#1e40af;">70%</div><div class="text-gray-400 text-xs">Faster</div></div>
+              <div class="text-center"><div class="text-xl font-bold" style="color:#1e40af;">40%</div><div class="text-gray-400 text-xs">Cost Saved</div></div>
+            </div>
+            <span class="inline-flex items-center gap-2 mt-5 text-dark-blue font-semibold text-sm">Read Case Study <i class="fa-solid fa-arrow-right text-xs"></i></span>
+          </div>
+        </div>
+        <div class="svc-detail-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="svc-detail-header">
+            <div class="svc-icon-lg"><i class="fa-solid fa-robot text-2xl" style="color:#1e40af;"></i></div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">ML Dataset for Autonomous Driving</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Annotated 2M+ images with bounding boxes and semantic segmentation for a self-driving AI company in Germany.</p>
+          </div>
+          <div class="svc-detail-body">
+            <div class="flex gap-4">
+              <div class="text-center"><div class="text-xl font-bold" style="color:#1e40af;">2M+</div><div class="text-gray-400 text-xs">Images</div></div>
+              <div class="text-center"><div class="text-xl font-bold" style="color:#1e40af;">99.7%</div><div class="text-gray-400 text-xs">Accuracy</div></div>
+            </div>
+            <span class="inline-flex items-center gap-2 mt-5 text-dark-blue font-semibold text-sm">Read Case Study <i class="fa-solid fa-arrow-right text-xs"></i></span>
+          </div>
+        </div>
+        <div class="svc-detail-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="svc-detail-header">
+            <div class="svc-icon-lg"><i class="fa-solid fa-headset text-2xl" style="color:#1e40af;"></i></div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Customer Support Scale-Up</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Deployed a 24/7 multilingual support team for a SaaS company, cutting average response time from 6 hours to under 45 minutes.</p>
+          </div>
+          <div class="svc-detail-body">
+            <div class="flex gap-4">
+              <div class="text-center"><div class="text-xl font-bold" style="color:#1e40af;">45min</div><div class="text-gray-400 text-xs">Response</div></div>
+              <div class="text-center"><div class="text-xl font-bold" style="color:#1e40af;">96%</div><div class="text-gray-400 text-xs">CSAT</div></div>
+            </div>
+            <span class="inline-flex items-center gap-2 mt-5 text-dark-blue font-semibold text-sm">Read Case Study <i class="fa-solid fa-arrow-right text-xs"></i></span>
+          </div>
+        </div>
+      </div>
+      <p class="text-center text-gray-400 text-sm mt-10" data-aos="fade-up">* More detailed case studies with full project content coming soon.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="text-center py-20" style="background:#60a5fa;">
+    <div class="container mx-auto px-6 max-w-4xl" data-aos="fade-up">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-5">Ready to Get Started?</h2>
+      <p class="text-xl mb-10 max-w-3xl mx-auto" style="color:rgba(255,255,255,0.92);">Tell us about your project and we'll put together a tailored solution within 24 hours.</p>
+      <a href="contact.php" class="hero-cta inline-block bg-white font-bold px-14 py-5 rounded-full text-xl shadow-xl" style="color:#1e40af;">Request a Free Quote</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#163498;">
+    <div class="container mx-auto px-6 lg:px-12 py-14 max-w-7xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div class="lg:col-span-1">
+          <img src="workgenLogo.jpg" alt="Workgen Solutions" style="height:52px;width:auto;object-fit:contain;margin-bottom:16px;background:white;padding:4px 8px;border-radius:8px;">
+          <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.75;">Workgen, founded in 2017, came into existence with a vision of providing high-quality business process outsourcing and back-office support services across the globe.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Links</h4>
+          <ul class="space-y-3">
+            <li><a href="index.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Home</a></li>
+            <li><a href="aboutUs.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">About Us</a></li>
+            <li><a href="services.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Services</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Our Services</h4>
+          <ul class="space-y-3">
+            <li><a href="#back-office" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Back Office Operation</a></li>
+            <li><a href="#data-annotation" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Data Annotation</a></li>
+            <li><a href="#qa-qc" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">QA/QC Monitoring</a></li>
+            <li><a href="#customer-support" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Customer Support</a></li>
+            <li><a href="#ml-annotation" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">ML Annotation Services</a></li>
+            <li><a href="#case-studies" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Case Studies</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Contact Info</h4>
+          <div class="flex items-start gap-3 mb-4">
+            <span style="color:white;margin-top:2px;">📍</span>
+            <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.65;margin:0;">918, 9th Floor Tower 2, Assotech Business Cresterra, Sec 135, Noida, 201305</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span style="color:white;">✉️</span>
+            <a href="mailto:info@workgen.in" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">info@workgen.in</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.15);padding:16px 0;text-align:center;">
+      <p style="color:rgba(255,255,255,0.7);font-size:0.85rem;margin:0;">© 2021 Workgen Solutions. All Copyright Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    AOS.init({ once: true, duration: 800 });
+    function toggleMenu() {
+      document.getElementById('mobile-menu').classList.toggle('open');
+      document.getElementById('hamburger').classList.toggle('active');
+    }
+    function toggleServices() {
+      const sub = document.getElementById('services-sub');
+      const arrow = document.getElementById('services-arrow');
+      const isOpen = sub.style.maxHeight && sub.style.maxHeight !== '0px';
+      sub.style.maxHeight = isOpen ? '0px' : '200px';
+      arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+    }
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.remove('open');
+        document.getElementById('hamburger').classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
