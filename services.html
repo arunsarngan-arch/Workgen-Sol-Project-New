@@ -124,6 +124,142 @@
     }
     .tab-panel { display:none; }
     .tab-panel.active { display:block; }
+
+    /* ===== OUR WORK MODAL ===== */
+    .our-work-btn {
+      display:inline-flex; align-items:center; gap:8px;
+      background:white; color:#1e40af;
+      font-weight:700; font-size:0.9rem;
+      padding:14px 28px; border-radius:999px;
+      border:2px solid #1e40af;
+      cursor:pointer; transition:all 0.25s ease;
+      text-decoration:none;
+    }
+    .our-work-btn:hover {
+      background:#1e40af; color:white;
+      transform:translateY(-2px);
+      box-shadow:0 8px 24px rgba(30,64,175,0.25);
+    }
+
+    /* Modal overlay */
+    .ow-overlay {
+      display:none; position:fixed; inset:0; z-index:9999;
+      background:rgba(5,15,40,0.85); backdrop-filter:blur(6px);
+      align-items:flex-start; justify-content:center; overflow-y:auto;
+      padding:40px 16px;
+    }
+    .ow-overlay.open { display:flex; }
+
+    /* Modal box */
+    .ow-modal {
+      background:#fff; border-radius:28px;
+      width:100%; max-width:920px;
+      margin:auto; position:relative;
+      box-shadow:0 40px 120px rgba(0,0,0,0.4);
+      overflow:hidden; animation:modalIn 0.35s cubic-bezier(0.175,0.885,0.32,1.275);
+    }
+    @keyframes modalIn {
+      from { opacity:0; transform:translateY(40px) scale(0.96); }
+      to   { opacity:1; transform:translateY(0) scale(1); }
+    }
+
+    /* Modal header */
+    .ow-header {
+      background:linear-gradient(135deg,#020818 0%,#071232 40%,#0a1a4a 100%);
+      padding:36px 40px 32px; position:relative;
+    }
+    .ow-header h2 { color:white; font-size:1.75rem; font-weight:800; margin:0 0 6px; }
+    .ow-header p  { color:rgba(148,163,184,0.9); font-size:0.95rem; margin:0; }
+    .ow-close {
+      position:absolute; top:20px; right:20px;
+      width:38px; height:38px; border-radius:50%;
+      background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2);
+      color:white; font-size:1.1rem; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      transition:background 0.2s;
+    }
+    .ow-close:hover { background:rgba(255,255,255,0.2); }
+
+    /* Project tabs inside modal */
+    .ow-tabs {
+      display:flex; gap:8px; flex-wrap:wrap;
+      padding:20px 40px 0; background:#f8fafc;
+      border-bottom:1px solid #e8eef6;
+    }
+    .ow-tab {
+      padding:9px 18px; border-radius:999px;
+      font-size:0.8rem; font-weight:700;
+      border:1.5px solid #e2e8f0; color:#64748b;
+      cursor:pointer; background:white; transition:all 0.2s;
+      white-space:nowrap;
+    }
+    .ow-tab.active, .ow-tab:hover {
+      background:#1e40af; color:white; border-color:#1e40af;
+    }
+
+    /* Project content */
+    .ow-content { padding:32px 40px 40px; background:#f8fafc; }
+    .ow-project { display:none; }
+    .ow-project.active { display:block; }
+
+    /* Project card layout */
+    .ow-project-title {
+      font-size:1.35rem; font-weight:800; color:#0f172a; margin:0 0 6px;
+    }
+    .ow-project-sub {
+      font-size:0.88rem; color:#64748b; margin:0 0 20px;
+      display:flex; align-items:center; gap:8px;
+    }
+    .ow-badge {
+      display:inline-block; background:#eff6ff; color:#1e40af;
+      font-size:0.72rem; font-weight:700; padding:3px 10px;
+      border-radius:999px; border:1px solid #bfdbfe;
+    }
+
+    /* KPI row */
+    .ow-kpi-row {
+      display:flex; gap:12px; flex-wrap:wrap; margin-bottom:24px;
+    }
+    .ow-kpi {
+      background:white; border:1px solid #e8eef6; border-radius:14px;
+      padding:12px 18px; text-align:center; flex:1; min-width:90px;
+    }
+    .ow-kpi-val {
+      font-size:1.25rem; font-weight:800; color:#1e40af; line-height:1;
+    }
+    .ow-kpi-lbl { font-size:0.7rem; color:#94a3b8; margin-top:4px; }
+
+    /* What/How/Impact 3-col grid */
+    .ow-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:16px; margin-top:0;
+    }
+    .ow-section-card {
+      background:white; border:1px solid #e8eef6; border-radius:16px;
+      padding:20px 22px;
+    }
+    .ow-section-card h4 {
+      font-size:0.78rem; font-weight:700; text-transform:uppercase;
+      letter-spacing:0.08em; color:#1e40af; margin:0 0 12px;
+      display:flex; align-items:center; gap:8px;
+    }
+    .ow-section-card h4 i { font-size:0.85rem; }
+    .ow-bullet {
+      display:flex; align-items:flex-start; gap:8px; margin-bottom:8px;
+    }
+    .ow-bullet-dot {
+      width:6px; height:6px; border-radius:50%;
+      background:#1e40af; flex-shrink:0; margin-top:6px;
+    }
+    .ow-bullet span { font-size:0.84rem; color:#374151; line-height:1.5; }
+
+    @media(max-width:600px){
+      .ow-header { padding:24px 20px 20px; }
+      .ow-header h2 { font-size:1.2rem; }
+      .ow-tabs { padding:14px 16px 0; }
+      .ow-content { padding:20px 16px 28px; }
+      .ow-tab { padding:7px 13px; font-size:0.75rem; }
+    }
   </style>
 </head>
 <body class="bg-white font-sans antialiased">
@@ -366,7 +502,10 @@
             <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Invoice & Order Processing</span></div>
             <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">HR & Payroll Administration Support</span></div>
           </div>
-          <a href="contact.php" class="hero-cta inline-flex items-center gap-2 bg-dark-blue text-white font-semibold px-8 py-4 rounded-full shadow-md">Get a Quote <i class="fa-solid fa-arrow-right text-sm"></i></a>
+          <div class="flex flex-wrap gap-4 items-center">
+            <button onclick="openOurWork('back-office')" class="our-work-btn"><i class="fa-solid fa-folder-open text-sm"></i> Our Work</button>
+            <a href="contact.php" class="hero-cta inline-flex items-center gap-2 bg-dark-blue text-white font-semibold px-8 py-4 rounded-full shadow-md">Get a Quote <i class="fa-solid fa-arrow-right text-sm"></i></a>
+          </div>
         </div>
         <div data-aos="fade-left" data-aos-delay="100">
           <div class="rounded-3xl p-10 text-center" style="background:linear-gradient(135deg,#1e3a8a,#1e40af);">
@@ -421,7 +560,10 @@
             <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">OCR & Document Extraction</span></div>
             <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Custom Annotation Workflows</span></div>
           </div>
-          <a href="contact.php" class="hero-cta inline-flex items-center gap-2 bg-dark-blue text-white font-semibold px-8 py-4 rounded-full shadow-md">Get a Quote <i class="fa-solid fa-arrow-right text-sm"></i></a>
+          <div class="flex flex-wrap gap-4 items-center">
+            <button class="our-work-btn" style="opacity:0.5;cursor:not-allowed;" disabled><i class="fa-solid fa-folder-open text-sm"></i> Our Work</button>
+            <a href="contact.php" class="hero-cta inline-flex items-center gap-2 bg-dark-blue text-white font-semibold px-8 py-4 rounded-full shadow-md">Get a Quote <i class="fa-solid fa-arrow-right text-sm"></i></a>
+          </div>
         </div>
       </div>
     </div>
@@ -440,7 +582,10 @@
             <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Compliance & Audit Reporting</span></div>
             <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Corrective Action Workflows</span></div>
           </div>
-          <a href="contact.php" class="hero-cta inline-flex items-center gap-2 bg-dark-blue text-white font-semibold px-8 py-4 rounded-full shadow-md">Get a Quote <i class="fa-solid fa-arrow-right text-sm"></i></a>
+          <div class="flex flex-wrap gap-4 items-center">
+            <button onclick="openOurWork('qa-qc')" class="our-work-btn"><i class="fa-solid fa-folder-open text-sm"></i> Our Work</button>
+            <a href="contact.php" class="hero-cta inline-flex items-center gap-2 bg-dark-blue text-white font-semibold px-8 py-4 rounded-full shadow-md">Get a Quote <i class="fa-solid fa-arrow-right text-sm"></i></a>
+          </div>
         </div>
         <div data-aos="fade-left" data-aos-delay="100">
           <div class="rounded-3xl p-10" style="background:linear-gradient(135deg,#1e3a8a,#1e40af);">
@@ -501,7 +646,10 @@
             <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Escalation & Complaint Handling</span></div>
             <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">CSAT Monitoring & Reporting</span></div>
           </div>
-          <a href="contact.php" class="hero-cta inline-flex items-center gap-2 bg-dark-blue text-white font-semibold px-8 py-4 rounded-full shadow-md">Get a Quote <i class="fa-solid fa-arrow-right text-sm"></i></a>
+          <div class="flex flex-wrap gap-4 items-center">
+            <button onclick="openOurWork('customer-support')" class="our-work-btn"><i class="fa-solid fa-folder-open text-sm"></i> Our Work</button>
+            <a href="contact.php" class="hero-cta inline-flex items-center gap-2 bg-dark-blue text-white font-semibold px-8 py-4 rounded-full shadow-md">Get a Quote <i class="fa-solid fa-arrow-right text-sm"></i></a>
+          </div>
         </div>
       </div>
     </div>
@@ -520,7 +668,10 @@
             <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Sentiment, Intent & Entity Labeling</span></div>
             <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">RLHF & Model Feedback Loops</span></div>
           </div>
-          <a href="contact.php" class="hero-cta inline-flex items-center gap-2 bg-dark-blue text-white font-semibold px-8 py-4 rounded-full shadow-md">Get a Quote <i class="fa-solid fa-arrow-right text-sm"></i></a>
+          <div class="flex flex-wrap gap-4 items-center">
+            <button class="our-work-btn" style="opacity:0.5;cursor:not-allowed;" disabled><i class="fa-solid fa-folder-open text-sm"></i> Our Work</button>
+            <a href="contact.php" class="hero-cta inline-flex items-center gap-2 bg-dark-blue text-white font-semibold px-8 py-4 rounded-full shadow-md">Get a Quote <i class="fa-solid fa-arrow-right text-sm"></i></a>
+          </div>
         </div>
         <div data-aos="fade-left" data-aos-delay="100">
           <div class="rounded-3xl p-10 text-center" style="background:linear-gradient(135deg,#1e3a8a,#1e40af);">
@@ -559,21 +710,21 @@
               <div class="text-center"><div class="text-xl font-bold" style="color:#1e40af;">70%</div><div class="text-gray-400 text-xs">Faster</div></div>
               <div class="text-center"><div class="text-xl font-bold" style="color:#1e40af;">40%</div><div class="text-gray-400 text-xs">Cost Saved</div></div>
             </div>
-            <span class="inline-flex items-center gap-2 mt-5 text-dark-blue font-semibold text-sm">Read Case Study <i class="fa-solid fa-arrow-right text-xs"></i></span>
+            <span class="inline-flex items-center gap-2 mt-5 text-dark-blue font-semibold text-sm" style="opacity:0.4;cursor:not-allowed;">Coming Soon <i class="fa-solid fa-clock text-xs"></i></span>
           </div>
         </div>
         <div class="svc-detail-card" data-aos="fade-up" data-aos-delay="100">
           <div class="svc-detail-header">
-            <div class="svc-icon-lg"><i class="fa-solid fa-robot text-2xl" style="color:#1e40af;"></i></div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">ML Dataset for Autonomous Driving</h3>
-            <p class="text-gray-500 text-sm leading-relaxed">Annotated 2M+ images with bounding boxes and semantic segmentation for a self-driving AI company in Germany.</p>
+            <div class="svc-icon-lg"><i class="fa-solid fa-circle-check text-2xl" style="color:#1e40af;"></i></div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">QA/QC Monitoring — Precision-Driven Excellence</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">How Workgen delivered 300–400 weekly call audits for Topgolf, improving agent accuracy, reducing misinformation and elevating guest satisfaction.</p>
           </div>
           <div class="svc-detail-body">
             <div class="flex gap-4">
-              <div class="text-center"><div class="text-xl font-bold" style="color:#1e40af;">2M+</div><div class="text-gray-400 text-xs">Images</div></div>
-              <div class="text-center"><div class="text-xl font-bold" style="color:#1e40af;">99.7%</div><div class="text-gray-400 text-xs">Accuracy</div></div>
+              <div class="text-center"><div class="text-xl font-bold" style="color:#1e40af;">400+</div><div class="text-gray-400 text-xs">Audits/Week</div></div>
+              <div class="text-center"><div class="text-xl font-bold" style="color:#1e40af;">↑ CSAT</div><div class="text-gray-400 text-xs">Guest Satisfaction</div></div>
             </div>
-            <span class="inline-flex items-center gap-2 mt-5 text-dark-blue font-semibold text-sm">Read Case Study <i class="fa-solid fa-arrow-right text-xs"></i></span>
+            <a href="caseStudies.html" class="inline-flex items-center gap-2 mt-5 text-dark-blue font-semibold text-sm hover:gap-3 transition-all"  style="cursor:pointer;" onclick="window.location.href='caseStudies.html'">Read Case Study <i class="fa-solid fa-arrow-right text-xs"></i></a>
           </div>
         </div>
         <div class="svc-detail-card" data-aos="fade-up" data-aos-delay="200">
@@ -587,11 +738,11 @@
               <div class="text-center"><div class="text-xl font-bold" style="color:#1e40af;">45min</div><div class="text-gray-400 text-xs">Response</div></div>
               <div class="text-center"><div class="text-xl font-bold" style="color:#1e40af;">96%</div><div class="text-gray-400 text-xs">CSAT</div></div>
             </div>
-            <span class="inline-flex items-center gap-2 mt-5 text-dark-blue font-semibold text-sm">Read Case Study <i class="fa-solid fa-arrow-right text-xs"></i></span>
+            <span class="inline-flex items-center gap-2 mt-5 text-dark-blue font-semibold text-sm" style="opacity:0.4;cursor:not-allowed;">Coming Soon <i class="fa-solid fa-clock text-xs"></i></span>
           </div>
         </div>
       </div>
-      <p class="text-center text-gray-400 text-sm mt-10" data-aos="fade-up">* More detailed case studies with full project content coming soon.</p>
+      <p class="text-center text-gray-400 text-sm mt-10" data-aos="fade-up">* More case studies coming soon — Back Office & Customer Support detailed write-ups in progress.</p>
     </div>
   </section>
 
@@ -639,7 +790,7 @@
           </div>
           <div class="flex items-center gap-3">
             <span style="color:white;">✉️</span>
-            <a href="mailto:info@workgen.in" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">info@workgen.in</a>
+            <a href="/cdn-cgi/l/email-protection#d2bbbcb4bd92a5bda0b9b5b7bcfcbbbc" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'"><span class="__cf_email__" data-cfemail="1f767179705f68706d74787a71317671">[email&#160;protected]</span></a>
           </div>
         </div>
       </div>
@@ -649,8 +800,442 @@
     </div>
   </footer>
 
-  <script>
+  <!-- ===== OUR WORK MODALS ===== -->
+
+  <!-- BACK OFFICE MODAL -->
+  <div id="modal-back-office" class="ow-overlay" onclick="closeOnBackdrop(event,'modal-back-office')">
+    <div class="ow-modal">
+      <div class="ow-header">
+        <span class="ow-badge" style="margin-bottom:10px;display:inline-block;">Back Office Operations</span>
+        <h2>Our Work — Back Office</h2>
+        <p>Real projects. Real results. Here's how we've delivered for global clients.</p>
+        <button class="ow-close" onclick="closeOurWork('back-office')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="ow-tabs" id="tabs-back-office">
+        <button class="ow-tab active" onclick="switchTab('back-office',0,this)">Shift Monitoring</button>
+        <button class="ow-tab" onclick="switchTab('back-office',1,this)">Circle K – Assignments</button>
+        <button class="ow-tab" onclick="switchTab('back-office',2,this)">Circle K – Live Monitor</button>
+        <button class="ow-tab" onclick="switchTab('back-office',3,this)">Topgolf – Reservations</button>
+        <button class="ow-tab" onclick="switchTab('back-office',4,this)">The RealReal</button>
+      </div>
+      <div class="ow-content">
+
+        <!-- Project 1 -->
+        <div class="ow-project active" id="back-office-p0">
+          <div class="ow-project-title">Live Shift Monitoring & Workforce Operations</div>
+          <div class="ow-project-sub"><span class="ow-badge">Workforce Ops</span> Distributed Retail & Field Teams</div>
+          <div class="ow-kpi-row">
+            <div class="ow-kpi"><div class="ow-kpi-val">20–50%</div><div class="ow-kpi-lbl">No-show Reduction</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">Real-time</div><div class="ow-kpi-lbl">Attendance Tracking</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">Multi-site</div><div class="ow-kpi-lbl">Centralised Control</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">24/7</div><div class="ow-kpi-lbl">Monitoring</div></div>
+          </div>
+          <div class="ow-grid">
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-bullseye"></i> What We Did</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Real-time monitoring of scheduled vs. actual staffing with automated gap alerts</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>GPS/geofence-verified live check-in & check-out to eliminate buddy punching</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Instant no-show detection with rapid backup pool activation</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Multi-location unified command centre supporting distributed teams</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-gears"></i> How We Did It</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Centralised monitoring platform with live dashboards & attendance trends</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Automated compliance checks against labor laws, break rules & internal policies</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Daily/weekly operational reports tracking key productivity metrics</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-chart-line"></i> Impact Delivered</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Higher shift completion rates — minimised understaffed windows</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Reduced overtime costs & improved labor cost efficiency</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Faster decision-making with real-time manager dashboards</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Stronger workforce accountability across all locations</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="ow-project" id="back-office-p1">
+          <div class="ow-project-title">Circle K – Shift Assignment & Workforce Management</div>
+          <div class="ow-project-sub"><span class="ow-badge">Retail · Convenience</span> Multi-location 24/7 Operations</div>
+          <div class="ow-kpi-row">
+            <div class="ow-kpi"><div class="ow-kpi-val">Near RT</div><div class="ow-kpi-lbl">Coverage Decisions</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">Auto</div><div class="ow-kpi-lbl">Smart Matching</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">Multi-site</div><div class="ow-kpi-lbl">Scalable Framework</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">0 Lag</div><div class="ow-kpi-lbl">Last-min Fills</div></div>
+          </div>
+          <div class="ow-grid">
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-bullseye"></i> What We Did</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Replaced manual spreadsheet scheduling with intelligent automated workflows</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Matched workers to shifts by availability, skills, and location proximity</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Managed last-minute cancellations with instant backup pool activation</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-gears"></i> How We Did It</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Structured tracker workflows for faster approvals & notifications</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Geographic optimisation to minimise worker travel time & overtime</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Rapid re-matching protocol for no-shows during peak demand</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-chart-line"></i> Impact Delivered</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Dramatically cut assignment delays & understaffed shifts</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Freed managers from manual scheduling to focus on customer experience</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Reduced labor waste & overtime costs across the network</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="ow-project" id="back-office-p2">
+          <div class="ow-project-title">Circle K – Real-Time Shift Monitoring & Escalation</div>
+          <div class="ow-project-sub"><span class="ow-badge">Retail · Convenience</span> Live Operations Recovery</div>
+          <div class="ow-kpi-row">
+            <div class="ow-kpi"><div class="ow-kpi-val">&lt;45min</div><div class="ow-kpi-lbl">Reassignment Time</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">Hourly</div><div class="ow-kpi-lbl">Slack Updates</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">Live</div><div class="ow-kpi-lbl">Dashboards</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">Peak-hr</div><div class="ow-kpi-lbl">Service Maintained</div></div>
+          </div>
+          <div class="ow-grid">
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-bullseye"></i> What We Did</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Continuous live monitoring of check-ins with GPS/geofence verification</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Proactive no-show prevention via timed SMS/push reminder protocols</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Escalation & rapid reassignment if no response within defined window</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Shift republishing with incentive bonuses to accelerate fill rates</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-gears"></i> How We Did It</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Slack-based hourly operational status updates to store/district managers</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Custom dashboards showing live fill rates, escalations & coverage heatmaps</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Audit-ready logs of every shift action, communication & resolution</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-chart-line"></i> Impact Delivered</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Near-elimination of prolonged understaffing during critical hours</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Maintained peak-hour revenue & customer service levels</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Better manager visibility — reduced reliance on constant phone follow-ups</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="ow-project" id="back-office-p3">
+          <div class="ow-project-title">Topgolf – Hospitality Backend & Reservation Operations</div>
+          <div class="ow-project-sub"><span class="ow-badge">Hospitality · Entertainment</span> SevenRooms CRM · High-Volume Venues</div>
+          <div class="ow-kpi-row">
+            <div class="ow-kpi"><div class="ow-kpi-val">SevenRooms</div><div class="ow-kpi-lbl">CRM Managed</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">Full-cycle</div><div class="ow-kpi-lbl">Event Booking</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">Low</div><div class="ow-kpi-lbl">Billing Disputes</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">Faster</div><div class="ow-kpi-lbl">Escalation Resolve</div></div>
+          </div>
+          <div class="ow-grid">
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-bullseye"></i> What We Did</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Full lifecycle event booking — reservations, modifications, cancellations</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Billing dispute investigation, refund processing & transaction reconciliation</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Guest complaint handling, lost & found coordination, VIP escalations</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Associate onboarding queries & internal HR-adjacent operations support</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-gears"></i> How We Did It</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>SevenRooms CRM for guest profiles, confirmations & audit trails</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Structured email workflows & templates for seamless venue coordination</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Centralised logging of all requests for consistent follow-up & reporting</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-chart-line"></i> Impact Delivered</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Improved guest satisfaction & loyalty through fast, accurate handling</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Enhanced financial accuracy — minimised billing disputes & revenue leakage</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Freed venue teams to focus on on-site hospitality, not backend admin</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="ow-project" id="back-office-p4">
+          <div class="ow-project-title">The RealReal – Shift Management & Partner Scheduling</div>
+          <div class="ow-project-sub"><span class="ow-badge">Luxury E-commerce</span> Multi-timezone · Precision Scheduling</div>
+          <div class="ow-kpi-row">
+            <div class="ow-kpi"><div class="ow-kpi-val">~35</div><div class="ow-kpi-lbl">Shifts/Partner</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">6-week</div><div class="ow-kpi-lbl">Rolling Window</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">Zero</div><div class="ow-kpi-lbl">Scheduling Errors</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">Multi-TZ</div><div class="ow-kpi-lbl">Accuracy</div></div>
+          </div>
+          <div class="ow-grid">
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-bullseye"></i> What We Did</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Created, assigned, rescheduled & removed shifts across base & current weeks</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Strict triple-verification: category, timing & timezone before every change</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Managed rolling 7-week scheduling horizon for authentication & ops staff</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-gears"></i> How We Did It</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Rule-based precision workflow with full audit trail for every action</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Balanced ~35 shifts per partner to prevent burnout & maintain throughput</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Time zone accuracy critical for distributed US-based teams</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-chart-line"></i> Impact Delivered</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Error-free coverage across luxury authentication & fulfilment processes</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Improved partner satisfaction with fair, availability-respecting scheduling</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Reduced admin burden — freed TRR teams to focus on core luxury expertise</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /ow-content -->
+    </div><!-- /ow-modal -->
+  </div><!-- /modal-back-office -->
+
+
+  <!-- QA/QC MODAL -->
+  <div id="modal-qa-qc" class="ow-overlay" onclick="closeOnBackdrop(event,'modal-qa-qc')">
+    <div class="ow-modal">
+      <div class="ow-header">
+        <span class="ow-badge" style="margin-bottom:10px;display:inline-block;">QA/QC Monitoring</span>
+        <h2>Our Work — QA/QC Monitoring</h2>
+        <p>Rigorous quality assurance delivered for global brands across retail, hospitality & restaurants.</p>
+        <button class="ow-close" onclick="closeOurWork('qa-qc')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="ow-tabs" id="tabs-qa-qc">
+        <button class="ow-tab active" onclick="switchTab('qa-qc',0,this)">Mystery Shopping</button>
+        <button class="ow-tab" onclick="switchTab('qa-qc',1,this)">Topgolf – Call Audits</button>
+        <button class="ow-tab" onclick="switchTab('qa-qc',2,this)">Inspire Brands</button>
+        <button class="ow-tab" onclick="switchTab('qa-qc',3,this)">Sam's Club</button>
+      </div>
+      <div class="ow-content">
+
+        <!-- Project 1 -->
+        <div class="ow-project active" id="qa-qc-p0">
+          <div class="ow-project-title">Market Research & Mystery Shopping Operations</div>
+          <div class="ow-project-sub"><span class="ow-badge">Retail · Digital</span> Global Consumer Brands</div>
+          <div class="ow-kpi-row">
+            <div class="ow-kpi"><div class="ow-kpi-val">Omni</div><div class="ow-kpi-lbl">Channel Coverage</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">High</div><div class="ow-kpi-lbl">Audit Accuracy</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">↑ NPS</div><div class="ow-kpi-lbl">Score Improvement</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">Multi-layer</div><div class="ow-kpi-lbl">QA Process</div></div>
+          </div>
+          <div class="ow-grid">
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-bullseye"></i> What We Did</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>In-store mystery audits: staff behaviour, service quality & brand compliance</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Online/digital audits: UI/UX, mobile responsiveness & pricing accuracy</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Chatbot testing, telephone surveys & merchandising compliance checks</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Partner onboarding, coordination & payment processing management</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-gears"></i> How We Did It</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>End-to-end multi-layer QA for audit data integrity & consistency</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Technology-enabled reporting combining field operations with rigorous controls</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Real-time email/chat support for auditors to resolve discrepancies fast</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-chart-line"></i> Impact Delivered</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Improved retail & digital compliance visibility across multi-location networks</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Proven uplift in CSAT, NPS & first-contact resolution rates</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Streamlined partner coordination & hassle-free payment management</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="ow-project" id="qa-qc-p1">
+          <div class="ow-project-title">Topgolf – Call Auditing & Quality Assurance</div>
+          <div class="ow-project-sub"><span class="ow-badge">Hospitality · Entertainment</span> Contact Centre QA</div>
+          <div class="ow-kpi-row">
+            <div class="ow-kpi"><div class="ow-kpi-val">300–400</div><div class="ow-kpi-lbl">Audits/Week</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">40/day</div><div class="ow-kpi-lbl">Auditor Productivity</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">1+/wk</div><div class="ow-kpi-lbl">Per Agent Coverage</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">Five9</div><div class="ow-kpi-lbl">Platform Used</div></div>
+          </div>
+          <div class="ow-grid">
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-bullseye"></i> What We Did</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Systematically evaluated inbound & outbound guest interactions at scale</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Scored agents on conversation quality, empathy, accuracy & professionalism</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Provided actionable coaching notes with phrasing improvements & training focus</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-gears"></i> How We Did It</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>FCC Master Quality Form as standardised scoring tool for every call</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Five9 for secure call recording access & accurate review</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Regular calibration sessions to ensure scoring uniformity across the team</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Biweekly review meetings with client stakeholders for trend analysis</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-chart-line"></i> Impact Delivered</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Consistent improvement in guest service through unbiased auditing & coaching</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Reduced misinformation — fewer complaints, billing disputes & booking errors</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Elevated agent confidence & skill with specific, structured feedback loops</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="ow-project" id="qa-qc-p2">
+          <div class="ow-project-title">Inspire Brands – Shift Review & Image Audit Operations</div>
+          <div class="ow-project-sub"><span class="ow-badge">QSR · Franchise</span> Arby's · BWW · Dunkin' · SONIC & more · 33,000+ locations</div>
+          <div class="ow-kpi-row">
+            <div class="ow-kpi"><div class="ow-kpi-val">33K+</div><div class="ow-kpi-lbl">Restaurants Covered</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">Image</div><div class="ow-kpi-lbl">Based Validation</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">3-way</div><div class="ow-kpi-lbl">Decision Logic</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">Fraud</div><div class="ow-kpi-lbl">Detection Active</div></div>
+          </div>
+          <div class="ow-grid">
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-bullseye"></i> What We Did</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Reviewed field-submitted shift photos against task descriptions & reference images</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Applied Approve / Follow-Up / Reject logic with detailed notes per submission</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Detected fraudulent images: stock photos, duplicates & heavily edited submissions</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-gears"></i> How We Did It</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Refreshed query list each session to avoid processing outdated entries</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Checked relevance, clarity, authenticity & completeness for each submission</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Preferred follow-up over hard reject to allow correction without penalising franchisees</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-chart-line"></i> Impact Delivered</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Maintained brand consistency & food safety across all 33,000+ locations</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Early fraud detection — reduced revenue leakage & regulatory risk</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Rapid corrective action via detailed notes — faster franchisee issue resolution</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="ow-project" id="qa-qc-p3">
+          <div class="ow-project-title">Sam's Club – QA Process for Inspection Reviews</div>
+          <div class="ow-project-sub"><span class="ow-badge">Retail Warehouse</span> Rack Steel · Lighting · HVAC · Assets</div>
+          <div class="ow-kpi-row">
+            <div class="ow-kpi"><div class="ow-kpi-val">4</div><div class="ow-kpi-lbl">Inspection Types</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">Visual</div><div class="ow-kpi-lbl">Validation Layer</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">OSHA</div><div class="ow-kpi-lbl">Compliance Ensured</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">Multi-site</div><div class="ow-kpi-lbl">Scale</div></div>
+          </div>
+          <div class="ow-grid">
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-bullseye"></i> What We Did</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>QA reviewed rack steel, light meter, asset & HVAC inspection submissions</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Cross-checked readings, images & comments for consistency & accuracy</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Flagged blurry, irrelevant or fraudulent uploads with specific rejection notes</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-gears"></i> How We Did It</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Category-specific checklists: aisle numbers, store maps, equipment IDs</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Decision criteria: images must be clear, well-lit & directly relevant</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Detailed notes on every review for field team coaching & audit trails</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-chart-line"></i> Impact Delivered</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Strengthened OSHA compliance — rack, lighting & HVAC standards maintained</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Prevented structural failures & refrigeration breakdowns through early detection</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Improved inspection quality over time via actionable feedback to field teams</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /ow-content -->
+    </div><!-- /ow-modal -->
+  </div><!-- /modal-qa-qc -->
+
+
+  <!-- CUSTOMER SUPPORT MODAL -->
+  <div id="modal-customer-support" class="ow-overlay" onclick="closeOnBackdrop(event,'modal-customer-support')">
+    <div class="ow-modal">
+      <div class="ow-header">
+        <span class="ow-badge" style="margin-bottom:10px;display:inline-block;">Customer Support</span>
+        <h2>Our Work — Customer Support</h2>
+        <p>Enterprise-grade support operations that protect brand reputation and drive satisfaction.</p>
+        <button class="ow-close" onclick="closeOurWork('customer-support')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="ow-tabs" id="tabs-customer-support">
+        <button class="ow-tab active" onclick="switchTab('customer-support',0,this)">Zendesk Operations</button>
+      </div>
+      <div class="ow-content">
+
+        <!-- Project 1 -->
+        <div class="ow-project active" id="customer-support-p0">
+          <div class="ow-project-title">Zendesk Operations – Centralized Support & Escalation Management</div>
+          <div class="ow-project-sub"><span class="ow-badge">Enterprise Support</span> Retail · Field Service · Multi-location Operations</div>
+          <div class="ow-kpi-row">
+            <div class="ow-kpi"><div class="ow-kpi-val">SLA</div><div class="ow-kpi-lbl">100% Adherence</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">↓ Vol</div><div class="ow-kpi-lbl">Escalation Reduction</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">RT</div><div class="ow-kpi-lbl">Live Dashboards</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">↑ CSAT</div><div class="ow-kpi-lbl">Partner Satisfaction</div></div>
+          </div>
+          <div class="ow-grid">
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-bullseye"></i> What We Did</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Handled store-level escalations: compliance violations, complaints & operational issues</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Resolved field partner queries: app errors, payment discrepancies & scheduling conflicts</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>SLA-based ticket lifecycle management with priority routing & aging alerts</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Root-cause analysis & monthly trend reports for continuous improvement</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-gears"></i> How We Did It</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Centralised Zendesk platform consolidating fragmented multi-channel support</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Cross-functional coordination: store managers, ops, finance & internal teams</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Real-time dashboards, audit-ready logs & performance reporting for decision-making</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-chart-line"></i> Impact Delivered</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Faster first-response & full-resolution times — often well within aggressive SLAs</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Lower escalation volumes over time via proactive trend spotting</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Improved store & partner satisfaction through consistent, professional handling</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Enhanced visibility with real-time dashboards supporting compliance & decisions</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /ow-content -->
+    </div><!-- /ow-modal -->
+  </div><!-- /modal-customer-support -->
+
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     AOS.init({ once: true, duration: 800 });
+
+    // ===== OUR WORK MODAL FUNCTIONS =====
+    function openOurWork(category) {
+      const modal = document.getElementById('modal-' + category);
+      if (modal) {
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+    function closeOurWork(category) {
+      const modal = document.getElementById('modal-' + category);
+      if (modal) {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+    function closeOnBackdrop(e, category) {
+      if (e.target === document.getElementById('modal-' + category)) {
+        closeOurWork(category);
+      }
+    }
+    function switchTab(category, index, btnEl) {
+      // Deactivate all tabs
+      const tabContainer = document.getElementById('tabs-' + category);
+      tabContainer.querySelectorAll('.ow-tab').forEach(t => t.classList.remove('active'));
+      btnEl.classList.add('active');
+      // Deactivate all projects
+      const projects = document.querySelectorAll('#modal-' + category + ' .ow-project');
+      projects.forEach(p => p.classList.remove('active'));
+      // Activate the selected project
+      const proj = document.getElementById(category + '-p' + index);
+      if (proj) proj.classList.add('active');
+    }
+    // Close modal on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        ['back-office','qa-qc','customer-support'].forEach(closeOurWork);
+      }
+    });
+
     function toggleMenu() {
       document.getElementById('mobile-menu').classList.toggle('open');
       document.getElementById('hamburger').classList.toggle('active');
