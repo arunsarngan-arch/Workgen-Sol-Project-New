@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TRR – Shift Management & Partner Scheduling - Workgen Solutions</title>
+  <meta name="description" content="How Workgen Solutions streamlined backend shift management and partner scheduling for The RealReal, enabling accurate, scalable workforce operations across multiple time zones."/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'dark-blue': '#1e40af',
+            'light-blue': '#60a5fa',
+            'very-light-blue': '#eff6ff',
+          },
+          fontFamily: { sans: ['Josefin Sans', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Navbar */
+    #mobile-menu { max-height:0; overflow:hidden; transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1),opacity 0.3s ease; opacity:0; }
+    #mobile-menu.open { max-height:420px; opacity:1; }
+    .ham-line { display:block; width:24px; height:2px; background:#1e40af; border-radius:2px; transition:all 0.3s ease; transform-origin:center; }
+    #hamburger.active .ham-line:nth-child(1) { transform:translateY(8px) rotate(45deg); }
+    #hamburger.active .ham-line:nth-child(2) { opacity:0; transform:scaleX(0); }
+    #hamburger.active .ham-line:nth-child(3) { transform:translateY(-8px) rotate(-45deg); }
+
+    /* Hero */
+    .svc-hero {
+      background: linear-gradient(135deg,#020818 0%,#071232 30%,#0a1a4a 60%,#060e28 100%);
+      position:relative; overflow:hidden;
+    }
+    .hero-grid {
+      position:absolute; inset:0;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+      background-size:55px 55px; pointer-events:none;
+    }
+
+    /* Section tag */
+    .section-tag {
+      display:inline-block; background:#eff6ff; color:#1e40af;
+      font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+      padding:5px 16px; border-radius:999px; border:1px solid #bfdbfe; margin-bottom:14px;
+    }
+
+    nav { background:#ffffff; box-shadow:0 1px 3px rgba(0,0,0,0.1); }
+    nav a { text-decoration:none; }
+    .nav-link { color:#475569; transition:color 0.2s; }
+    .nav-link:hover { color:#1e40af; }
+
+    /* Key Metrics table */
+    .metrics-table { width:100%; border-collapse:collapse; }
+    .metrics-table th { background:#e2e8f0; color:#1e293b; font-weight:700; padding:12px 18px; text-align:left; font-size:0.95rem; }
+    .metrics-table td { padding:11px 18px; border-bottom:1px solid #e2e8f0; font-size:0.95rem; color:#374151; }
+    .metrics-table tr:last-child td { border-bottom:none; }
+    .metrics-table tr:nth-child(even) td { background:#f8fafc; }
+  </style>
+</head>
+<body class="font-sans text-gray-900">
+
+  <!-- NAVBAR -->
+  <nav class="sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4 max-w-7xl flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="workgenLogo.jpg" alt="Workgen Solutions" style="height:40px;width:auto;object-fit:contain;">
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="nav-link font-semibold">Home</a>
+        <a href="aboutUs.html" class="nav-link font-semibold">About</a>
+        <a href="services.html" class="nav-link font-semibold">Services</a>
+        <a href="services.html#case-studies" class="nav-link font-semibold text-dark-blue">Case Studies</a>
+      </div>
+      <button id="hamburger" class="md:hidden" onclick="document.getElementById('mobile-menu').classList.toggle('open'); this.classList.toggle('active');">
+        <div class="ham-line"></div><div class="ham-line"></div><div class="ham-line"></div>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden bg-white border-t">
+      <a href="index.html" class="block px-6 py-3 nav-link">Home</a>
+      <a href="aboutUs.html" class="block px-6 py-3 nav-link">About</a>
+      <a href="services.html" class="block px-6 py-3 nav-link">Services</a>
+      <a href="services.html#case-studies" class="block px-6 py-3 nav-link text-dark-blue font-semibold">Case Studies</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="svc-hero py-16 relative overflow-hidden">
+    <div class="hero-grid"></div>
+    <div class="container mx-auto px-6 lg:px-12 max-w-6xl relative z-10">
+      <a href="services.html#case-studies" class="fixed z-40 inline-flex items-center gap-2 group" style="top:112px;left:20px;background:rgba(15,32,80,0.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(96,165,250,0.35);color:white;font-size:0.78rem;font-weight:700;padding:7px 15px;border-radius:999px;text-decoration:none;letter-spacing:0.03em;box-shadow:0 2px 14px rgba(0,0,0,0.3);transition:all 0.2s;" onmouseover="this.style.background='rgba(30,64,175,0.95)';this.style.borderColor='rgba(96,165,250,0.7)'" onmouseout="this.style.background='rgba(15,32,80,0.82)';this.style.borderColor='rgba(96,165,250,0.35)'">
+        <i class="fa-solid fa-arrow-left text-xs group-hover:-translate-x-1 transition-transform"></i> Back to Case Studies
+      </a>
+      <div class="text-center max-w-4xl mx-auto" data-aos="fade-down">
+        <span class="section-tag">BACK OFFICE OPERATIONS</span>
+        <h1 class="text-5xl lg:text-7xl font-black text-white mt-6 leading-tight">
+          <span class="bg-gradient-to-r from-blue-300 via-blue-200 to-cyan-300 bg-clip-text text-transparent">TRR – Shift Management</span><br>
+          <span class="text-white">&amp; Partner Scheduling</span>
+        </h1>
+        <p class="text-xl text-blue-100 mt-8 max-w-3xl mx-auto leading-relaxed">Precision-driven workforce scheduling for The RealReal's luxury resale operations — delivering near-zero scheduling errors, balanced partner workloads, and seamless multi-time-zone coverage.</p>
+      </div>
+
+      <!-- Hero stats -->
+      <div class="grid grid-cols-3 gap-6 mt-20 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">~35</div>
+          <div class="text-sm text-blue-200 mt-2">Shifts/Partner</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">6-Week</div>
+          <div class="text-sm text-blue-200 mt-2">Rolling Schedule</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">↓</div>
+          <div class="text-sm text-blue-200 mt-2">Scheduling Errors</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDY DETAIL -->
+  <section class="py-24 bg-gray-50" id="case-study-detail">
+    <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
+
+      <!-- Project Overview -->
+      <div class="mb-24" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-8">Project Overview</h2>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+              Workgen Solutions partnered with <span class="font-bold text-dark-blue">The RealReal (TRR)</span>, the world's leading luxury resale marketplace, to streamline and manage their backend shift management and partner scheduling operations.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+              The RealReal's authentication and fulfillment workflows depend heavily on <span class="font-bold text-dark-blue">precise, conflict-free workforce scheduling across multiple partner categories and time zones</span>. Any gap in coverage directly impacts inventory processing speed and the integrity of the authentication pipeline.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed">
+              Workgen implemented a <span class="font-bold text-dark-blue">structured shift creation, assignment, and validation framework</span> — managing both base week and rolling 6-week scheduling windows — ensuring balanced partner workloads, strict schedule accuracy, and zero operational downtime due to staffing gaps.
+            </p>
+          </div>
+          <div data-aos="fade-left">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" alt="Workforce scheduling and operations management" class="rounded-3xl shadow-2xl object-cover w-full h-96">
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Challenges -->
+      <div class="mb-24">
+        <h2 class="text-4xl font-bold text-dark-blue mb-12">Business Challenges</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white p-8 rounded-2xl border-l-4 border-orange-500 shadow-lg" data-aos="fade-up">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-triangle-exclamation text-orange-500 text-2xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="text-xl font-bold text-dark-blue mb-3">Complex Multi-Time-Zone Scheduling</h3>
+                <p class="text-gray-700">Managing <span class="font-bold">workforce schedules spanning multiple time zones</span> simultaneously, requiring precise coordination to avoid overlap, gaps, or miscategorized assignments.</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white p-8 rounded-2xl border-l-4 border-red-500 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-exclamation text-red-500 text-2xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="text-xl font-bold text-dark-blue mb-3">Authentication Workflow Dependency</h3>
+                <p class="text-gray-700"><span class="font-bold">High dependency on accurate and timely staffing</span> for product authentication — any scheduling error directly delays high-value luxury item processing and fulfillment.</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white p-8 rounded-2xl border-l-4 border-yellow-500 shadow-lg" data-aos="fade-up" data-aos-delay="200">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-warning text-yellow-500 text-2xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="text-xl font-bold text-dark-blue mb-3">Frequent Schedule Changes</h3>
+                <p class="text-gray-700"><span class="font-bold">Dynamic operational demand requiring frequent schedule adjustments</span> across partner categories — without a structured system, ad hoc changes created inconsistencies and coverage gaps.</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white p-8 rounded-2xl border-l-4 border-red-600 shadow-lg" data-aos="fade-up" data-aos-delay="300">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-circle-exclamation text-red-600 text-2xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="text-xl font-bold text-dark-blue mb-3">Inventory Processing Risk</h3>
+                <p class="text-gray-700"><span class="font-bold">Risk of delays in inventory intake and processing</span> due to staffing gaps in critical authentication and logistics roles, threatening order fulfilment SLAs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Our Approach -->
+      <div class="mb-24">
+        <h2 class="text-4xl font-bold text-dark-blue mb-12">Our Solution</h2>
+        <p class="text-lg text-gray-700 mb-12 leading-relaxed">Workgen designed and implemented a <span class="font-bold text-dark-blue">structured, end-to-end shift management framework</span> that eliminated scheduling ambiguity, ensured consistent partner coverage, and provided the operational agility to respond to demand changes without disruption.</p>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+          <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl border border-blue-200" data-aos="fade-up">
+            <div class="bg-dark-blue text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mb-4">📋</div>
+            <h3 class="text-xl font-bold text-dark-blue mb-4">Structured Shift Creation & Assignment</h3>
+            <ul class="space-y-2 text-gray-700">
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>Shift creation driven by real-time operational demand and forecasting</span></li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>Partner assignments validated for category, timing, and time zone accuracy</span></li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>Standardized shift templates to reduce creation errors and save administrative time</span></li>
+            </ul>
+          </div>
+
+          <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 p-8 rounded-2xl border border-indigo-200" data-aos="fade-up" data-aos-delay="100">
+            <div class="bg-dark-blue text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mb-4">📅</div>
+            <h3 class="text-xl font-bold text-dark-blue mb-4">Rolling 6-Week Scheduling Windows</h3>
+            <ul class="space-y-2 text-gray-700">
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>Managed both base week schedules and rolling 6-week planning horizons</span></li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>Advanced visibility enabling proactive coverage planning and partner notification</span></li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>Reduced last-minute schedule changes through structured forward planning</span></li>
+            </ul>
+          </div>
+
+          <div class="bg-gradient-to-br from-cyan-50 to-cyan-100 p-8 rounded-2xl border border-cyan-200" data-aos="fade-up" data-aos-delay="200">
+            <div class="bg-dark-blue text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mb-4">⚖️</div>
+            <h3 class="text-xl font-bold text-dark-blue mb-4">Balanced Workload Distribution</h3>
+            <ul class="space-y-2 text-gray-700">
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>Maintained consistent ~35 shifts per partner to ensure equitable workload distribution</span></li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>Prevented over-scheduling or under-utilization of any individual partner</span></li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>Enhanced partner satisfaction and long-term workforce retention</span></li>
+            </ul>
+          </div>
+
+          <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 p-8 rounded-2xl border border-emerald-200" data-aos="fade-up" data-aos-delay="300">
+            <div class="bg-dark-blue text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mb-4">🔍</div>
+            <h3 class="text-xl font-bold text-dark-blue mb-4">Continuous Monitoring & Validation</h3>
+            <ul class="space-y-2 text-gray-700">
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>Active schedule monitoring to detect and resolve conflicts in real time</span></li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>Multi-layer validation checks ensuring time zone accuracy before publishing</span></li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>Prompt adjustments in response to operational demand fluctuations</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Execution Framework -->
+      <div class="mb-24">
+        <h2 class="text-4xl font-bold text-dark-blue mb-12">Execution Framework</h2>
+        <div class="space-y-6">
+          <div class="flex gap-8 items-start" data-aos="fade-up">
+            <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">1</div>
+            <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+              <h3 class="text-xl font-bold text-dark-blue mb-3">Shift Creation</h3>
+              <p class="text-gray-700">Shifts are created based on <span class="font-bold">real-time operational demand signals</span> and historical workload patterns — covering all partner categories, authentication roles, and logistics functions required for the week's operations.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-8 items-start" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">2</div>
+            <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+              <h3 class="text-xl font-bold text-dark-blue mb-3">Partner Assignment with Validation</h3>
+              <p class="text-gray-700">Each shift is assigned to the appropriate partner with <span class="font-bold">rigorous validation of category, role, time zone, and availability</span> — ensuring every assignment is accurate before it is confirmed and communicated.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-8 items-start" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">3</div>
+            <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+              <h3 class="text-xl font-bold text-dark-blue mb-3">Schedule Optimization Across Time Zones</h3>
+              <p class="text-gray-700">Schedules are optimized across time zones to <span class="font-bold">eliminate coverage gaps and maximize workforce utilization</span> — balancing workloads equitably while aligning operational peaks with appropriate staffing levels.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-8 items-start" data-aos="fade-up" data-aos-delay="300">
+            <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">4</div>
+            <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+              <h3 class="text-xl font-bold text-dark-blue mb-3">Continuous Monitoring &amp; Adjustments</h3>
+              <p class="text-gray-700">Schedules are <span class="font-bold">actively monitored throughout the planning window</span> — with structured adjustment processes handling demand changes, partner availability updates, and operational escalations without disrupting coverage continuity.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Program Management -->
+      <div class="mb-24 bg-white p-12 rounded-3xl border border-gray-200 shadow-lg">
+        <h2 class="text-4xl font-bold text-dark-blue mb-8">Program Management</h2>
+        <p class="text-lg text-gray-700 mb-8 leading-relaxed">Workgen maintained operational discipline and client alignment through structured program management practices throughout the engagement:</p>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="flex gap-4">
+            <div class="text-4xl text-dark-blue flex-shrink-0">📊</div>
+            <div>
+              <h3 class="text-lg font-bold text-dark-blue mb-2">Schedule Accuracy Tracking</h3>
+              <p class="text-gray-700">Daily monitoring of scheduling accuracy metrics — tracking errors, corrections, and validation pass rates to ensure continuous quality improvement.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="text-4xl text-dark-blue flex-shrink-0">🔄</div>
+            <div>
+              <h3 class="text-lg font-bold text-dark-blue mb-2">Rolling Schedule Maintenance</h3>
+              <p class="text-gray-700">Proactive maintenance of the 6-week rolling schedule — reviewing upcoming windows weekly to identify gaps and pre-assign resources before demand peaks.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="text-4xl text-dark-blue flex-shrink-0">🤝</div>
+            <div>
+              <h3 class="text-lg font-bold text-dark-blue mb-2">Partner Communication</h3>
+              <p class="text-gray-700">Timely and transparent communication of schedule updates to partners, ensuring clarity, reducing friction, and maintaining high workforce reliability.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="text-4xl text-dark-blue flex-shrink-0">📋</div>
+            <div>
+              <h3 class="text-lg font-bold text-dark-blue mb-2">Stakeholder Reporting</h3>
+              <p class="text-gray-700">Regular structured reporting to The RealReal's internal teams — covering coverage rates, scheduling accuracy, workload distribution, and forward planning outlook.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Metrics -->
+      <div class="mb-24" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-12">Key Metrics</h2>
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-lg overflow-hidden">
+          <table class="metrics-table">
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Impact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-semibold text-gray-800">Shift Accuracy</td>
+                <td>Near-zero scheduling errors across all partner categories and time zones</td>
+              </tr>
+              <tr>
+                <td class="font-semibold text-gray-800">Coverage</td>
+                <td>Improved workforce availability with consistent, gap-free scheduling</td>
+              </tr>
+              <tr>
+                <td class="font-semibold text-gray-800">Productivity</td>
+                <td>Optimized partner workload distribution (~35 shifts/partner) enhancing efficiency</td>
+              </tr>
+              <tr>
+                <td class="font-semibold text-gray-800">Operations</td>
+                <td>Faster inventory processing enabled by reliable, conflict-free shift coverage</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Results & Impact -->
+      <div class="mb-24">
+        <h2 class="text-4xl font-bold text-dark-blue mb-12 text-center">Results &amp; Business Impact</h2>
+        <div class="bg-gradient-to-r from-dark-blue via-blue-600 to-light-blue text-white p-16 rounded-3xl shadow-2xl">
+          <p class="text-xl text-blue-100 text-center mb-12">The structured scheduling framework delivered measurable improvements across all critical operational dimensions:</p>
+          <div class="grid md:grid-cols-2 gap-10">
+            <div class="flex gap-4 items-start">
+              <div class="text-4xl">✓</div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">Reduced Operational Delays</h3>
+                <p class="text-blue-100">Reduced delays in authentication and fulfillment workflows through consistent, accurate staffing coverage across all shifts</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="text-4xl">✓</div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">Improved Scheduling Efficiency</h3>
+                <p class="text-blue-100">Improved scheduling efficiency and workforce reliability through structured creation, validation, and rolling planning processes</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="text-4xl">✓</div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">Enhanced Partner Satisfaction</h3>
+                <p class="text-blue-100">Enhanced partner satisfaction through fair, balanced workload distribution and transparent, timely schedule communication</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="text-4xl">✓</div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">Lower Administrative Overhead</h3>
+                <p class="text-blue-100">Lower administrative overhead for The RealReal's internal teams by offloading scheduling complexity to Workgen's structured framework</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conclusion -->
+      <div class="text-center py-16" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-8">Why This Matters</h2>
+        <p class="max-w-3xl mx-auto text-lg text-gray-700 leading-relaxed mb-12">
+          This engagement demonstrates <span class="font-bold text-dark-blue">Workgen Solutions' ability to deliver precision-driven workforce management solutions for complex, high-value operations</span>. The structured scheduling framework enabled The RealReal to maintain operational consistency, protect their authentication pipeline, and scale efficiently — while freeing their internal teams to focus on core business priorities.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="services.html#case-studies" class="inline-block bg-dark-blue text-white font-bold px-12 py-4 rounded-full text-lg hover:shadow-2xl hover:-translate-y-1 transition">All Case Studies</a>
+          <a href="services.html" class="inline-block border-2 border-dark-blue text-dark-blue font-bold px-12 py-4 rounded-full text-lg hover:bg-dark-blue hover:text-white transition">Explore Our Services</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#163498;">
+    <div class="container mx-auto px-6 lg:px-12 py-14 max-w-7xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div class="lg:col-span-1">
+          <img src="workgenLogo.jpg" alt="Workgen Solutions" style="height:52px;width:auto;object-fit:contain;margin-bottom:16px;background:white;padding:4px 8px;border-radius:8px;">
+          <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.75;">Workgen, founded in 2017, came into existence with a vision of providing high-quality business process outsourcing and back-office support services across the globe.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Links</h4>
+          <ul class="space-y-3">
+            <li><a href="index.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Home</a></li>
+            <li><a href="aboutUs.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">About Us</a></li>
+            <li><a href="services.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Services</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Our Services</h4>
+          <ul class="space-y-3">
+            <li><a href="services.html#back-office" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Back Office Operation</a></li>
+            <li><a href="services.html#data-annotation" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Data Annotation</a></li>
+            <li><a href="services.html#qa-qc" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">QA/QC Monitoring</a></li>
+            <li><a href="services.html#customer-support" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Customer Support</a></li>
+            <li><a href="services.html#ml-annotation" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">ML Annotation Services</a></li>
+            <li><a href="services.html#case-studies" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Case Studies</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Contact Info</h4>
+          <div class="flex items-start gap-3 mb-4">
+            <span style="color:white;margin-top:2px;">📍</span>
+            <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.65;margin:0;">918, 9th Floor Tower 2, Assotech Business Cresterra, Sec 135, Noida, 201305</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span style="color:white;">✉️</span>
+            <a href="mailto:connect@workgensolutions.com" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">connect@workgensolutions.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.15);padding:16px 0;text-align:center;">
+      <p style="color:rgba(255,255,255,0.7);font-size:0.85rem;margin:0;">© 2026 Workgen Solutions. All Copyright Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    AOS.init({ duration: 800, once: true, offset: 80 });
+
+  </script>
+</body>
+</html>

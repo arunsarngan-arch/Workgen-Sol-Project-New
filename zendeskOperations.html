@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zendesk Operations – Centralized Support & Escalation Management - Workgen Solutions</title>
+  <meta name="description" content="How Workgen Solutions delivers end-to-end centralized support and escalation management powered by Zendesk for enterprise clients across retail, field service, and multi-location operations."/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'dark-blue': '#1e40af',
+            'light-blue': '#60a5fa',
+            'very-light-blue': '#eff6ff',
+          },
+          fontFamily: { sans: ['Josefin Sans', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Navbar */
+    #mobile-menu { max-height:0; overflow:hidden; transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1),opacity 0.3s ease; opacity:0; }
+    #mobile-menu.open { max-height:420px; opacity:1; }
+    .ham-line { display:block; width:24px; height:2px; background:#1e40af; border-radius:2px; transition:all 0.3s ease; transform-origin:center; }
+    #hamburger.active .ham-line:nth-child(1) { transform:translateY(8px) rotate(45deg); }
+    #hamburger.active .ham-line:nth-child(2) { opacity:0; transform:scaleX(0); }
+    #hamburger.active .ham-line:nth-child(3) { transform:translateY(-8px) rotate(-45deg); }
+
+    /* Hero */
+    .svc-hero {
+      background: linear-gradient(135deg,#020818 0%,#071232 30%,#0a1a4a 60%,#060e28 100%);
+      position:relative; overflow:hidden;
+    }
+    .hero-grid {
+      position:absolute; inset:0;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+      background-size:55px 55px; pointer-events:none;
+    }
+
+    /* Section tag */
+    .section-tag {
+      display:inline-block; background:#eff6ff; color:#1e40af;
+      font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+      padding:5px 16px; border-radius:999px; border:1px solid #bfdbfe; margin-bottom:14px;
+    }
+
+    nav { background:#ffffff; box-shadow:0 1px 3px rgba(0,0,0,0.1); }
+    nav a { text-decoration:none; }
+    .nav-link { color:#475569; transition:color 0.2s; }
+    .nav-link:hover { color:#1e40af; }
+  </style>
+</head>
+<body class="font-sans text-gray-900">
+
+  <!-- NAVBAR -->
+  <nav class="sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4 max-w-7xl flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="workgenLogo.jpg" alt="Workgen Solutions" style="height:40px;width:auto;object-fit:contain;">
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="nav-link font-semibold">Home</a>
+        <a href="aboutUs.html" class="nav-link font-semibold">About</a>
+        <a href="services.html" class="nav-link font-semibold">Services</a>
+        <a href="services.html#case-studies" class="nav-link font-semibold text-dark-blue">Case Studies</a>
+      </div>
+      <button id="hamburger" class="md:hidden" onclick="document.getElementById('mobile-menu').classList.toggle('open'); this.classList.toggle('active');">
+        <div class="ham-line"></div><div class="ham-line"></div><div class="ham-line"></div>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden bg-white border-t">
+      <a href="index.html" class="block px-6 py-3 nav-link">Home</a>
+      <a href="aboutUs.html" class="block px-6 py-3 nav-link">About</a>
+      <a href="services.html" class="block px-6 py-3 nav-link">Services</a>
+      <a href="services.html#case-studies" class="block px-6 py-3 nav-link text-dark-blue font-semibold">Case Studies</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="svc-hero py-16 relative overflow-hidden">
+    <div class="hero-grid"></div>
+    <div class="container mx-auto px-6 lg:px-12 max-w-6xl relative z-10">
+      <a href="services.html#case-studies" class="fixed z-40 inline-flex items-center gap-2 group" style="top:112px;left:20px;background:rgba(15,32,80,0.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(96,165,250,0.35);color:white;font-size:0.78rem;font-weight:700;padding:7px 15px;border-radius:999px;text-decoration:none;letter-spacing:0.03em;box-shadow:0 2px 14px rgba(0,0,0,0.3);transition:all 0.2s;" onmouseover="this.style.background='rgba(30,64,175,0.95)';this.style.borderColor='rgba(96,165,250,0.7)'" onmouseout="this.style.background='rgba(15,32,80,0.82)';this.style.borderColor='rgba(96,165,250,0.35)'">
+        <i class="fa-solid fa-arrow-left text-xs group-hover:-translate-x-1 transition-transform"></i> Back to Case Studies
+      </a>
+      <div class="text-center max-w-4xl mx-auto" data-aos="fade-down">
+        <span class="section-tag">CUSTOMER SUPPORT</span>
+        <h1 class="text-5xl lg:text-7xl font-black text-white mt-6 leading-tight">
+          <span class="bg-gradient-to-r from-blue-300 via-blue-200 to-cyan-300 bg-clip-text text-transparent">Zendesk Operations</span><br>
+          <span class="text-white">Centralized Support &amp; Escalation Management</span>
+        </h1>
+        <p class="text-xl text-blue-100 mt-8 max-w-3xl mx-auto leading-relaxed">Streamlining fragmented support processes into a unified ticketing system — ensuring faster resolution, strict SLA adherence, and seamless coordination across enterprise stakeholders.</p>
+      </div>
+
+      <!-- Hero stats -->
+      <div class="grid grid-cols-3 gap-6 mt-20 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">Unified</div>
+          <div class="text-sm text-blue-200 mt-2">Ticketing System</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">SLA</div>
+          <div class="text-sm text-blue-200 mt-2">Driven Operations</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">↓</div>
+          <div class="text-sm text-blue-200 mt-2">Escalation Volume</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDY DETAIL -->
+  <section class="py-24 bg-gray-50" id="case-study-detail">
+    <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
+
+      <!-- Project Overview -->
+      <div class="mb-24" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-8">Project Overview</h2>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+              Workgen Solutions provides <span class="font-bold text-dark-blue">end-to-end centralized support and escalation management powered by Zendesk</span> for enterprise clients across retail, field service, and multi-location operations.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+              The objective is to <span class="font-bold text-dark-blue">streamline fragmented support processes into a unified ticketing system</span>, ensuring faster issue resolution, strict SLA adherence, and seamless coordination across all stakeholders.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed">
+              Acting as an extension of client teams, Workgen manages <span class="font-bold text-dark-blue">complex queries, operational issues, and partner escalations</span> — ensuring business continuity and enhanced service efficiency at every level.
+            </p>
+          </div>
+          <div data-aos="fade-left">
+            <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&h=400&fit=crop" alt="Customer support and operations management" class="rounded-3xl shadow-2xl object-cover w-full h-96">
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Challenges -->
+      <div class="mb-24">
+        <h2 class="text-4xl font-bold text-dark-blue mb-12">Key Challenges</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white p-8 rounded-2xl border-l-4 border-orange-500 shadow-lg" data-aos="fade-up">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-triangle-exclamation text-orange-500 text-2xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="text-xl font-bold text-dark-blue mb-3">Fragmented Communication Channels</h3>
+                <p class="text-gray-700"><span class="font-bold">Fragmented communication channels</span> across multiple stakeholders leading to delays, inefficiencies, and missed resolution windows.</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white p-8 rounded-2xl border-l-4 border-red-500 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-exclamation text-red-500 text-2xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="text-xl font-bold text-dark-blue mb-3">High-Volume Escalations</h3>
+                <p class="text-gray-700"><span class="font-bold">High volume of store-level and partner escalations</span> demanding rapid, structured responses to prevent operational disruptions.</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white p-8 rounded-2xl border-l-4 border-yellow-500 shadow-lg" data-aos="fade-up" data-aos-delay="200">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-warning text-yellow-500 text-2xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="text-xl font-bold text-dark-blue mb-3">SLA Compliance Across Categories</h3>
+                <p class="text-gray-700">Maintaining <span class="font-bold">SLA compliance across diverse ticket categories</span> while managing varying priority levels and resolution timelines simultaneously.</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white p-8 rounded-2xl border-l-4 border-blue-500 shadow-lg" data-aos="fade-up" data-aos-delay="300">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-circle-exclamation text-blue-500 text-2xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="text-xl font-bold text-dark-blue mb-3">Consistent Communication Standards</h3>
+                <p class="text-gray-700">Ensuring <span class="font-bold">consistent and professional communication</span> across all ticket categories and stakeholder touchpoints without service degradation.</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white p-8 rounded-2xl border-l-4 border-purple-500 shadow-lg md:col-span-2" data-aos="fade-up" data-aos-delay="400">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-people-arrows text-purple-500 text-2xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="text-xl font-bold text-dark-blue mb-3">Recurring Issue Escalation Overload</h3>
+                <p class="text-gray-700"><span class="font-bold">Identifying recurring issues and preventing escalation overload</span> — without centralized systems, delays and lack of visibility directly impact operations and stakeholder satisfaction.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Our Approach -->
+      <div class="mb-24">
+        <h2 class="text-4xl font-bold text-dark-blue mb-12">Our Approach</h2>
+        <p class="text-lg text-gray-700 mb-12 leading-relaxed">Workgen implemented a <span class="font-bold text-dark-blue">structured Zendesk-based support framework</span> focused on efficiency, transparency, and scalability — ensuring consistent service delivery and full operational control at every stage.</p>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+          <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl border border-blue-200" data-aos="fade-up">
+            <div class="bg-dark-blue text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mb-4">🎫</div>
+            <h3 class="text-xl font-bold text-dark-blue mb-4">Centralized Ticketing System</h3>
+            <ul class="space-y-2 text-gray-700">
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>All queries, issues, and escalations managed through Zendesk</span></li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>Unified platform for end-to-end tracking and resolution</span></li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>Full visibility across all open, pending, and resolved tickets</span></li>
+            </ul>
+          </div>
+
+          <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 p-8 rounded-2xl border border-indigo-200" data-aos="fade-up" data-aos-delay="100">
+            <div class="bg-dark-blue text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mb-4">⏱️</div>
+            <h3 class="text-xl font-bold text-dark-blue mb-4">SLA-Driven Operations</h3>
+            <ul class="space-y-2 text-gray-700">
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>Defined SLAs for response and resolution times per ticket category</span></li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>Priority-based ticket routing and escalation handling</span></li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>Automated alerts for aging or high-priority cases</span></li>
+            </ul>
+          </div>
+
+          <div class="bg-gradient-to-br from-cyan-50 to-cyan-100 p-8 rounded-2xl border border-cyan-200" data-aos="fade-up" data-aos-delay="200">
+            <div class="bg-dark-blue text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mb-4">🔗</div>
+            <h3 class="text-xl font-bold text-dark-blue mb-4">Cross-Functional Coordination</h3>
+            <ul class="space-y-2 text-gray-700">
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>Collaboration between stores, field teams, finance, and operations</span></li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>Alignment across stakeholders for timely and accurate resolution</span></li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>Standardized communication protocols for consistent responses</span></li>
+            </ul>
+          </div>
+
+          <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 p-8 rounded-2xl border border-emerald-200" data-aos="fade-up" data-aos-delay="300">
+            <div class="bg-dark-blue text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mb-4">📈</div>
+            <h3 class="text-xl font-bold text-dark-blue mb-4">Insight-Driven Continuous Improvement</h3>
+            <ul class="space-y-2 text-gray-700">
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>Root-cause analysis of recurring issues to prevent recurrence</span></li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>Data-driven recommendations to reduce future escalations</span></li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i><span>Regular performance reporting to stakeholders with actionable insights</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Support & Escalation Process -->
+      <div class="mb-24">
+        <h2 class="text-4xl font-bold text-dark-blue mb-12">Support &amp; Escalation Process</h2>
+        <div class="space-y-6">
+          <div class="flex gap-8 items-start" data-aos="fade-up">
+            <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">1</div>
+            <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+              <h3 class="text-xl font-bold text-dark-blue mb-3">Ticket Creation</h3>
+              <p class="text-gray-700">Issues are <span class="font-bold">logged via email or directly into Zendesk</span>, capturing all relevant details including category, priority, and stakeholder context.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-8 items-start" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">2</div>
+            <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+              <h3 class="text-xl font-bold text-dark-blue mb-3">Ticket Categorization &amp; Routing</h3>
+              <p class="text-gray-700">Tickets are <span class="font-bold">categorized based on priority and assigned to appropriate teams</span> for resolution using predefined routing logic.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-8 items-start" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">3</div>
+            <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+              <h3 class="text-xl font-bold text-dark-blue mb-3">Investigation &amp; Resolution</h3>
+              <p class="text-gray-700">Teams <span class="font-bold">coordinate across functions</span> to resolve issues efficiently while maintaining clear, professional communication with all parties involved.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-8 items-start" data-aos="fade-up" data-aos-delay="300">
+            <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">4</div>
+            <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+              <h3 class="text-xl font-bold text-dark-blue mb-3">SLA Monitoring</h3>
+              <p class="text-gray-700">Tickets are <span class="font-bold">continuously tracked against SLAs</span> with automated alerts for aging cases or high-priority escalations requiring immediate attention.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-8 items-start" data-aos="fade-up" data-aos-delay="400">
+            <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">5</div>
+            <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+              <h3 class="text-xl font-bold text-dark-blue mb-3">Closure &amp; Documentation</h3>
+              <p class="text-gray-700">Resolved tickets are <span class="font-bold">documented with detailed notes</span>, ensuring full transparency, audit readiness, and a knowledge base for recurring issue prevention.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Program Management -->
+      <div class="mb-24 bg-white p-12 rounded-3xl border border-gray-200 shadow-lg">
+        <h2 class="text-4xl font-bold text-dark-blue mb-8">Program Management</h2>
+        <p class="text-lg text-gray-700 mb-8 leading-relaxed">Workgen ensures operational excellence through structured management practices that maintain high efficiency and accountability across all support operations:</p>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="flex gap-4">
+            <div class="text-4xl text-dark-blue flex-shrink-0">📋</div>
+            <div>
+              <h3 class="text-lg font-bold text-dark-blue mb-2">Real-Time Queue Monitoring</h3>
+              <p class="text-gray-700">Continuous real-time monitoring of ticket queues and agent performance to maintain service standards and prevent backlogs.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="text-4xl text-dark-blue flex-shrink-0">📊</div>
+            <div>
+              <h3 class="text-lg font-bold text-dark-blue mb-2">Daily SLA Tracking</h3>
+              <p class="text-gray-700">Daily tracking of SLA adherence and resolution timelines with performance metrics reviewed against defined targets.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="text-4xl text-dark-blue flex-shrink-0">🎯</div>
+            <div>
+              <h3 class="text-lg font-bold text-dark-blue mb-2">Stakeholder Reporting</h3>
+              <p class="text-gray-700">Regular reporting and stakeholder updates ensuring full visibility into ticket volumes, resolution rates, and operational performance.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="text-4xl text-dark-blue flex-shrink-0">🔄</div>
+            <div>
+              <h3 class="text-lg font-bold text-dark-blue mb-2">Continuous Process Optimization</h3>
+              <p class="text-gray-700">Ongoing process optimization based on performance insights and root-cause analysis to reduce recurring issues and improve efficiency.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 md:col-span-2">
+            <div class="text-4xl text-dark-blue flex-shrink-0">💬</div>
+            <div>
+              <h3 class="text-lg font-bold text-dark-blue mb-2">Standardized Communication Protocols</h3>
+              <p class="text-gray-700">Consistent, professional communication standards enforced across all channels and ticket types, ensuring stakeholder confidence and service reliability.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools & Technology -->
+      <div class="mb-24">
+        <h2 class="text-4xl font-bold text-dark-blue mb-12 text-center">Tools &amp; Technology</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-10 rounded-2xl text-center shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2" data-aos="fade-up">
+            <i class="fa-solid fa-ticket text-5xl mb-6"></i>
+            <h3 class="text-2xl font-bold mb-3">Zendesk</h3>
+            <p class="text-blue-100">Centralized ticketing and support management — the core platform for logging, routing, tracking, and resolving all support requests</p>
+          </div>
+          <div class="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white p-10 rounded-2xl text-center shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+            <i class="fa-solid fa-envelope text-5xl mb-6"></i>
+            <h3 class="text-2xl font-bold mb-3">Email Integration</h3>
+            <p class="text-indigo-100">Seamless email-to-ticket conversion ensuring no query is missed and all inbound requests are captured and tracked automatically</p>
+          </div>
+          <div class="bg-gradient-to-br from-cyan-500 to-cyan-600 text-white p-10 rounded-2xl text-center shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+            <i class="fa-solid fa-chart-line text-5xl mb-6"></i>
+            <h3 class="text-2xl font-bold mb-3">Reporting Dashboards</h3>
+            <p class="text-cyan-100">Real-time SLA tracking and performance insights providing full visibility into ticket volumes, resolution rates, and team productivity</p>
+          </div>
+          <div class="bg-gradient-to-br from-emerald-500 to-emerald-600 text-white p-10 rounded-2xl text-center shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
+            <i class="fa-solid fa-people-group text-5xl mb-6"></i>
+            <h3 class="text-2xl font-bold mb-3">Internal Coordination Tools</h3>
+            <p class="text-emerald-100">Cross-functional collaboration tools enabling seamless communication between stores, field teams, finance, and operations for fast resolution</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results & Impact -->
+      <div class="mb-24">
+        <h2 class="text-4xl font-bold text-dark-blue mb-12 text-center">Results &amp; Business Impact</h2>
+        <div class="bg-gradient-to-r from-dark-blue via-blue-600 to-light-blue text-white p-16 rounded-3xl shadow-2xl">
+          <p class="text-xl text-blue-100 text-center mb-12">Workgen's approach ensures that support operations contribute directly to operational stability and business efficiency:</p>
+          <div class="grid md:grid-cols-2 gap-10">
+            <div class="flex gap-4 items-start">
+              <div class="text-4xl">✓</div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">Centralized &amp; Streamlined Operations</h3>
+                <p class="text-blue-100">Support operations centralized and streamlined across multiple channels into a single, unified Zendesk platform</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="text-4xl">✓</div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">Faster Response &amp; Resolution</h3>
+                <p class="text-blue-100">Faster response and resolution times with strong SLA adherence across all ticket categories and priority levels</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="text-4xl">✓</div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">Improved Stakeholder Satisfaction</h3>
+                <p class="text-blue-100">Improved store and partner satisfaction through consistent, professional communication and reliable resolution workflows</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="text-4xl">✓</div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">Reduced Operational Disruptions</h3>
+                <p class="text-blue-100">Reduced operational disruptions and downtime through proactive issue identification and structured escalation handling</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="text-4xl">✓</div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">Lower Escalation Volumes</h3>
+                <p class="text-blue-100">Lower escalation volumes achieved through proactive issue identification, root-cause analysis, and continuous process improvement</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="text-4xl">✓</div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">Enhanced Visibility &amp; Audit-Readiness</h3>
+                <p class="text-blue-100">Enhanced operational visibility with real-time dashboards and fully documented, audit-ready ticket records</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conclusion -->
+      <div class="text-center py-16" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-8">Why This Matters</h2>
+        <p class="max-w-3xl mx-auto text-lg text-gray-700 leading-relaxed mb-12">
+          This engagement highlights <span class="font-bold text-dark-blue">Workgen Solutions' expertise in delivering scalable, Zendesk-driven support and escalation management systems</span>. By combining process discipline, real-time monitoring, and data-driven insights, Workgen helps organizations improve service efficiency, maintain high operational standards, and strengthen stakeholder satisfaction — while enabling clients to focus on their core business growth.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="services.html#case-studies" class="inline-block bg-dark-blue text-white font-bold px-12 py-4 rounded-full text-lg hover:shadow-2xl hover:-translate-y-1 transition">All Case Studies</a>
+          <a href="services.html" class="inline-block border-2 border-dark-blue text-dark-blue font-bold px-12 py-4 rounded-full text-lg hover:bg-dark-blue hover:text-white transition">Explore Our Services</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#163498;">
+    <div class="container mx-auto px-6 lg:px-12 py-14 max-w-7xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div class="lg:col-span-1">
+          <img src="workgenLogo.jpg" alt="Workgen Solutions" style="height:52px;width:auto;object-fit:contain;margin-bottom:16px;background:white;padding:4px 8px;border-radius:8px;">
+          <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.75;">Workgen, founded in 2017, came into existence with a vision of providing high-quality business process outsourcing and back-office support services across the globe.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Links</h4>
+          <ul class="space-y-3">
+            <li><a href="index.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Home</a></li>
+            <li><a href="aboutUs.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">About Us</a></li>
+            <li><a href="services.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Services</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Our Services</h4>
+          <ul class="space-y-3">
+            <li><a href="services.html#back-office" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Back Office Operation</a></li>
+            <li><a href="services.html#data-annotation" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Data Annotation</a></li>
+            <li><a href="services.html#qa-qc" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">QA/QC Monitoring</a></li>
+            <li><a href="services.html#customer-support" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Customer Support</a></li>
+            <li><a href="services.html#ml-annotation" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">ML Annotation Services</a></li>
+            <li><a href="services.html#case-studies" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Case Studies</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Contact Info</h4>
+          <div class="flex items-start gap-3 mb-4">
+            <span style="color:white;margin-top:2px;">📍</span>
+            <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.65;margin:0;">918, 9th Floor Tower 2, Assotech Business Cresterra, Sec 135, Noida, 201305</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span style="color:white;">✉️</span>
+            <a href="mailto:connect@workgensolutions.com" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">connect@workgensolutions.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.15);padding:16px 0;text-align:center;">
+      <p style="color:rgba(255,255,255,0.7);font-size:0.85rem;margin:0;">© 2026 Workgen Solutions. All Copyright Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    AOS.init({ duration: 800, once: true, offset: 80 });
+
+  </script>
+</body>
+</html>

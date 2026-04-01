@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Case Studies - Workgen Solutions</title>
+  <meta name="description" content="Real results from real clients. Explore how Workgen delivers measurable impact through BPO, data annotation, QA/QC, and ML services."/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'dark-blue': '#1e40af',
+            'light-blue': '#60a5fa',
+            'very-light-blue': '#eff6ff',
+          },
+          fontFamily: { sans: ['Josefin Sans', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Navbar */
+    #mobile-menu { max-height:0; overflow:hidden; transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1),opacity 0.3s ease; opacity:0; }
+    #mobile-menu.open { max-height:420px; opacity:1; }
+    .ham-line { display:block; width:24px; height:2px; background:#1e40af; border-radius:2px; transition:all 0.3s ease; transform-origin:center; }
+    #hamburger.active .ham-line:nth-child(1) { transform:translateY(8px) rotate(45deg); }
+    #hamburger.active .ham-line:nth-child(2) { opacity:0; transform:scaleX(0); }
+    #hamburger.active .ham-line:nth-child(3) { transform:translateY(-8px) rotate(-45deg); }
+
+    /* Hero */
+    .svc-hero {
+      background: linear-gradient(135deg,#020818 0%,#071232 30%,#0a1a4a 60%,#060e28 100%);
+      position:relative; overflow:hidden;
+    }
+    .hero-grid {
+      position:absolute; inset:0;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+      background-size:55px 55px; pointer-events:none;
+    }
+    .hero-cta { position:relative; transition:all 0.3s ease; z-index:0; }
+    .hero-cta::before {
+      content:''; position:absolute; inset:-3px; border-radius:999px;
+      background:linear-gradient(90deg,#60a5fa,#a5b4fc,#60a5fa); background-size:200% auto;
+      opacity:0; transition:opacity 0.35s; animation:glowSpin 3s linear infinite; z-index:-1;
+    }
+    @keyframes glowSpin { 0%{background-position:0% center} 100%{background-position:200% center} }
+    .hero-cta:hover::before { opacity:1; }
+    .hero-cta:hover { transform:translateY(-3px); box-shadow:0 14px 40px rgba(96,165,250,0.35); }
+
+    /* Section tag */
+    .section-tag {
+      display:inline-block; background:#eff6ff; color:#1e40af;
+      font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+      padding:5px 16px; border-radius:999px; border:1px solid #bfdbfe; margin-bottom:14px;
+    }
+
+    /* Service detail card */
+    .svc-detail-card {
+      background:white; border:1px solid #e8eef6; border-radius:24px;
+      overflow:hidden; transition:all 0.35s cubic-bezier(0.175,0.885,0.32,1.275);
+    }
+    .svc-detail-card:hover {
+      transform:translateY(-6px);
+      box-shadow:0 24px 60px rgba(30,64,175,0.12);
+      border-color:#bfdbfe;
+    }
+    .svc-detail-header {
+      padding:36px 32px 28px;
+      border-bottom:1px solid #f1f5f9;
+    }
+    .svc-icon-lg {
+      width:72px; height:72px; border-radius:20px; background:#eff6ff;
+      display:flex; align-items:center; justify-content:center; margin-bottom:20px;
+      transition:all 0.3s;
+    }
+    .svc-detail-card:hover .svc-icon-lg { background:#1e40af; }
+    .svc-detail-card:hover .svc-icon-lg i { color:white !important; }
+    .svc-detail-body { padding:24px 32px 32px; }
+    .svc-check-item {
+      display:flex; align-items:flex-start; gap:10px; margin-bottom:10px;
+    }
+    .svc-check-dot {
+      width:20px; height:20px; border-radius:50%; background:#eff6ff;
+      display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px;
+    }
+
+    /* Process steps */
+    .process-step {
+      display:flex; align-items:flex-start; gap:20px; padding:24px;
+      background:white; border-radius:18px; border:1px solid #e8eef6;
+      transition:all 0.3s;
+    }
+    .process-step:hover {
+      border-color:#bfdbfe;
+      box-shadow:0 8px 30px rgba(30,64,175,0.08);
+      transform:translateX(6px);
+    }
+    .process-num {
+      width:44px; height:44px; border-radius:14px; background:#1e40af;
+      display:flex; align-items:center; justify-content:center;
+      color:white; font-weight:800; font-size:1rem; flex-shrink:0;
+    }
+
+    /* Tab navigation */
+    .tab-btn {
+      padding:10px 20px; border-radius:999px; font-weight:600; font-size:0.88rem;
+      border:1.5px solid #e2e8f0; color:#64748b; cursor:pointer;
+      transition:all 0.25s; background:white;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background:#1e40af; color:white; border-color:#1e40af;
+    }
+    .tab-panel { display:none; }
+    .tab-panel.active { display:block; }
+
+    /* ===== OUR WORK MODAL ===== */
+    .our-work-btn {
+      display:inline-flex; align-items:center; gap:8px;
+      background:white; color:#1e40af;
+      font-weight:700; font-size:0.9rem;
+      padding:14px 28px; border-radius:999px;
+      border:2px solid #1e40af;
+      cursor:pointer; transition:all 0.25s ease;
+      text-decoration:none;
+    }
+    .our-work-btn:hover {
+      background:#1e40af; color:white;
+      transform:translateY(-2px);
+      box-shadow:0 8px 24px rgba(30,64,175,0.25);
+    }
+
+    /* Modal overlay */
+    .ow-overlay {
+      display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:40;
+    }
+    .ow-overlay.show { display:flex; align-items:center; justify-content:center; }
+    .ow-modal {
+      background:white; border-radius:20px; max-width:500px; width:90%; max-height:90vh;
+      overflow-y:auto; padding:32px; position:relative;
+    }
+    .ow-close {
+      position:absolute; top:20px; right:20px; width:32px; height:32px;
+      background:none; border:none; cursor:pointer; font-size:24px; color:#64748b;
+    }
+
+    nav { background:#ffffff; box-shadow:0 1px 3px rgba(0,0,0,0.1); }
+    nav a { text-decoration:none; }
+    .nav-link { color:#475569; transition:color 0.2s; }
+    .nav-link:hover { color:#1e40af; }
+  </style>
+</head>
+<body class="font-sans text-gray-900">
+
+  <!-- NAVBAR -->
+  <nav class="sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4 max-w-7xl flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="workgenLogo.jpg" alt="Workgen Solutions" style="height:40px;width:auto;object-fit:contain;">
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="nav-link font-semibold">Home</a>
+        <a href="aboutUs.html" class="nav-link font-semibold">About</a>
+        <a href="services.html" class="nav-link font-semibold">Services</a>
+        <a href="services.html#case-studies" class="nav-link font-semibold text-dark-blue">Case Studies</a>
+      </div>
+      <button id="hamburger" class="md:hidden" onclick="document.getElementById('mobile-menu').classList.toggle('open'); this.classList.toggle('active');">
+        <div class="ham-line"></div><div class="ham-line"></div><div class="ham-line"></div>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden bg-white border-t">
+      <a href="index.html" class="block px-6 py-3 nav-link">Home</a>
+      <a href="aboutUs.html" class="block px-6 py-3 nav-link">About</a>
+      <a href="services.html" class="block px-6 py-3 nav-link">Services</a>
+      <a href="services.html#case-studies" class="block px-6 py-3 nav-link text-dark-blue font-semibold">Case Studies</a>
+    </div>
+  </nav>
+
+      <!-- HERO SECTION with enhanced design -->
+      <section class="svc-hero py-16 relative overflow-hidden">
+        <div class="hero-grid"></div>
+        <div class="container mx-auto px-6 lg:px-12 max-w-6xl relative z-10">
+          <a href="services.html#case-studies" class="fixed z-40 inline-flex items-center gap-2 group" style="top:112px;left:20px;background:rgba(15,32,80,0.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(96,165,250,0.35);color:white;font-size:0.78rem;font-weight:700;padding:7px 15px;border-radius:999px;text-decoration:none;letter-spacing:0.03em;box-shadow:0 2px 14px rgba(0,0,0,0.3);transition:all 0.2s;" onmouseover="this.style.background='rgba(30,64,175,0.95)';this.style.borderColor='rgba(96,165,250,0.7)'" onmouseout="this.style.background='rgba(15,32,80,0.82)';this.style.borderColor='rgba(96,165,250,0.35)'">
+            <i class="fa-solid fa-arrow-left text-xs group-hover:-translate-x-1 transition-transform"></i> Back to Case Studies
+          </a>
+          <div class="text-center max-w-4xl mx-auto" data-aos="fade-down">
+            <span class="section-tag">QA/QC MONITORING</span>
+            <h1 class="text-5xl lg:text-7xl font-black text-white mt-6 leading-tight">
+              <span class="bg-gradient-to-r from-blue-300 via-blue-200 to-cyan-300 bg-clip-text text-transparent">Topgolf Call Auditing</span><br>
+              <span class="text-white">&amp; Quality Assurance</span>
+            </h1>
+            <p class="text-xl text-blue-100 mt-8 max-w-3xl mx-auto leading-relaxed">Scaling guest service excellence through systematic call evaluation, real-time performance monitoring, and continuous coaching feedback that drives measurable results.</p>
+          </div>
+
+          <!-- Floating stats in hero -->
+          <div class="grid grid-cols-3 gap-6 mt-20 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+            <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+              <div class="text-3xl font-bold">300-400</div>
+              <div class="text-sm text-blue-200 mt-2">Audits Weekly</div>
+            </div>
+            <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+              <div class="text-3xl font-bold">40</div>
+              <div class="text-sm text-blue-200 mt-2">Calls/Auditor/Day</div>
+            </div>
+            <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+              <div class="text-3xl font-bold">1+</div>
+              <div class="text-sm text-blue-200 mt-2">Audit Per Agent</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CASE STUDY DETAIL -->
+      <section class="py-24 bg-gray-50" id="case-study-detail">
+        <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
+          
+          <!-- Project Overview -->
+          <div class="mb-24" data-aos="fade-up">
+            <h2 class="text-4xl font-bold text-dark-blue mb-8">Project Overview</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                  Workgen Solutions partnered with Topgolf to deliver a <span class="font-bold text-dark-blue">high-volume call auditing and quality assurance program</span> for its customer service operations. The objective was to ensure that every guest interaction reflected Topgolf's <span class="font-bold">fun, welcoming, and premium hospitality experience</span>.
+                </p>
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                  Our QA team systematically reviewed <span class="font-bold text-dark-blue">inbound and outbound guest calls</span>, ensuring that agents provided accurate information about bookings, events, pricing, and venue policies while maintaining high standards of professionalism and guest engagement.
+                </p>
+                <p class="text-lg text-gray-700 leading-relaxed">
+                  Through structured evaluation, performance monitoring, and coaching feedback, the program helped strengthen customer service quality and improve overall guest satisfaction.
+                </p>
+              </div>
+              <div data-aos="fade-left">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" alt="Professional call center agents" class="rounded-3xl shadow-2xl object-cover w-full h-96">
+              </div>
+            </div>
+          </div>
+
+          <!-- Key Challenges -->
+          <div class="mb-24">
+            <h2 class="text-4xl font-bold text-dark-blue mb-12">Key Challenges</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+              <div class="bg-white p-8 rounded-2xl border-l-4 border-orange-500 shadow-lg" data-aos="fade-up">
+                <div class="flex items-start gap-4">
+                  <i class="fa-solid fa-triangle-exclamation text-orange-500 text-2xl flex-shrink-0 mt-1"></i>
+                  <div>
+                    <h3 class="text-xl font-bold text-dark-blue mb-3">High Call Volume</h3>
+                    <p class="text-gray-700">Topgolf's rapidly growing customer base created a high call volume environment that required a <span class="font-bold">scalable QA solution</span>.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-white p-8 rounded-2xl border-l-4 border-red-500 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex items-start gap-4">
+                  <i class="fa-solid fa-exclamation text-red-500 text-2xl flex-shrink-0 mt-1"></i>
+                  <div>
+                    <h3 class="text-xl font-bold text-dark-blue mb-3">Consistency at Scale</h3>
+                    <p class="text-gray-700">Maintaining consistent service quality across multiple agents while <span class="font-bold">ensuring accurate information</span> about reservations, pricing, and events.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-white p-8 rounded-2xl border-l-4 border-yellow-500 shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex items-start gap-4">
+                  <i class="fa-solid fa-warning text-yellow-500 text-2xl flex-shrink-0 mt-1"></i>
+                  <div>
+                    <h3 class="text-xl font-bold text-dark-blue mb-3">Communication Gaps</h3>
+                    <p class="text-gray-700"><span class="font-bold">Identifying communication gaps</span> affecting guest experience without impacting agent morale or efficiency.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-white p-8 rounded-2xl border-l-4 border-blue-500 shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                <div class="flex items-start gap-4">
+                  <i class="fa-solid fa-circle-exclamation text-blue-500 text-2xl flex-shrink-0 mt-1"></i>
+                  <div>
+                    <h3 class="text-xl font-bold text-dark-blue mb-3">Performance Monitoring</h3>
+                    <p class="text-gray-700">Monitoring agent performance at scale while <span class="font-bold">maintaining audit accuracy</span> and operational efficiency.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Our Approach -->
+          <div class="mb-24">
+            <h2 class="text-4xl font-bold text-dark-blue mb-12">Our Approach</h2>
+            <p class="text-lg text-gray-700 mb-12 leading-relaxed">Workgen implemented a <span class="font-bold text-dark-blue">structured QA framework</span> designed to monitor and improve customer interactions across the entire contact center.</p>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+              <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl border border-blue-200">
+                <div class="bg-dark-blue text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mb-4">📊</div>
+                <h3 class="text-xl font-bold text-dark-blue mb-4">High-Volume Audit Program</h3>
+                <ul class="space-y-2 text-gray-700">
+                  <li class="flex items-start gap-2">
+                    <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i>
+                    <span>300–400 call audits completed weekly</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i>
+                    <span>Minimum 1 audit per agent every week</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i>
+                    <span>40 calls audited per QA analyst per day</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 p-8 rounded-2xl border border-indigo-200">
+                <div class="bg-dark-blue text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mb-4">✓</div>
+                <h3 class="text-xl font-bold text-dark-blue mb-4">Standardized Evaluation</h3>
+                <ul class="space-y-2 text-gray-700">
+                  <li class="flex items-start gap-2">
+                    <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i>
+                    <span>FCC Master Quality Form scorecard</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i>
+                    <span>Scored on accuracy, professionalism, empathy</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i>
+                    <span>Resolution quality metrics tracked</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bg-gradient-to-br from-cyan-50 to-cyan-100 p-8 rounded-2xl border border-cyan-200">
+                <div class="bg-dark-blue text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mb-4">💡</div>
+                <h3 class="text-xl font-bold text-dark-blue mb-4">Coaching-Driven Improvement</h3>
+                <ul class="space-y-2 text-gray-700">
+                  <li class="flex items-start gap-2">
+                    <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i>
+                    <span>Detailed coaching notes for each call</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i>
+                    <span>Communication gap identification</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0"></i>
+                    <span>Continuous feedback loops for improvement</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Call Auditing Process -->
+          <div class="mb-24">
+            <h2 class="text-4xl font-bold text-dark-blue mb-12">Call Auditing Process</h2>
+            <div class="space-y-6">
+              <div class="flex gap-8 items-start" data-aos="fade-up">
+                <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">1</div>
+                <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+                  <h3 class="text-xl font-bold text-dark-blue mb-3">Call Recording</h3>
+                  <p class="text-gray-700">Customer interactions were recorded through the <span class="font-bold">Five9 platform</span>, ensuring every conversation could be reviewed accurately.</p>
+                </div>
+              </div>
+
+              <div class="flex gap-8 items-start" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">2</div>
+                <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+                  <h3 class="text-xl font-bold text-dark-blue mb-3">Call Evaluation</h3>
+                  <p class="text-gray-700">QA analysts accessed recordings and evaluated calls using <span class="font-bold">structured scorecards</span> aligned with Topgolf's service standards.</p>
+                </div>
+              </div>
+
+              <div class="flex gap-8 items-start" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">3</div>
+                <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+                  <h3 class="text-xl font-bold text-dark-blue mb-3">Quality Scoring</h3>
+                  <p class="text-gray-700">Each call was scored based on: accuracy of information, communication clarity, professionalism, customer engagement, and issue resolution quality.</p>
+                </div>
+              </div>
+
+              <div class="flex gap-8 items-start" data-aos="fade-up" data-aos-delay="300">
+                <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">4</div>
+                <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+                  <h3 class="text-xl font-bold text-dark-blue mb-3">Coaching Feedback</h3>
+                  <p class="text-gray-700">Detailed notes were provided highlighting agent strengths, communication errors, and specific opportunities for improvement with actionable recommendations.</p>
+                </div>
+              </div>
+
+              <div class="flex gap-8 items-start" data-aos="fade-up" data-aos-delay="400">
+                <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">5</div>
+                <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+                  <h3 class="text-xl font-bold text-dark-blue mb-3">Performance Monitoring</h3>
+                  <p class="text-gray-700">Results were aggregated into dashboards and reports to track <span class="font-bold">agent performance trends</span> and real-time service quality metrics.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Program Management -->
+          <div class="mb-24 bg-white p-12 rounded-3xl border border-gray-200 shadow-lg">
+            <h2 class="text-4xl font-bold text-dark-blue mb-8">Program Management</h2>
+            <p class="text-lg text-gray-700 mb-8 leading-relaxed">To maintain consistency and operational alignment, Workgen implemented structured management practices:</p>
+            <div class="grid md:grid-cols-2 gap-8">
+              <div class="flex gap-4">
+                <div class="text-4xl text-dark-blue flex-shrink-0">📋</div>
+                <div>
+                  <h3 class="text-lg font-bold text-dark-blue mb-2">Weekly Refresh</h3>
+                  <p class="text-gray-700">Audit lists refreshed weekly to ensure complete agent coverage and balanced workload distribution.</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div class="text-4xl text-dark-blue flex-shrink-0">📊</div>
+                <div>
+                  <h3 class="text-lg font-bold text-dark-blue mb-2">Daily Monitoring</h3>
+                  <p class="text-gray-700">Auditor productivity and QA output monitored daily to maintain operational efficiency.</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div class="text-4xl text-dark-blue flex-shrink-0">🎯</div>
+                <div>
+                  <h3 class="text-lg font-bold text-dark-blue mb-2">Calibration Sessions</h3>
+                  <p class="text-gray-700">Regular calibration sessions held to maintain scoring consistency across all QA analysts.</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div class="text-4xl text-dark-blue flex-shrink-0">🤝</div>
+                <div>
+                  <h3 class="text-lg font-bold text-dark-blue mb-2">Structured Reporting</h3>
+                  <p class="text-gray-700">Regular reporting and collaboration with client stakeholders for transparent communication.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tools & Technology -->
+          <div class="mb-24">
+            <h2 class="text-4xl font-bold text-dark-blue mb-12 text-center">Tools & Technology</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+              <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-10 rounded-2xl text-center shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2" data-aos="fade-up">
+                <i class="fa-solid fa-headset text-5xl mb-6"></i>
+                <h3 class="text-2xl font-bold mb-3">Five9</h3>
+                <p class="text-blue-100">Call recording and interaction playback platform enabling accurate QA evaluation</p>
+              </div>
+              <div class="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white p-10 rounded-2xl text-center shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                <i class="fa-solid fa-file-lines text-5xl mb-6"></i>
+                <h3 class="text-2xl font-bold mb-3">FCC Master Quality Form</h3>
+                <p class="text-indigo-100">Standardized QA scorecard for consistent evaluation across all calls</p>
+              </div>
+              <div class="bg-gradient-to-br from-cyan-500 to-cyan-600 text-white p-10 rounded-2xl text-center shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                <i class="fa-solid fa-chart-line text-5xl mb-6"></i>
+                <h3 class="text-2xl font-bold mb-3">Real-time Dashboards</h3>
+                <p class="text-cyan-100">Performance tracking and reporting tools for data-driven insights</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Results & Impact -->
+          <div class="mb-24">
+            <h2 class="text-4xl font-bold text-dark-blue mb-12 text-center">Results & Business Impact</h2>
+            <div class="bg-gradient-to-r from-dark-blue via-blue-600 to-light-blue text-white p-16 rounded-3xl shadow-2xl">
+              <p class="text-xl text-blue-100 text-center mb-12">The QA program delivered measurable improvements in service quality and operational performance:</p>
+              <div class="grid md:grid-cols-2 gap-10">
+                <div class="flex gap-4 items-start">
+                  <div class="text-4xl">✓</div>
+                  <div>
+                    <h3 class="text-lg font-bold mb-2">Improved Consistency</h3>
+                    <p class="text-blue-100">Consistent communication standards across all agents and call types</p>
+                  </div>
+                </div>
+                <div class="flex gap-4 items-start">
+                  <div class="text-4xl">✓</div>
+                  <div>
+                    <h3 class="text-lg font-bold mb-2">Reduced Risk</h3>
+                    <p class="text-blue-100">Eliminated misinformation in guest interactions through structured auditing</p>
+                  </div>
+                </div>
+                <div class="flex gap-4 items-start">
+                  <div class="text-4xl">✓</div>
+                  <div>
+                    <h3 class="text-lg font-bold mb-2">Stronger Performance</h3>
+                    <p class="text-blue-100">Agent performance improved through targeted coaching and feedback</p>
+                  </div>
+                </div>
+                <div class="flex gap-4 items-start">
+                  <div class="text-4xl">✓</div>
+                  <div>
+                    <h3 class="text-lg font-bold mb-2">Enhanced Satisfaction</h3>
+                    <p class="text-blue-100">Overall guest satisfaction improved during high call volume periods</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Conclusion -->
+          <div class="text-center py-16" data-aos="fade-up">
+            <h2 class="text-4xl font-bold text-dark-blue mb-8">Why This Matters</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-700 leading-relaxed mb-12">
+              This engagement highlights <span class="font-bold text-dark-blue">Workgen Solutions' ability to deliver scalable Quality Assurance programs for hospitality and entertainment brands</span>. Through systematic call evaluation, data-driven insights, and continuous coaching, the program strengthened service quality and ensured that every guest interaction aligned with Topgolf's premium customer experience standards.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="index.html" class="inline-block bg-dark-blue text-white font-bold px-12 py-4 rounded-full text-lg hover:shadow-2xl hover:-translate-y-1 transition">Back to Home</a>
+              <a href="services.html" class="inline-block border-2 border-dark-blue text-dark-blue font-bold px-12 py-4 rounded-full text-lg hover:bg-dark-blue hover:text-white transition">Explore Our Services</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+  <footer style="background:#163498;">
+    <div class="container mx-auto px-6 lg:px-12 py-14 max-w-7xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div class="lg:col-span-1">
+          <img src="workgenLogo.jpg" alt="Workgen Solutions" style="height:52px;width:auto;object-fit:contain;margin-bottom:16px;background:white;padding:4px 8px;border-radius:8px;">
+          <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.75;">Workgen, founded in 2017, came into existence with a vision of providing high-quality business process outsourcing and back-office support services across the globe.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Links</h4>
+          <ul class="space-y-3">
+            <li><a href="index.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Home</a></li>
+            <li><a href="aboutUs.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">About Us</a></li>
+            <li><a href="services.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Services</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Our Services</h4>
+          <ul class="space-y-3">
+            <li><a href="#back-office" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Back Office Operation</a></li>
+            <li><a href="#data-annotation" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Data Annotation</a></li>
+            <li><a href="#qa-qc" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">QA/QC Monitoring</a></li>
+            <li><a href="#customer-support" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Customer Support</a></li>
+            <li><a href="#ml-annotation" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">ML Annotation Services</a></li>
+            <li><a href="#case-studies" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Case Studies</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Contact Info</h4>
+          <div class="flex items-start gap-3 mb-4">
+            <span style="color:white;margin-top:2px;">📍</span>
+            <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.65;margin:0;">918, 9th Floor Tower 2, Assotech Business Cresterra, Sec 135, Noida, 201305</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span style="color:white;">✉️</span>
+            <a href="/cdn-cgi/l/email-protection#d2bbbcb4bd92a5bda0b9b5b7bcfcbbbc" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'"><span class="__cf_email__" data-cfemail="1f767179705f68706d74787a71317671">[email&#160;protected]</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.15);padding:16px 0;text-align:center;">
+      <p style="color:rgba(255,255,255,0.7);font-size:0.85rem;margin:0;">© 2026 Workgen Solutions. All Copyright Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    AOS.init({ once: true, duration: 800 });
+  </script>
+</body>
+</html>

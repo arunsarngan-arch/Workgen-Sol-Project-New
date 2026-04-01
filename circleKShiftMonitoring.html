@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Circle K – Real-Time Shift Monitoring & Escalation Support - Workgen Solutions</title>
+  <meta name="description" content="How Workgen Solutions provided real-time shift monitoring and structured escalation support for Circle K — maintaining shift coverage integrity and resolving operational issues instantly across a global convenience store network."/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'dark-blue': '#1e40af',
+            'light-blue': '#60a5fa',
+            'very-light-blue': '#eff6ff',
+          },
+          fontFamily: { sans: ['Josefin Sans', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    #mobile-menu { max-height:0; overflow:hidden; transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1),opacity 0.3s ease; opacity:0; }
+    #mobile-menu.open { max-height:420px; opacity:1; }
+    .ham-line { display:block; width:24px; height:2px; background:#1e40af; border-radius:2px; transition:all 0.3s ease; transform-origin:center; }
+    #hamburger.active .ham-line:nth-child(1) { transform:translateY(8px) rotate(45deg); }
+    #hamburger.active .ham-line:nth-child(2) { opacity:0; transform:scaleX(0); }
+    #hamburger.active .ham-line:nth-child(3) { transform:translateY(-8px) rotate(-45deg); }
+
+    .svc-hero {
+      background: linear-gradient(135deg,#020818 0%,#071232 30%,#0a1a4a 60%,#060e28 100%);
+      position:relative; overflow:hidden;
+    }
+    .hero-grid {
+      position:absolute; inset:0;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+      background-size:55px 55px; pointer-events:none;
+    }
+    .section-tag {
+      display:inline-block; background:#eff6ff; color:#1e40af;
+      font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+      padding:5px 16px; border-radius:999px; border:1px solid #bfdbfe; margin-bottom:14px;
+    }
+    nav { background:#ffffff; box-shadow:0 1px 3px rgba(0,0,0,0.1); }
+    nav a { text-decoration:none; }
+    .nav-link { color:#475569; transition:color 0.2s; }
+    .nav-link:hover { color:#1e40af; }
+
+    /* Escalation tier badges */
+    .tier-badge { display:inline-block; font-size:0.7rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; padding:3px 10px; border-radius:999px; }
+
+    .step-card { background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:28px; transition:box-shadow 0.2s, transform 0.2s; }
+    .step-card:hover { box-shadow:0 8px 30px rgba(30,64,175,0.1); transform:translateY(-2px); }
+  </style>
+</head>
+<body class="font-sans text-gray-900">
+
+  <!-- NAVBAR -->
+  <nav class="sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4 max-w-7xl flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="workgenLogo.jpg" alt="Workgen Solutions" style="height:40px;width:auto;object-fit:contain;">
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="nav-link font-semibold">Home</a>
+        <a href="aboutUs.html" class="nav-link font-semibold">About</a>
+        <a href="services.html" class="nav-link font-semibold">Services</a>
+        <a href="services.html#case-studies" class="nav-link font-semibold text-dark-blue">Case Studies</a>
+      </div>
+      <button id="hamburger" class="md:hidden" onclick="document.getElementById('mobile-menu').classList.toggle('open'); this.classList.toggle('active');">
+        <div class="ham-line"></div><div class="ham-line"></div><div class="ham-line"></div>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden bg-white border-t">
+      <a href="index.html" class="block px-6 py-3 nav-link">Home</a>
+      <a href="aboutUs.html" class="block px-6 py-3 nav-link">About</a>
+      <a href="services.html" class="block px-6 py-3 nav-link">Services</a>
+      <a href="services.html#case-studies" class="block px-6 py-3 nav-link text-dark-blue font-semibold">Case Studies</a>
+    </div>
+  </nav>
+
+  <!-- BACK BUTTON -->
+  <a href="services.html#case-studies" class="fixed z-40 inline-flex items-center gap-2 group" style="top:112px;left:20px;background:rgba(15,32,80,0.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(96,165,250,0.35);color:white;font-size:0.78rem;font-weight:700;padding:7px 15px;border-radius:999px;text-decoration:none;letter-spacing:0.03em;box-shadow:0 2px 14px rgba(0,0,0,0.3);transition:all 0.2s;" onmouseover="this.style.background='rgba(30,64,175,0.95)';this.style.borderColor='rgba(96,165,250,0.7)'" onmouseout="this.style.background='rgba(15,32,80,0.82)';this.style.borderColor='rgba(96,165,250,0.35)'">
+    <i class="fa-solid fa-arrow-left text-xs group-hover:-translate-x-1 transition-transform"></i> Back to Case Studies
+  </a>
+
+  <!-- HERO -->
+  <section class="svc-hero py-16 relative overflow-hidden">
+    <div class="hero-grid"></div>
+    <div class="container mx-auto px-6 lg:px-12 max-w-6xl relative z-10">
+      <div class="text-center max-w-4xl mx-auto" data-aos="fade-down">
+        <span class="section-tag">BACK OFFICE TRANSFORMATION</span>
+        <h1 class="text-5xl lg:text-6xl font-black text-white mt-6 leading-tight">
+          <span class="bg-gradient-to-r from-blue-300 via-blue-200 to-cyan-300 bg-clip-text text-transparent">Circle K</span><br>
+          <span class="text-white">Real-Time Shift Monitoring &amp; Escalation Support</span>
+        </h1>
+        <p class="text-xl text-blue-100 mt-8 max-w-3xl mx-auto leading-relaxed">Active surveillance of live shift operations for Circle K — detecting coverage gaps in real time, coordinating rapid responses, and resolving on-ground issues through a structured escalation framework.</p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6 mt-20 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">Live</div>
+          <div class="text-sm text-blue-200 mt-2">Shift Surveillance</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">↓</div>
+          <div class="text-sm text-blue-200 mt-2">Response Time</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">SLA</div>
+          <div class="text-sm text-blue-200 mt-2">Driven Escalation</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="py-24 bg-gray-50">
+    <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
+
+      <!-- Overview -->
+      <div class="mb-20" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-8">Project Overview</h2>
+        <div class="grid md:grid-cols-5 gap-10 items-start">
+          <div class="md:col-span-3">
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+              Assigning shifts is only half the equation — the other half is ensuring those shifts actually execute as planned. For a network as large and geographically distributed as Circle K, any gap between a scheduled shift and its on-ground reality can translate directly into understaffed stores, unserved customers, and compliance breaches.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+              Workgen Solutions provides <span class="font-bold text-dark-blue">dedicated real-time shift monitoring and structured escalation support</span> for Circle K — maintaining continuous visibility over live shift operations and acting as the first-response layer when things deviate from plan.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed">
+              From no-show detection and replacement coordination to issue triage and management escalation, Workgen's team ensures every active shift at every Circle K location is actively watched and any deviation is addressed <span class="font-bold text-dark-blue">before it becomes a business disruption</span>.
+            </p>
+          </div>
+          <div class="md:col-span-2 bg-white rounded-2xl border border-gray-200 shadow-md p-7" data-aos="fade-left">
+            <h3 class="text-sm font-bold text-dark-blue uppercase tracking-wider mb-5">Engagement Snapshot</h3>
+            <div class="space-y-4 text-sm">
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-briefcase text-dark-blue w-4 flex-shrink-0"></i>
+                <div><span class="text-gray-400">Category:</span> <span class="font-semibold text-gray-800">Back Office Operations</span></div>
+              </div>
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-store text-dark-blue w-4 flex-shrink-0"></i>
+                <div><span class="text-gray-400">Client:</span> <span class="font-semibold text-gray-800">Circle K (Global Convenience Retail)</span></div>
+              </div>
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-satellite-dish text-dark-blue w-4 flex-shrink-0"></i>
+                <div><span class="text-gray-400">Focus:</span> <span class="font-semibold text-gray-800">Live monitoring, no-show response, issue escalation</span></div>
+              </div>
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-clock text-dark-blue w-4 flex-shrink-0"></i>
+                <div><span class="text-gray-400">Coverage:</span> <span class="font-semibold text-gray-800">Continuous across all active shifts</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Challenges -->
+      <div class="mb-20">
+        <h2 class="text-4xl font-bold text-dark-blue mb-10" data-aos="fade-up">Key Challenges</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+
+          <div class="bg-white p-7 rounded-2xl border-l-4 border-red-500 shadow-md" data-aos="fade-up">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-user-xmark text-red-500 text-xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="font-bold text-dark-blue mb-2">No-Show Detection at Scale</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">With hundreds of locations running concurrent shifts, detecting individual no-shows in real time — rather than discovering them after-the-fact — required continuous, systematic monitoring of every active check-in window.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-7 rounded-2xl border-l-4 border-orange-500 shadow-md" data-aos="fade-up" data-aos-delay="75">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-bolt text-orange-500 text-xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="font-bold text-dark-blue mb-2">Speed of Response</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">The window between identifying a coverage gap and filling it is narrow. Delays in no-show response or issue escalation directly impact store operations, customer experience, and SLA compliance.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-7 rounded-2xl border-l-4 border-yellow-500 shadow-md" data-aos="fade-up" data-aos-delay="150">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-sitemap text-yellow-500 text-xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="font-bold text-dark-blue mb-2">Consistent Escalation Routing</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Different types of issues require different escalation paths. Ensuring every incident was routed to the correct stakeholder — at the right tier — demanded a clear, well-documented escalation framework applied consistently across all events.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-7 rounded-2xl border-l-4 border-blue-500 shadow-md" data-aos="fade-up" data-aos-delay="225">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-file-lines text-blue-500 text-xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="font-bold text-dark-blue mb-2">Shift-Level Reporting Accuracy</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Every monitored shift needed to produce an accurate, complete record — capturing attendance outcomes, issues raised, actions taken, and resolution status — to feed Circle K's reporting and compliance systems reliably.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Escalation Framework -->
+      <div class="mb-20">
+        <h2 class="text-4xl font-bold text-dark-blue mb-4" data-aos="fade-up">Escalation Framework</h2>
+        <p class="text-lg text-gray-500 mb-10" data-aos="fade-up">All issues detected during monitoring were triaged against a structured three-tier escalation model — ensuring every incident was handled at the appropriate level with defined response times.</p>
+
+        <div class="grid md:grid-cols-3 gap-6">
+
+          <div class="bg-white rounded-2xl border-2 border-green-200 p-8 shadow-md text-center" data-aos="fade-up">
+            <span class="tier-badge bg-green-100 text-green-700 mb-4 block">Tier 1 — Operational</span>
+            <i class="fa-solid fa-headset text-green-600 text-3xl mb-4"></i>
+            <h3 class="font-bold text-dark-blue mb-3">Monitoring Team Resolution</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Minor deviations — late check-ins, brief delays — handled directly by the Workgen monitoring team through direct contact with the individual or their immediate supervisor.</p>
+            <div class="mt-5 bg-green-50 rounded-xl py-2 px-4 text-green-700 text-xs font-bold">Resolved within shift window</div>
+          </div>
+
+          <div class="bg-white rounded-2xl border-2 border-yellow-200 p-8 shadow-md text-center" data-aos="fade-up" data-aos-delay="100">
+            <span class="tier-badge bg-yellow-100 text-yellow-700 mb-4 block">Tier 2 — Supervisory</span>
+            <i class="fa-solid fa-user-tie text-yellow-600 text-3xl mb-4"></i>
+            <h3 class="font-bold text-dark-blue mb-3">Client Supervisor Escalation</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Confirmed no-shows, staffing shortfalls, and operational issues requiring local decision-making are escalated to Circle K's designated supervisors with full incident context.</p>
+            <div class="mt-5 bg-yellow-50 rounded-xl py-2 px-4 text-yellow-700 text-xs font-bold">Escalated within defined SLA</div>
+          </div>
+
+          <div class="bg-white rounded-2xl border-2 border-red-200 p-8 shadow-md text-center" data-aos="fade-up" data-aos-delay="200">
+            <span class="tier-badge bg-red-100 text-red-700 mb-4 block">Tier 3 — Management</span>
+            <i class="fa-solid fa-triangle-exclamation text-red-600 text-3xl mb-4"></i>
+            <h3 class="font-bold text-dark-blue mb-3">Management &amp; Compliance Alert</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Critical incidents — sustained coverage failures, safety events, or SLA-breach risks — are immediately escalated to Circle K management with a documented incident report and recommended action.</p>
+            <div class="mt-5 bg-red-50 rounded-xl py-2 px-4 text-red-700 text-xs font-bold">Immediate notification</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Our Approach -->
+      <div class="mb-20">
+        <h2 class="text-4xl font-bold text-dark-blue mb-4" data-aos="fade-up">Our Monitoring Process</h2>
+        <p class="text-lg text-gray-500 mb-10" data-aos="fade-up">Each shift cycle follows a consistent 4-phase monitoring sequence — from opening checks through to post-shift closure.</p>
+        <div class="grid md:grid-cols-2 gap-6">
+
+          <div class="step-card" data-aos="fade-up">
+            <div class="flex gap-4 items-start">
+              <div class="w-11 h-11 rounded-xl bg-dark-blue text-white flex items-center justify-center flex-shrink-0 font-bold">1</div>
+              <div>
+                <h3 class="font-bold text-dark-blue mb-2">Pre-Shift Readiness Check</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">The monitoring team opens each shift cycle by reviewing the confirmed roster, flagging any locations already at risk of understaffing, and verifying that all assigned employees have received their shift confirmation.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card" data-aos="fade-up" data-aos-delay="75">
+            <div class="flex gap-4 items-start">
+              <div class="w-11 h-11 rounded-xl bg-dark-blue text-white flex items-center justify-center flex-shrink-0 font-bold">2</div>
+              <div>
+                <h3 class="font-bold text-dark-blue mb-2">Live Check-In Monitoring</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">As the shift start window opens, the team tracks incoming check-ins in real time. Any expected check-in that does not arrive within the defined grace period immediately triggers a Tier 1 response action.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card" data-aos="fade-up" data-aos-delay="150">
+            <div class="flex gap-4 items-start">
+              <div class="w-11 h-11 rounded-xl bg-dark-blue text-white flex items-center justify-center flex-shrink-0 font-bold">3</div>
+              <div>
+                <h3 class="font-bold text-dark-blue mb-2">Active Shift Issue Management</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Throughout the active shift, the monitoring team tracks mid-shift deviations — early departures, unplanned absences, and operational issues — triaging each event against the escalation framework and coordinating responses accordingly.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card" data-aos="fade-up" data-aos-delay="225">
+            <div class="flex gap-4 items-start">
+              <div class="w-11 h-11 rounded-xl bg-dark-blue text-white flex items-center justify-center flex-shrink-0 font-bold">4</div>
+              <div>
+                <h3 class="font-bold text-dark-blue mb-2">Shift Close &amp; Reporting</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">At shift end, check-outs are validated, all events are closed in the system, and a shift summary is generated — capturing attendance outcomes, issues raised, escalations made, and resolution status for Circle K's records.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="mb-20" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-10">Results &amp; Impact</h2>
+        <div class="bg-gradient-to-r from-dark-blue via-blue-700 to-light-blue text-white rounded-3xl p-12 shadow-2xl">
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-circle-check text-green-300 text-2xl flex-shrink-0 mt-0.5"></i>
+              <div>
+                <div class="font-bold text-lg mb-1">Faster No-Show Response</div>
+                <p class="text-blue-100 text-sm leading-relaxed">Real-time detection eliminated the delay between a no-show occurring and action being taken — reducing average response times and ensuring replacement coordination began immediately upon absence confirmation.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-circle-check text-green-300 text-2xl flex-shrink-0 mt-0.5"></i>
+              <div>
+                <div class="font-bold text-lg mb-1">Improved Shift Fulfilment Rate</div>
+                <p class="text-blue-100 text-sm leading-relaxed">Proactive monitoring and rapid replacement coordination reduced the number of shifts that ran understaffed through to completion — directly protecting store operations and customer service levels.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-circle-check text-green-300 text-2xl flex-shrink-0 mt-0.5"></i>
+              <div>
+                <div class="font-bold text-lg mb-1">Structured, Consistent Escalations</div>
+                <p class="text-blue-100 text-sm leading-relaxed">Every issue was escalated through the correct channel, at the correct tier, with the correct information — giving Circle K's supervisors and management teams clear, actionable incident reports every time.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-circle-check text-green-300 text-2xl flex-shrink-0 mt-0.5"></i>
+              <div>
+                <div class="font-bold text-lg mb-1">Complete Shift-Level Audit Trail</div>
+                <p class="text-blue-100 text-sm leading-relaxed">Comprehensive shift closure reports provided Circle K with a full record of every monitored shift — supporting workforce performance analysis, compliance reporting, and continuous operational improvement.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conclusion -->
+      <div class="text-center py-16" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-8">Always-On Oversight for Always-Open Operations</h2>
+        <p class="max-w-3xl mx-auto text-lg text-gray-700 leading-relaxed mb-12">
+          Convenience retail never stops — and neither does Workgen's monitoring team. By providing <span class="font-bold text-dark-blue">continuous real-time shift surveillance and structured escalation support</span>, Workgen gives Circle K the operational confidence that every location, on every shift, has a dedicated layer of oversight working to keep it running exactly as planned.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="services.html#case-studies" class="inline-block bg-dark-blue text-white font-bold px-12 py-4 rounded-full text-lg hover:shadow-2xl hover:-translate-y-1 transition">All Case Studies</a>
+          <a href="services.html" class="inline-block border-2 border-dark-blue text-dark-blue font-bold px-12 py-4 rounded-full text-lg hover:bg-dark-blue hover:text-white transition">Explore Our Services</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#163498;">
+    <div class="container mx-auto px-6 lg:px-12 py-14 max-w-7xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div class="lg:col-span-1">
+          <img src="workgenLogo.jpg" alt="Workgen Solutions" style="height:52px;width:auto;object-fit:contain;margin-bottom:16px;background:white;padding:4px 8px;border-radius:8px;">
+          <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.75;">Workgen, founded in 2017, came into existence with a vision of providing high-quality business process outsourcing and back-office support services across the globe.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Links</h4>
+          <ul class="space-y-3">
+            <li><a href="index.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Home</a></li>
+            <li><a href="aboutUs.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">About Us</a></li>
+            <li><a href="services.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Services</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Our Services</h4>
+          <ul class="space-y-3">
+            <li><a href="services.html#back-office" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Back Office Operation</a></li>
+            <li><a href="services.html#data-annotation" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Data Annotation</a></li>
+            <li><a href="services.html#qa-qc" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">QA/QC Monitoring</a></li>
+            <li><a href="services.html#customer-support" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Customer Support</a></li>
+            <li><a href="services.html#ml-annotation" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">ML Annotation Services</a></li>
+            <li><a href="services.html#case-studies" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Case Studies</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Contact Info</h4>
+          <div class="flex items-start gap-3 mb-4">
+            <span style="color:white;margin-top:2px;">📍</span>
+            <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.65;margin:0;">918, 9th Floor Tower 2, Assotech Business Cresterra, Sec 135, Noida, 201305</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span style="color:white;">✉️</span>
+            <a href="mailto:connect@workgensolutions.com" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">connect@workgensolutions.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.15);padding:16px 0;text-align:center;">
+      <p style="color:rgba(255,255,255,0.7);font-size:0.85rem;margin:0;">© 2026 Workgen Solutions. All Copyright Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    AOS.init({ duration: 800, once: true, offset: 80 });
+  </script>
+</body>
+</html>

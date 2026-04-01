@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Live Shift Monitoring & Workforce Operations Control - Workgen Solutions</title>
+  <meta name="description" content="How Workgen Solutions delivers real-time workforce monitoring and centralized operational control for retail chains, warehouses, and field teams — ensuring full visibility, optimal staffing, and uninterrupted operations at scale."/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'dark-blue': '#1e40af',
+            'light-blue': '#60a5fa',
+            'very-light-blue': '#eff6ff',
+          },
+          fontFamily: { sans: ['Josefin Sans', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Navbar */
+    #mobile-menu { max-height:0; overflow:hidden; transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1),opacity 0.3s ease; opacity:0; }
+    #mobile-menu.open { max-height:420px; opacity:1; }
+    .ham-line { display:block; width:24px; height:2px; background:#1e40af; border-radius:2px; transition:all 0.3s ease; transform-origin:center; }
+    #hamburger.active .ham-line:nth-child(1) { transform:translateY(8px) rotate(45deg); }
+    #hamburger.active .ham-line:nth-child(2) { opacity:0; transform:scaleX(0); }
+    #hamburger.active .ham-line:nth-child(3) { transform:translateY(-8px) rotate(-45deg); }
+
+    /* Hero */
+    .svc-hero {
+      background: linear-gradient(135deg,#020818 0%,#071232 30%,#0a1a4a 60%,#060e28 100%);
+      position:relative; overflow:hidden;
+    }
+    .hero-grid {
+      position:absolute; inset:0;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+      background-size:55px 55px; pointer-events:none;
+    }
+
+    /* Animated pulse ring for hero icon */
+    .pulse-ring {
+      position:relative; display:inline-flex; align-items:center; justify-content:center;
+    }
+    .pulse-ring::before {
+      content:''; position:absolute; width:80px; height:80px; border-radius:50%;
+      border:2px solid rgba(96,165,250,0.4); animation:pulse-anim 2s infinite;
+    }
+    .pulse-ring::after {
+      content:''; position:absolute; width:100px; height:100px; border-radius:50%;
+      border:1px solid rgba(96,165,250,0.2); animation:pulse-anim 2s infinite 0.5s;
+    }
+    @keyframes pulse-anim {
+      0% { transform:scale(0.85); opacity:1; }
+      100% { transform:scale(1.4); opacity:0; }
+    }
+
+    /* Section tag */
+    .section-tag {
+      display:inline-block; background:#eff6ff; color:#1e40af;
+      font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+      padding:5px 16px; border-radius:999px; border:1px solid #bfdbfe; margin-bottom:14px;
+    }
+
+    nav { background:#ffffff; box-shadow:0 1px 3px rgba(0,0,0,0.1); }
+    nav a { text-decoration:none; }
+    .nav-link { color:#475569; transition:color 0.2s; }
+    .nav-link:hover { color:#1e40af; }
+
+    /* Timeline */
+    .timeline-item { position:relative; padding-left:52px; }
+    .timeline-item::before {
+      content:''; position:absolute; left:20px; top:24px; bottom:-24px;
+      width:2px; background:linear-gradient(to bottom, #1e40af, #bfdbfe);
+    }
+    .timeline-item:last-child::before { display:none; }
+    .timeline-dot {
+      position:absolute; left:8px; top:14px;
+      width:26px; height:26px; border-radius:50%;
+      background:#1e40af; border:3px solid #eff6ff;
+      display:flex; align-items:center; justify-content:center;
+      color:white; font-size:0.65rem; font-weight:700;
+      box-shadow:0 0 0 4px rgba(30,64,175,0.15);
+    }
+
+    /* Stat ticker animation */
+    .stat-card { transition:transform 0.2s, box-shadow 0.2s; }
+    .stat-card:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(30,64,175,0.15); }
+
+    /* Challenge card */
+    .challenge-card {
+      background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:28px;
+      transition:box-shadow 0.2s, transform 0.2s;
+    }
+    .challenge-card:hover { box-shadow:0 8px 30px rgba(30,64,175,0.1); transform:translateY(-2px); }
+
+    /* Result tick */
+    .result-item { display:flex; align-items:flex-start; gap:14px; padding:18px 0; border-bottom:1px solid rgba(255,255,255,0.1); }
+    .result-item:last-child { border-bottom:none; }
+  </style>
+</head>
+<body class="font-sans text-gray-900">
+
+  <!-- NAVBAR -->
+  <nav class="sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4 max-w-7xl flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="workgenLogo.jpg" alt="Workgen Solutions" style="height:40px;width:auto;object-fit:contain;">
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="nav-link font-semibold">Home</a>
+        <a href="aboutUs.html" class="nav-link font-semibold">About</a>
+        <a href="services.html" class="nav-link font-semibold">Services</a>
+        <a href="services.html#case-studies" class="nav-link font-semibold text-dark-blue">Case Studies</a>
+      </div>
+      <button id="hamburger" class="md:hidden" onclick="document.getElementById('mobile-menu').classList.toggle('open'); this.classList.toggle('active');">
+        <div class="ham-line"></div><div class="ham-line"></div><div class="ham-line"></div>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden bg-white border-t">
+      <a href="index.html" class="block px-6 py-3 nav-link">Home</a>
+      <a href="aboutUs.html" class="block px-6 py-3 nav-link">About</a>
+      <a href="services.html" class="block px-6 py-3 nav-link">Services</a>
+      <a href="services.html#case-studies" class="block px-6 py-3 nav-link text-dark-blue font-semibold">Case Studies</a>
+    </div>
+  </nav>
+
+  <!-- BACK BUTTON -->
+  <a href="services.html#case-studies" class="fixed z-40 inline-flex items-center gap-2 group" style="top:112px;left:20px;background:rgba(15,32,80,0.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(96,165,250,0.35);color:white;font-size:0.78rem;font-weight:700;padding:7px 15px;border-radius:999px;text-decoration:none;letter-spacing:0.03em;box-shadow:0 2px 14px rgba(0,0,0,0.3);transition:all 0.2s;" onmouseover="this.style.background='rgba(30,64,175,0.95)';this.style.borderColor='rgba(96,165,250,0.7)'" onmouseout="this.style.background='rgba(15,32,80,0.82)';this.style.borderColor='rgba(96,165,250,0.35)'">
+    <i class="fa-solid fa-arrow-left text-xs group-hover:-translate-x-1 transition-transform"></i> Back to Case Studies
+  </a>
+
+  <!-- HERO -->
+  <section class="svc-hero py-16 relative overflow-hidden">
+    <div class="hero-grid"></div>
+
+    <!-- Floating ambient circles -->
+    <div style="position:absolute;top:-80px;right:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(30,64,175,0.18) 0%,transparent 70%);pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-60px;left:-60px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(96,165,250,0.12) 0%,transparent 70%);pointer-events:none;"></div>
+
+    <div class="container mx-auto px-6 lg:px-12 max-w-6xl relative z-10">
+      <div class="text-center max-w-4xl mx-auto" data-aos="fade-down">
+        <span class="section-tag">BACK OFFICE TRANSFORMATION</span>
+
+        <!-- Animated icon -->
+        <div class="flex justify-center mt-6 mb-8">
+          <div class="pulse-ring">
+            <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur border border-white/20 flex items-center justify-center">
+              <i class="fa-solid fa-display text-light-blue text-2xl"></i>
+            </div>
+          </div>
+        </div>
+
+        <h1 class="text-5xl lg:text-7xl font-black text-white leading-tight">
+          <span class="bg-gradient-to-r from-blue-300 via-blue-200 to-cyan-300 bg-clip-text text-transparent">Live Shift Monitoring</span><br>
+          <span class="text-white">&amp; Workforce Operations Control</span>
+        </h1>
+        <p class="text-xl text-blue-100 mt-8 max-w-3xl mx-auto leading-relaxed">Real-time centralized oversight of distributed workforces — eliminating staffing gaps, reducing no-shows, and keeping multi-location operations running without disruption, 24/7.</p>
+      </div>
+
+      <!-- Hero stats -->
+      <div class="grid grid-cols-3 gap-6 mt-20 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+        <div class="stat-card bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">Real-Time</div>
+          <div class="text-sm text-blue-200 mt-2">Shift Visibility</div>
+        </div>
+        <div class="stat-card bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">↑</div>
+          <div class="text-sm text-blue-200 mt-2">Shift Fulfillment</div>
+        </div>
+        <div class="stat-card bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">↓</div>
+          <div class="text-sm text-blue-200 mt-2">Operational Gaps</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <section class="py-24 bg-gray-50">
+    <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
+
+      <!-- Project Overview -->
+      <div class="mb-24" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-8">Project Overview</h2>
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+          <div>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+              Distributed workforces are the backbone of retail chains, warehouses, and field operations — but they are notoriously difficult to manage in real time. A single absent employee, an undetected attendance gap, or a slow escalation path can cascade into costly operational disruptions, compliance violations, and declining service levels.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+              Workgen Solutions addresses this challenge head-on by providing <span class="font-bold text-dark-blue">centralized, real-time workforce monitoring and operational control</span> — acting as the always-on nerve centre for clients managing complex, multi-site workforces.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed">
+              Our team integrates directly with client workforce management platforms to deliver <span class="font-bold text-dark-blue">live shift tracking, instant issue flagging, no-show management, and continuous compliance oversight</span> — giving operations managers complete confidence that every shift, at every location, is executing to standard.
+            </p>
+          </div>
+          <div class="space-y-4" data-aos="fade-left">
+            <!-- Quick facts panel -->
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-md p-8">
+              <h3 class="text-base font-bold text-dark-blue uppercase tracking-wider mb-5">Engagement at a Glance</h3>
+              <div class="space-y-4">
+                <div class="flex items-center gap-4">
+                  <div class="w-9 h-9 rounded-xl bg-very-light-blue flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-briefcase text-dark-blue text-sm"></i>
+                  </div>
+                  <div>
+                    <div class="text-xs text-gray-400 font-semibold uppercase tracking-wide">Service Category</div>
+                    <div class="text-gray-800 font-semibold">Back Office Operations</div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="w-9 h-9 rounded-xl bg-very-light-blue flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-industry text-dark-blue text-sm"></i>
+                  </div>
+                  <div>
+                    <div class="text-xs text-gray-400 font-semibold uppercase tracking-wide">Industries Served</div>
+                    <div class="text-gray-800 font-semibold">Retail, Warehousing, Field Operations</div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="w-9 h-9 rounded-xl bg-very-light-blue flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-clock text-dark-blue text-sm"></i>
+                  </div>
+                  <div>
+                    <div class="text-xs text-gray-400 font-semibold uppercase tracking-wide">Coverage</div>
+                    <div class="text-gray-800 font-semibold">Continuous — across all active shifts</div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="w-9 h-9 rounded-xl bg-very-light-blue flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-location-dot text-dark-blue text-sm"></i>
+                  </div>
+                  <div>
+                    <div class="text-xs text-gray-400 font-semibold uppercase tracking-wide">Scope</div>
+                    <div class="text-gray-800 font-semibold">Multi-site, multi-location deployments</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Challenges -->
+      <div class="mb-24">
+        <div class="text-center mb-14" data-aos="fade-up">
+          <h2 class="text-4xl font-bold text-dark-blue mb-4">The Challenge</h2>
+          <p class="text-lg text-gray-500 max-w-3xl mx-auto">Managing distributed teams at scale exposes businesses to a range of interconnected operational risks — each capable of compounding into significant financial and compliance costs if left unaddressed.</p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div class="challenge-card" data-aos="fade-up">
+            <div class="w-12 h-12 rounded-2xl bg-red-100 flex items-center justify-center mb-5">
+              <i class="fa-solid fa-eye-slash text-red-500 text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-dark-blue mb-3">Blind Spots in Coverage</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Without centralized oversight, managers at individual sites have no cross-location view — leaving coverage gaps undetected until they become serious operational failures.</p>
+          </div>
+
+          <div class="challenge-card" data-aos="fade-up" data-aos-delay="50">
+            <div class="w-12 h-12 rounded-2xl bg-orange-100 flex items-center justify-center mb-5">
+              <i class="fa-solid fa-user-xmark text-orange-500 text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-dark-blue mb-3">No-Show Cascades</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Undetected absences and delayed no-show responses lead to under-staffed shifts, overloaded remaining workers, and missed service level commitments that erode client and customer trust.</p>
+          </div>
+
+          <div class="challenge-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-12 h-12 rounded-2xl bg-yellow-100 flex items-center justify-center mb-5">
+              <i class="fa-solid fa-fingerprint text-yellow-500 text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-dark-blue mb-3">Attendance Integrity Gaps</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Inconsistent check-in/check-out validation — from buddy punching to unchecked early departures — undermines workforce accountability and introduces compliance risk.</p>
+          </div>
+
+          <div class="challenge-card" data-aos="fade-up" data-aos-delay="150">
+            <div class="w-12 h-12 rounded-2xl bg-blue-100 flex items-center justify-center mb-5">
+              <i class="fa-solid fa-hourglass-half text-blue-500 text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-dark-blue mb-3">Delayed Issue Escalation</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">On-ground incidents — from equipment failures to safety events — often go unreported or are escalated too slowly, allowing minor issues to become costly disruptions.</p>
+          </div>
+
+          <div class="challenge-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-12 h-12 rounded-2xl bg-purple-100 flex items-center justify-center mb-5">
+              <i class="fa-solid fa-chart-bar text-purple-500 text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-dark-blue mb-3">Fragmented Reporting</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Without centralized dashboards, workforce data sits in silos across locations and systems — making it impossible to spot trends, measure compliance, or build reliable performance baselines.</p>
+          </div>
+
+          <div class="challenge-card" data-aos="fade-up" data-aos-delay="250">
+            <div class="w-12 h-12 rounded-2xl bg-green-100 flex items-center justify-center mb-5">
+              <i class="fa-solid fa-scale-balanced text-green-500 text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-dark-blue mb-3">Labor Compliance Risks</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Untracked overtime, missed break schedules, and non-compliant shift patterns expose businesses to regulatory risk — especially as labor rules grow more complex across multi-region operations.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Our Approach -->
+      <div class="mb-24">
+        <div class="text-center mb-14" data-aos="fade-up">
+          <h2 class="text-4xl font-bold text-dark-blue mb-4">Our Approach</h2>
+          <p class="text-lg text-gray-500 max-w-3xl mx-auto">Workgen implements a <span class="font-bold text-dark-blue">centralized monitoring model</span> that blends technology integration with active human oversight — creating a responsive control layer that operates continuously across every active shift.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-md p-8" data-aos="fade-up">
+            <div class="flex gap-4 items-start">
+              <div class="w-12 h-12 rounded-2xl bg-dark-blue text-white flex items-center justify-center flex-shrink-0 font-bold text-lg">1</div>
+              <div>
+                <h3 class="text-xl font-bold text-dark-blue mb-3">Real-Time Shift Tracking</h3>
+                <p class="text-gray-600 leading-relaxed">All active shifts across every location are monitored through a unified platform — giving the operations team a live, consolidated view of staffing status, shift coverage percentages, and attendance confirmations as they happen.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-md p-8" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex gap-4 items-start">
+              <div class="w-12 h-12 rounded-2xl bg-dark-blue text-white flex items-center justify-center flex-shrink-0 font-bold text-lg">2</div>
+              <div>
+                <h3 class="text-xl font-bold text-dark-blue mb-3">Secure Attendance Validation</h3>
+                <p class="text-gray-600 leading-relaxed">Check-in and check-out events are verified through secure, tamper-resistant methods — eliminating proxy attendance and ensuring that every recorded presence is genuine, timestamped, and traceable.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-md p-8" data-aos="fade-up" data-aos-delay="200">
+            <div class="flex gap-4 items-start">
+              <div class="w-12 h-12 rounded-2xl bg-dark-blue text-white flex items-center justify-center flex-shrink-0 font-bold text-lg">3</div>
+              <div>
+                <h3 class="text-xl font-bold text-dark-blue mb-3">No-Show Detection &amp; Rapid Response</h3>
+                <p class="text-gray-600 leading-relaxed">Absences are detected in real time the moment a check-in window closes without confirmation. Replacement coordination is triggered immediately — minimising the gap between detection and resolution to prevent any understaffed shift from running unaddressed.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-md p-8" data-aos="fade-up" data-aos-delay="300">
+            <div class="flex gap-4 items-start">
+              <div class="w-12 h-12 rounded-2xl bg-dark-blue text-white flex items-center justify-center flex-shrink-0 font-bold text-lg">4</div>
+              <div>
+                <h3 class="text-xl font-bold text-dark-blue mb-3">Live Issue Resolution &amp; Escalation</h3>
+                <p class="text-gray-600 leading-relaxed">On-ground issues flagged during active shifts — whether staffing, equipment, or safety-related — are triaged and escalated through structured channels, with response times and resolution outcomes logged for full accountability.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-md p-8 md:col-span-2" data-aos="fade-up" data-aos-delay="400">
+            <div class="flex gap-4 items-start">
+              <div class="w-12 h-12 rounded-2xl bg-dark-blue text-white flex items-center justify-center flex-shrink-0 font-bold text-lg">5</div>
+              <div>
+                <h3 class="text-xl font-bold text-dark-blue mb-3">Centralized Performance Dashboards</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">All workforce data — attendance rates, shift fulfillment scores, no-show frequencies, issue logs, and compliance metrics — feeds into centralized dashboards accessible to client operations and management teams. This unified view enables evidence-based decisions, proactive staffing adjustments, and clear audit trails for compliance reporting.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Operational Process — Timeline -->
+      <div class="mb-24">
+        <div class="text-center mb-14" data-aos="fade-up">
+          <h2 class="text-4xl font-bold text-dark-blue mb-4">How a Shift is Monitored</h2>
+          <p class="text-lg text-gray-500 max-w-3xl mx-auto">Every shift follows a structured monitoring lifecycle — from pre-shift readiness checks through to post-shift reporting — ensuring nothing is missed and every deviation is acted upon.</p>
+        </div>
+
+        <div class="bg-white rounded-3xl border border-gray-200 shadow-lg p-10 lg:p-14" data-aos="fade-up">
+          <div class="space-y-10">
+
+            <div class="timeline-item">
+              <div class="timeline-dot">1</div>
+              <div class="bg-very-light-blue rounded-2xl p-6">
+                <h3 class="text-lg font-bold text-dark-blue mb-2">Pre-Shift Roster Review</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Before each shift window opens, the monitoring team reviews the expected roster — confirming scheduled headcount, verifying any pre-approved absences, and flagging locations at risk of understaffing before the shift begins.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot">2</div>
+              <div class="bg-very-light-blue rounded-2xl p-6">
+                <h3 class="text-lg font-bold text-dark-blue mb-2">Check-In Window Monitoring</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">As the shift start time arrives, the team monitors live check-in confirmations across all locations. Each pending or missed check-in triggers an immediate status alert, prompting direct contact with the individual or their supervisor.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot">3</div>
+              <div class="bg-very-light-blue rounded-2xl p-6">
+                <h3 class="text-lg font-bold text-dark-blue mb-2">Active Shift Surveillance</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Throughout the shift, the monitoring team tracks mid-shift deviations — early departures, unexpected absences, location transfers, or SLA-breach risks — and coordinates real-time responses to keep operations on track.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot">4</div>
+              <div class="bg-very-light-blue rounded-2xl p-6">
+                <h3 class="text-lg font-bold text-dark-blue mb-2">Issue Triage &amp; Escalation</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Any on-ground issues reported during the shift are triaged against client-defined escalation protocols. Critical issues are escalated within defined SLA windows; all events are documented with timestamps, actions taken, and resolution outcomes for the post-shift report.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot">5</div>
+              <div class="bg-very-light-blue rounded-2xl p-6">
+                <h3 class="text-lg font-bold text-dark-blue mb-2">Check-Out Validation &amp; Shift Close</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">At shift end, all check-outs are validated and cross-referenced against check-in records. Any discrepancies — including unlogged overtime or premature departures — are flagged and logged before the shift is formally closed in the system.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot">6</div>
+              <div class="bg-very-light-blue rounded-2xl p-6">
+                <h3 class="text-lg font-bold text-dark-blue mb-2">Post-Shift Reporting &amp; Dashboard Update</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">A consolidated post-shift report is generated — capturing attendance accuracy, fulfillment rate, issues raised, and response metrics. Data feeds into the centralized dashboard, giving management real-time visibility into workforce performance trends across all locations.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Capabilities Grid -->
+      <div class="mb-24">
+        <div class="text-center mb-14" data-aos="fade-up">
+          <h2 class="text-4xl font-bold text-dark-blue mb-4">Core Capabilities</h2>
+          <p class="text-lg text-gray-500 max-w-2xl mx-auto">A complete suite of workforce monitoring and operational control functions — delivered as a managed service.</p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+          <div class="bg-white border border-gray-200 rounded-2xl p-7 flex items-start gap-4 hover:shadow-lg transition" data-aos="fade-up">
+            <div class="w-11 h-11 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-satellite-dish text-dark-blue"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-dark-blue mb-1">Live Shift Coverage Tracking</h4>
+              <p class="text-gray-500 text-sm leading-relaxed">Real-time view of staffing status across all active locations and shifts simultaneously.</p>
+            </div>
+          </div>
+
+          <div class="bg-white border border-gray-200 rounded-2xl p-7 flex items-start gap-4 hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="50">
+            <div class="w-11 h-11 rounded-xl bg-green-100 flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-user-check text-green-600"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-dark-blue mb-1">Validated Attendance Management</h4>
+              <p class="text-gray-500 text-sm leading-relaxed">Secure check-in/out verification eliminating proxy attendance and ensuring data integrity.</p>
+            </div>
+          </div>
+
+          <div class="bg-white border border-gray-200 rounded-2xl p-7 flex items-start gap-4 hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-11 h-11 rounded-xl bg-red-100 flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-bell text-red-500"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-dark-blue mb-1">Instant No-Show Alerts</h4>
+              <p class="text-gray-500 text-sm leading-relaxed">Automated absence detection with immediate replacement coordination triggered upon detection.</p>
+            </div>
+          </div>
+
+          <div class="bg-white border border-gray-200 rounded-2xl p-7 flex items-start gap-4 hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="150">
+            <div class="w-11 h-11 rounded-xl bg-yellow-100 flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-triangle-exclamation text-yellow-500"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-dark-blue mb-1">Structured Escalation Protocols</h4>
+              <p class="text-gray-500 text-sm leading-relaxed">Client-defined escalation paths for all issue types, with SLA tracking on every raised event.</p>
+            </div>
+          </div>
+
+          <div class="bg-white border border-gray-200 rounded-2xl p-7 flex items-start gap-4 hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-11 h-11 rounded-xl bg-purple-100 flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-gauge-high text-purple-600"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-dark-blue mb-1">Performance Dashboards</h4>
+              <p class="text-gray-500 text-sm leading-relaxed">Centralized reporting covering fulfillment rates, attendance trends, and compliance metrics.</p>
+            </div>
+          </div>
+
+          <div class="bg-white border border-gray-200 rounded-2xl p-7 flex items-start gap-4 hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="250">
+            <div class="w-11 h-11 rounded-xl bg-orange-100 flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-scale-balanced text-orange-500"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-dark-blue mb-1">Labor Policy Compliance</h4>
+              <p class="text-gray-500 text-sm leading-relaxed">Continuous monitoring for overtime thresholds, break compliance, and policy adherence across all shifts.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Results & Impact -->
+      <div class="mb-24">
+        <h2 class="text-4xl font-bold text-dark-blue mb-12 text-center" data-aos="fade-up">Results &amp; Impact</h2>
+        <div class="bg-gradient-to-r from-dark-blue via-blue-700 to-light-blue text-white p-14 lg:p-20 rounded-3xl shadow-2xl" data-aos="fade-up">
+          <p class="text-xl text-blue-100 text-center mb-12 max-w-3xl mx-auto">Businesses that implement Workgen's live shift monitoring model consistently see measurable improvements across workforce reliability, operational efficiency, and compliance performance:</p>
+          <div class="divide-y divide-white/10">
+            <div class="result-item">
+              <i class="fa-solid fa-circle-check text-green-300 text-2xl flex-shrink-0 mt-0.5"></i>
+              <div>
+                <div class="font-bold text-lg mb-1">Improved Shift Fulfillment &amp; Reduced Understaffing</div>
+                <p class="text-blue-100 text-sm leading-relaxed">Proactive no-show detection and rapid replacement coordination significantly reduces the frequency and duration of understaffed shifts — directly protecting productivity and service delivery commitments.</p>
+              </div>
+            </div>
+            <div class="result-item">
+              <i class="fa-solid fa-circle-check text-green-300 text-2xl flex-shrink-0 mt-0.5"></i>
+              <div>
+                <div class="font-bold text-lg mb-1">Faster Response to No-Shows &amp; Operational Issues</div>
+                <p class="text-blue-100 text-sm leading-relaxed">Real-time alerts eliminate the lag between an incident occurring and action being taken — reducing average response times from hours to minutes and preventing small issues from escalating into major disruptions.</p>
+              </div>
+            </div>
+            <div class="result-item">
+              <i class="fa-solid fa-circle-check text-green-300 text-2xl flex-shrink-0 mt-0.5"></i>
+              <div>
+                <div class="font-bold text-lg mb-1">Increased Workforce Accountability &amp; Discipline</div>
+                <p class="text-blue-100 text-sm leading-relaxed">When employees know their attendance and check-in accuracy is being monitored with precision, adherence improves naturally — reducing repeat absences, late arrivals, and unauthorized early departures over time.</p>
+              </div>
+            </div>
+            <div class="result-item">
+              <i class="fa-solid fa-circle-check text-green-300 text-2xl flex-shrink-0 mt-0.5"></i>
+              <div>
+                <div class="font-bold text-lg mb-1">Better Compliance with Labor Policies</div>
+                <p class="text-blue-100 text-sm leading-relaxed">Continuous monitoring of shift durations, break schedules, and overtime thresholds ensures businesses stay within regulatory boundaries — reducing exposure to labor disputes and compliance penalties.</p>
+              </div>
+            </div>
+            <div class="result-item">
+              <i class="fa-solid fa-circle-check text-green-300 text-2xl flex-shrink-0 mt-0.5"></i>
+              <div>
+                <div class="font-bold text-lg mb-1">Enhanced Productivity Through Optimized Utilization</div>
+                <p class="text-blue-100 text-sm leading-relaxed">Data-driven workforce insights enable smarter scheduling decisions over time — reducing idle capacity, minimizing overtime costs, and ensuring the right people are deployed in the right locations at the right time.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Why Workgen -->
+      <div class="mb-24">
+        <div class="bg-white rounded-3xl border border-gray-200 shadow-lg p-12 lg:p-16" data-aos="fade-up">
+          <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <span class="section-tag">WHY WORKGEN</span>
+              <h2 class="text-3xl font-bold text-dark-blue mb-6 mt-2">More Than Monitoring — Active Operational Partnership</h2>
+              <p class="text-gray-700 leading-relaxed mb-6">Unlike software-only workforce management tools that generate alerts and leave action to on-site managers, Workgen's model combines <span class="font-bold text-dark-blue">real-time platform monitoring with active human response</span>.</p>
+              <p class="text-gray-700 leading-relaxed mb-6">Our dedicated operations team doesn't just flag issues — they actively coordinate resolutions, manage communication with field staff and supervisors, and ensure every deviation is handled with speed and accountability.</p>
+              <p class="text-gray-700 leading-relaxed">This hybrid approach is what enables clients to maintain high operational standards across dozens or hundreds of locations without needing to expand their internal management headcount.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-very-light-blue rounded-2xl p-6 text-center">
+                <i class="fa-solid fa-clock-rotate-left text-dark-blue text-3xl mb-3"></i>
+                <div class="font-bold text-dark-blue text-sm">Always-On Coverage</div>
+              </div>
+              <div class="bg-very-light-blue rounded-2xl p-6 text-center">
+                <i class="fa-solid fa-handshake text-dark-blue text-3xl mb-3"></i>
+                <div class="font-bold text-dark-blue text-sm">Active Resolution</div>
+              </div>
+              <div class="bg-very-light-blue rounded-2xl p-6 text-center">
+                <i class="fa-solid fa-file-lines text-dark-blue text-3xl mb-3"></i>
+                <div class="font-bold text-dark-blue text-sm">Full Traceability</div>
+              </div>
+              <div class="bg-very-light-blue rounded-2xl p-6 text-center">
+                <i class="fa-solid fa-arrows-up-to-line text-dark-blue text-3xl mb-3"></i>
+                <div class="font-bold text-dark-blue text-sm">Scales with You</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conclusion -->
+      <div class="text-center py-16" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-8">Turning Fragmented Operations into a Controlled System</h2>
+        <p class="max-w-3xl mx-auto text-lg text-gray-700 leading-relaxed mb-12">
+          Workgen's live shift monitoring and workforce operations control solutions eliminate the uncertainty and reactivity that plague distributed workforce management. By combining <span class="font-bold text-dark-blue">real-time visibility, structured processes, and active operational support</span>, we help businesses reduce risk, control costs, and sustain consistent service quality — regardless of how many locations they operate or how complex their shift patterns become.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="services.html#case-studies" class="inline-block bg-dark-blue text-white font-bold px-12 py-4 rounded-full text-lg hover:shadow-2xl hover:-translate-y-1 transition">All Case Studies</a>
+          <a href="services.html" class="inline-block border-2 border-dark-blue text-dark-blue font-bold px-12 py-4 rounded-full text-lg hover:bg-dark-blue hover:text-white transition">Explore Our Services</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#163498;">
+    <div class="container mx-auto px-6 lg:px-12 py-14 max-w-7xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div class="lg:col-span-1">
+          <img src="workgenLogo.jpg" alt="Workgen Solutions" style="height:52px;width:auto;object-fit:contain;margin-bottom:16px;background:white;padding:4px 8px;border-radius:8px;">
+          <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.75;">Workgen, founded in 2017, came into existence with a vision of providing high-quality business process outsourcing and back-office support services across the globe.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Links</h4>
+          <ul class="space-y-3">
+            <li><a href="index.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Home</a></li>
+            <li><a href="aboutUs.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">About Us</a></li>
+            <li><a href="services.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Services</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Our Services</h4>
+          <ul class="space-y-3">
+            <li><a href="services.html#back-office" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Back Office Operation</a></li>
+            <li><a href="services.html#data-annotation" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Data Annotation</a></li>
+            <li><a href="services.html#qa-qc" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">QA/QC Monitoring</a></li>
+            <li><a href="services.html#customer-support" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Customer Support</a></li>
+            <li><a href="services.html#ml-annotation" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">ML Annotation Services</a></li>
+            <li><a href="services.html#case-studies" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Case Studies</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Contact Info</h4>
+          <div class="flex items-start gap-3 mb-4">
+            <span style="color:white;margin-top:2px;">📍</span>
+            <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.65;margin:0;">918, 9th Floor Tower 2, Assotech Business Cresterra, Sec 135, Noida, 201305</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span style="color:white;">✉️</span>
+            <a href="mailto:connect@workgensolutions.com" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">connect@workgensolutions.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.15);padding:16px 0;text-align:center;">
+      <p style="color:rgba(255,255,255,0.7);font-size:0.85rem;margin:0;">© 2026 Workgen Solutions. All Copyright Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    AOS.init({ duration: 800, once: true, offset: 80 });
+  </script>
+</body>
+</html>

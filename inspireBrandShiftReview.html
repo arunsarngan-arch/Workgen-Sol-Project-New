@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inspire Brands – Shift Review & Image Audit Operations - Workgen Solutions</title>
+  <meta name="description" content="How Workgen Solutions delivered high-volume image validation and shift review audits for Inspire Brands — ensuring compliance, brand standards, and fraud prevention across thousands of locations."/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'dark-blue': '#1e40af',
+            'light-blue': '#60a5fa',
+            'very-light-blue': '#eff6ff',
+          },
+          fontFamily: { sans: ['Josefin Sans', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Navbar */
+    #mobile-menu { max-height:0; overflow:hidden; transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1),opacity 0.3s ease; opacity:0; }
+    #mobile-menu.open { max-height:420px; opacity:1; }
+    .ham-line { display:block; width:24px; height:2px; background:#1e40af; border-radius:2px; transition:all 0.3s ease; transform-origin:center; }
+    #hamburger.active .ham-line:nth-child(1) { transform:translateY(8px) rotate(45deg); }
+    #hamburger.active .ham-line:nth-child(2) { opacity:0; transform:scaleX(0); }
+    #hamburger.active .ham-line:nth-child(3) { transform:translateY(-8px) rotate(-45deg); }
+
+    /* Hero */
+    .svc-hero {
+      background: linear-gradient(135deg,#020818 0%,#071232 30%,#0a1a4a 60%,#060e28 100%);
+      position:relative; overflow:hidden;
+    }
+    .hero-grid {
+      position:absolute; inset:0;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+      background-size:55px 55px; pointer-events:none;
+    }
+
+    /* Section tag */
+    .section-tag {
+      display:inline-block; background:#eff6ff; color:#1e40af;
+      font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+      padding:5px 16px; border-radius:999px; border:1px solid #bfdbfe; margin-bottom:14px;
+    }
+
+    nav { background:#ffffff; box-shadow:0 1px 3px rgba(0,0,0,0.1); }
+    nav a { text-decoration:none; }
+    .nav-link { color:#475569; transition:color 0.2s; }
+    .nav-link:hover { color:#1e40af; }
+
+    /* Decision badge */
+    .decision-badge {
+      display:inline-flex; align-items:center; gap:6px;
+      font-size:0.8rem; font-weight:700; padding:4px 12px;
+      border-radius:999px; margin-bottom:12px;
+    }
+
+    /* Audit coverage grid */
+    .coverage-card {
+      background:#fff; border:1px solid #e2e8f0; border-radius:16px;
+      padding:24px; transition:box-shadow 0.2s, transform 0.2s;
+    }
+    .coverage-card:hover { box-shadow:0 8px 30px rgba(30,64,175,0.1); transform:translateY(-2px); }
+  </style>
+</head>
+<body class="font-sans text-gray-900">
+
+  <!-- NAVBAR -->
+  <nav class="sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4 max-w-7xl flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="workgenLogo.jpg" alt="Workgen Solutions" style="height:40px;width:auto;object-fit:contain;">
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="nav-link font-semibold">Home</a>
+        <a href="aboutUs.html" class="nav-link font-semibold">About</a>
+        <a href="services.html" class="nav-link font-semibold">Services</a>
+        <a href="services.html#case-studies" class="nav-link font-semibold text-dark-blue">Case Studies</a>
+      </div>
+      <button id="hamburger" class="md:hidden" onclick="document.getElementById('mobile-menu').classList.toggle('open'); this.classList.toggle('active');">
+        <div class="ham-line"></div><div class="ham-line"></div><div class="ham-line"></div>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden bg-white border-t">
+      <a href="index.html" class="block px-6 py-3 nav-link">Home</a>
+      <a href="aboutUs.html" class="block px-6 py-3 nav-link">About</a>
+      <a href="services.html" class="block px-6 py-3 nav-link">Services</a>
+      <a href="services.html#case-studies" class="block px-6 py-3 nav-link text-dark-blue font-semibold">Case Studies</a>
+    </div>
+  </nav>
+
+  <!-- BACK BUTTON -->
+  <a href="services.html#case-studies" class="fixed z-40 inline-flex items-center gap-2 group" style="top:112px;left:20px;background:rgba(15,32,80,0.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(96,165,250,0.35);color:white;font-size:0.78rem;font-weight:700;padding:7px 15px;border-radius:999px;text-decoration:none;letter-spacing:0.03em;box-shadow:0 2px 14px rgba(0,0,0,0.3);transition:all 0.2s;" onmouseover="this.style.background='rgba(30,64,175,0.95)';this.style.borderColor='rgba(96,165,250,0.7)'" onmouseout="this.style.background='rgba(15,32,80,0.82)';this.style.borderColor='rgba(96,165,250,0.35)'">
+    <i class="fa-solid fa-arrow-left text-xs group-hover:-translate-x-1 transition-transform"></i> Back to Case Studies
+  </a>
+
+  <!-- HERO -->
+  <section class="svc-hero py-16 relative overflow-hidden">
+    <div class="hero-grid"></div>
+    <div class="container mx-auto px-6 lg:px-12 max-w-6xl relative z-10">
+      <div class="text-center max-w-4xl mx-auto" data-aos="fade-down">
+        <span class="section-tag">QA/QC MONITORING</span>
+        <h1 class="text-5xl lg:text-7xl font-black text-white mt-6 leading-tight">
+          <span class="bg-gradient-to-r from-blue-300 via-blue-200 to-cyan-300 bg-clip-text text-transparent">Inspire Brands</span><br>
+          <span class="text-white">Shift Review &amp; Image Audit</span>
+        </h1>
+        <p class="text-xl text-blue-100 mt-8 max-w-3xl mx-auto leading-relaxed">High-volume image validation and shift review operations across Dunkin', Arby's, Buffalo Wild Wings and more — ensuring brand compliance, food safety, and fraud-free audit reporting at scale.</p>
+      </div>
+
+      <!-- Hero stats -->
+      <div class="grid grid-cols-3 gap-6 mt-20 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">Multi</div>
+          <div class="text-sm text-blue-200 mt-2">Brand Coverage</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">1000s</div>
+          <div class="text-sm text-blue-200 mt-2">Locations Audited</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">↓</div>
+          <div class="text-sm text-blue-200 mt-2">Fraud &amp; Errors</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDY DETAIL -->
+  <section class="py-24 bg-gray-50" id="case-study-detail">
+    <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
+
+      <!-- Project Overview -->
+      <div class="mb-24" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-8">Project Overview</h2>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+              Workgen Solutions delivered <span class="font-bold text-dark-blue">specialized backend shift review and image-based audit validation for Inspire Brands</span> — the powerhouse behind Dunkin', Arby's, Buffalo Wild Wings, Sonic, and Jimmy John's.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+              The engagement centred on <span class="font-bold text-dark-blue">high-volume validation of field-submitted images and shift reports</span>, ensuring accurate representation of store operations, hygiene compliance, and brand standards across thousands of locations simultaneously.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed">
+              Workgen's team operated as a <span class="font-bold text-dark-blue">critical quality control layer</span> — identifying inconsistencies, fraud risks, and operational gaps that directly impact food safety, regulatory compliance, and the consistency of the guest experience.
+            </p>
+          </div>
+          <div data-aos="fade-left">
+            <img src="Inspire Brand Images/inspirePhoto2.png" alt="Dunkin' store counter and customer service area" class="rounded-3xl shadow-2xl object-cover w-full h-96">
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Challenges -->
+      <div class="mb-24">
+        <h2 class="text-4xl font-bold text-dark-blue mb-12">Key Challenges</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white p-8 rounded-2xl border-l-4 border-orange-500 shadow-lg" data-aos="fade-up">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-triangle-exclamation text-orange-500 text-2xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="text-xl font-bold text-dark-blue mb-3">High-Volume Multi-Brand Submissions</h3>
+                <p class="text-gray-700">Processing <span class="font-bold">thousands of image submissions daily across multiple distinct brands</span>, each with its own compliance standards, audit criteria, and visual reference benchmarks.</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white p-8 rounded-2xl border-l-4 border-red-500 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-image text-red-500 text-2xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="text-xl font-bold text-dark-blue mb-3">Inconsistent Image Quality</h3>
+                <p class="text-gray-700"><span class="font-bold">Variable image quality, incorrect angles, and mismatched uploads</span> from field staff required rigorous per-image review against task descriptions and reference standards.</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white p-8 rounded-2xl border-l-4 border-yellow-500 shadow-lg" data-aos="fade-up" data-aos-delay="200">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-shield-halved text-yellow-500 text-2xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="text-xl font-bold text-dark-blue mb-3">Fraud &amp; Duplicate Image Risk</h3>
+                <p class="text-gray-700"><span class="font-bold">Fraudulent, reused, or manipulated image submissions</span> posed a significant compliance risk, requiring active detection and rejection to maintain audit integrity.</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white p-8 rounded-2xl border-l-4 border-blue-500 shadow-lg" data-aos="fade-up" data-aos-delay="300">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-layer-group text-blue-500 text-2xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="text-xl font-bold text-dark-blue mb-3">Standardization Across Thousands of Stores</h3>
+                <p class="text-gray-700">Maintaining <span class="font-bold">consistent, standardized validation decisions</span> across thousands of store locations demanded a structured decision framework that all reviewers could apply uniformly.</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white p-8 rounded-2xl border-l-4 border-purple-500 shadow-lg md:col-span-2" data-aos="fade-up" data-aos-delay="400">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-bolt text-purple-500 text-2xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="text-xl font-bold text-dark-blue mb-3">Real-Time Accuracy at Scale</h3>
+                <p class="text-gray-700">Sustaining <span class="font-bold">high audit accuracy in real time at scale</span> — without sacrificing throughput or allowing backlogs to accumulate — required a streamlined, repeatable review process with zero tolerance for errors.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Our Approach -->
+      <div class="mb-24">
+        <h2 class="text-4xl font-bold text-dark-blue mb-12">Our Approach</h2>
+        <p class="text-lg text-gray-700 mb-12 leading-relaxed">Workgen executed a <span class="font-bold text-dark-blue">structured 4-phase image audit process</span> — from queue preparation through to final submission — ensuring every image was reviewed accurately, consistently, and with full traceability.</p>
+
+        <div class="space-y-6">
+
+          <!-- Step 1 -->
+          <div class="flex gap-8 items-start" data-aos="fade-up">
+            <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">1</div>
+            <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+              <h3 class="text-xl font-bold text-dark-blue mb-3">Initial Review Setup</h3>
+              <p class="text-gray-700 mb-4">Audit queues were refreshed at the start of each session to <span class="font-bold">ensure only the latest, non-duplicate submissions entered the review pipeline</span>, eliminating stale or redundant entries before processing began.</p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="flex gap-8 items-start" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">2</div>
+            <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+              <h3 class="text-xl font-bold text-dark-blue mb-3">Detailed Image Validation</h3>
+              <p class="text-gray-700 mb-4">Each image was individually reviewed against three criteria to ensure it met the required standard before any decision was recorded:</p>
+              <div class="grid md:grid-cols-3 gap-4">
+                <div class="bg-very-light-blue rounded-xl p-4 text-center">
+                  <i class="fa-solid fa-list-check text-dark-blue text-xl mb-2"></i>
+                  <p class="text-sm font-semibold text-dark-blue">Task Description</p>
+                  <p class="text-xs text-gray-500 mt-1">Cleanliness, equipment, branding compliance</p>
+                </div>
+                <div class="bg-very-light-blue rounded-xl p-4 text-center">
+                  <i class="fa-solid fa-image text-dark-blue text-xl mb-2"></i>
+                  <p class="text-sm font-semibold text-dark-blue">Reference Images</p>
+                  <p class="text-xs text-gray-500 mt-1">Compared against approved visual standards</p>
+                </div>
+                <div class="bg-very-light-blue rounded-xl p-4 text-center">
+                  <i class="fa-solid fa-eye text-dark-blue text-xl mb-2"></i>
+                  <p class="text-sm font-semibold text-dark-blue">Clarity &amp; Authenticity</p>
+                  <p class="text-xs text-gray-500 mt-1">Relevance, focus, and originality verified</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 — Decision Framework -->
+          <div class="flex gap-8 items-start" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">3</div>
+            <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+              <h3 class="text-xl font-bold text-dark-blue mb-6">Decision Framework</h3>
+              <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-green-50 border border-green-200 rounded-2xl p-6">
+                  <span class="decision-badge bg-green-100 text-green-700">✅ Approve</span>
+                  <ul class="space-y-2 text-sm text-gray-700">
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-600 mt-0.5 flex-shrink-0"></i><span>All required elements clearly visible and correctly framed</span></li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-600 mt-0.5 flex-shrink-0"></i><span>Matches task description and reference standards</span></li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-600 mt-0.5 flex-shrink-0"></i><span>Any missing items covered in other valid submissions</span></li>
+                  </ul>
+                </div>
+                <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-6">
+                  <span class="decision-badge bg-yellow-100 text-yellow-700">⚠️ Follow-Up</span>
+                  <ul class="space-y-2 text-sm text-gray-700">
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-minus text-yellow-600 mt-0.5 flex-shrink-0"></i><span>Incorrect angle, blurry, or partial visibility of required elements</span></li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-minus text-yellow-600 mt-0.5 flex-shrink-0"></i><span>Mismatched or incomplete submission requiring resubmission</span></li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-minus text-yellow-600 mt-0.5 flex-shrink-0"></i><span>Detailed correction notes added to guide the field team</span></li>
+                  </ul>
+                </div>
+                <div class="bg-red-50 border border-red-200 rounded-2xl p-6">
+                  <span class="decision-badge bg-red-100 text-red-700">❌ Reject</span>
+                  <ul class="space-y-2 text-sm text-gray-700">
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-xmark text-red-600 mt-0.5 flex-shrink-0"></i><span>Fraudulent, reused, or digitally manipulated images flagged immediately</span></li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-xmark text-red-600 mt-0.5 flex-shrink-0"></i><span>Major missing elements with no valid alternative submissions</span></li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-xmark text-red-600 mt-0.5 flex-shrink-0"></i><span>Clear non-compliance with audit standards recorded</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="flex gap-8 items-start" data-aos="fade-up" data-aos-delay="300">
+            <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">4</div>
+            <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+              <h3 class="text-xl font-bold text-dark-blue mb-3">Finalization &amp; Traceability</h3>
+              <p class="text-gray-700">Each reviewed submission was <span class="font-bold">tagged to the responsible reviewer for full accountability</span>, then logged with complete audit notes — creating an end-to-end traceable record ready for compliance reporting and internal dashboards.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Visual Audit Snapshots -->
+      <div class="mb-24" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-4">Visual Audit Snapshots</h2>
+        <p class="text-lg text-gray-500 mb-10">Sample images from verified store compliance checks — representing the type of field submissions reviewed and validated by the Workgen team.</p>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200" data-aos="fade-up">
+            <img src="Inspire Brand Images/inspirePhoto1.png" alt="Hand wash and hygiene compliance area" class="w-full h-72 object-cover">
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full">✅ Safety &amp; Compliance</span>
+              </div>
+              <h3 class="text-lg font-bold text-dark-blue">Hand Wash &amp; Hygiene Compliance</h3>
+              <p class="text-gray-500 text-sm mt-2">Hand wash station area reviewed for signage visibility, soap dispenser presence, sink condition, and compliance with food safety regulations.</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200" data-aos="fade-up" data-aos-delay="100">
+            <img src="Inspire Brand Images/inspirePhoto2.png" alt="Dunkin' counter and customer service area" class="w-full h-72 object-cover">
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full">✅ Customer Area</span>
+              </div>
+              <h3 class="text-lg font-bold text-dark-blue">Counter &amp; Customer Service Area</h3>
+              <p class="text-gray-500 text-sm mt-2">Customer-facing counter validated for brand signage accuracy, equipment placement, menu board display, and overall store presentation standards.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comprehensive Audit Coverage -->
+      <div class="mb-24">
+        <h2 class="text-4xl font-bold text-dark-blue mb-4">Comprehensive Audit Coverage</h2>
+        <p class="text-lg text-gray-500 mb-10">Every validated image fell within one of six structured coverage categories — ensuring no compliance area was left unreviewed across any location.</p>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div class="coverage-card" data-aos="fade-up">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-building text-dark-blue"></i>
+              </div>
+              <h3 class="font-bold text-dark-blue">Exterior &amp; Infrastructure</h3>
+            </div>
+            <ul class="space-y-1 text-sm text-gray-600">
+              <li class="flex items-start gap-2"><i class="fa-solid fa-circle text-blue-300 text-xs mt-1.5 flex-shrink-0"></i>Exterior corners (1–4) and full front-view shot</li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-circle text-blue-300 text-xs mt-1.5 flex-shrink-0"></i>Parking, handicap bays, and special parking zones</li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-circle text-blue-300 text-xs mt-1.5 flex-shrink-0"></i>Directional signage, bollards, dumpster, and landscaping</li>
+            </ul>
+          </div>
+
+          <div class="coverage-card" data-aos="fade-up" data-aos-delay="50">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-car text-orange-600"></i>
+              </div>
+              <h3 class="font-bold text-dark-blue">Drive-Thru Operations</h3>
+            </div>
+            <ul class="space-y-1 text-sm text-gray-600">
+              <li class="flex items-start gap-2"><i class="fa-solid fa-circle text-orange-300 text-xs mt-1.5 flex-shrink-0"></i>Drive-thru lanes, menu boards, and brand signage</li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-circle text-orange-300 text-xs mt-1.5 flex-shrink-0"></i>Height detector, pavement markings, and lane markings</li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-circle text-orange-300 text-xs mt-1.5 flex-shrink-0"></i>Window operations and handoff area condition</li>
+            </ul>
+          </div>
+
+          <div class="coverage-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-users text-green-600"></i>
+              </div>
+              <h3 class="font-bold text-dark-blue">Customer Experience Areas</h3>
+            </div>
+            <ul class="space-y-1 text-sm text-gray-600">
+              <li class="flex items-start gap-2"><i class="fa-solid fa-circle text-green-300 text-xs mt-1.5 flex-shrink-0"></i>Doors, seating, furniture, ceiling, and counter condition</li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-circle text-green-300 text-xs mt-1.5 flex-shrink-0"></i>Bakery case, cash registers, taps, and mobile order station</li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-circle text-green-300 text-xs mt-1.5 flex-shrink-0"></i>Beverage coolers and in-store merchandising displays</li>
+            </ul>
+          </div>
+
+          <div class="coverage-card" data-aos="fade-up" data-aos-delay="150">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-fire-burner text-red-600"></i>
+              </div>
+              <h3 class="font-bold text-dark-blue">Backline &amp; Kitchen</h3>
+            </div>
+            <ul class="space-y-1 text-sm text-gray-600">
+              <li class="flex items-start gap-2"><i class="fa-solid fa-circle text-red-300 text-xs mt-1.5 flex-shrink-0"></i>Backline stations 1–15, kitchen setup, and workflow layout</li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-circle text-red-300 text-xs mt-1.5 flex-shrink-0"></i>Oven, sandwich station, and food prep area condition</li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-circle text-red-300 text-xs mt-1.5 flex-shrink-0"></i>Water filtration systems and equipment readiness</li>
+            </ul>
+          </div>
+
+          <div class="coverage-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-yellow-100 flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-shield-halved text-yellow-600"></i>
+              </div>
+              <h3 class="font-bold text-dark-blue">Safety &amp; Compliance</h3>
+            </div>
+            <ul class="space-y-1 text-sm text-gray-600">
+              <li class="flex items-start gap-2"><i class="fa-solid fa-circle text-yellow-300 text-xs mt-1.5 flex-shrink-0"></i>Hand wash stations and three-compartment sink compliance</li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-circle text-yellow-300 text-xs mt-1.5 flex-shrink-0"></i>Chemical kit (Chem Kit) storage and labelling</li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-circle text-yellow-300 text-xs mt-1.5 flex-shrink-0"></i>Electrical panels and safety signage condition</li>
+            </ul>
+          </div>
+
+          <div class="coverage-card" data-aos="fade-up" data-aos-delay="250">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-cash-register text-purple-600"></i>
+              </div>
+              <h3 class="font-bold text-dark-blue">Technology, Retail &amp; Restrooms</h3>
+            </div>
+            <ul class="space-y-1 text-sm text-gray-600">
+              <li class="flex items-start gap-2"><i class="fa-solid fa-circle text-purple-300 text-xs mt-1.5 flex-shrink-0"></i>POS systems and retail technology stations (1–5)</li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-circle text-purple-300 text-xs mt-1.5 flex-shrink-0"></i>Restroom doors (inside &amp; outside), walls, sink, and toilet</li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-circle text-purple-300 text-xs mt-1.5 flex-shrink-0"></i>Overall restroom cleanliness and condition assessment</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Business Impact -->
+      <div class="mb-24">
+        <h2 class="text-4xl font-bold text-dark-blue mb-12 text-center">Business Impact</h2>
+        <div class="bg-gradient-to-r from-dark-blue via-blue-600 to-light-blue text-white p-16 rounded-3xl shadow-2xl">
+          <p class="text-xl text-blue-100 text-center mb-12">Workgen's structured audit approach delivered measurable improvements across operational quality, compliance integrity, and reporting reliability:</p>
+          <div class="grid md:grid-cols-2 gap-10">
+            <div class="flex gap-4 items-start">
+              <div class="text-4xl flex-shrink-0">📈</div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">Operational Excellence</h3>
+                <p class="text-blue-100">Improved audit accuracy across thousands of locations, enabling consistent brand standards and operational benchmarking across every Inspire Brands concept.</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="text-4xl flex-shrink-0">🛡️</div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">Fraud Prevention</h3>
+                <p class="text-blue-100">Early detection and rejection of duplicate and manipulated images significantly reduced compliance risks and prevented inaccurate data from entering reporting pipelines.</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="text-4xl flex-shrink-0">⚡</div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">Faster Issue Resolution</h3>
+                <p class="text-blue-100">Structured follow-up notes with clear correction guidance enabled field teams to resolve non-compliant images quickly, reducing audit escalations and cycle times.</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="text-4xl flex-shrink-0">📊</div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">Scalable Quality Control</h3>
+                <p class="text-blue-100">A consistent, scalable decision-making framework supported high-volume audits reliably, feeding accurate data into performance dashboards and compliance tracking systems.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conclusion -->
+      <div class="text-center py-16" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-8">Why This Matters</h2>
+        <p class="max-w-3xl mx-auto text-lg text-gray-700 leading-relaxed mb-12">
+          This engagement demonstrates <span class="font-bold text-dark-blue">Workgen Solutions' strength in image-based QA/QC, large-scale audit validation, and hospitality &amp; restaurant compliance management</span>. By combining structured review processes with a rigorous validation logic, Workgen delivered accurate, scalable, and audit-ready operations — helping Inspire Brands maintain excellence and brand consistency across its global multi-brand footprint.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="services.html#case-studies" class="inline-block bg-dark-blue text-white font-bold px-12 py-4 rounded-full text-lg hover:shadow-2xl hover:-translate-y-1 transition">All Case Studies</a>
+          <a href="services.html" class="inline-block border-2 border-dark-blue text-dark-blue font-bold px-12 py-4 rounded-full text-lg hover:bg-dark-blue hover:text-white transition">Explore Our Services</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#163498;">
+    <div class="container mx-auto px-6 lg:px-12 py-14 max-w-7xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div class="lg:col-span-1">
+          <img src="workgenLogo.jpg" alt="Workgen Solutions" style="height:52px;width:auto;object-fit:contain;margin-bottom:16px;background:white;padding:4px 8px;border-radius:8px;">
+          <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.75;">Workgen, founded in 2017, came into existence with a vision of providing high-quality business process outsourcing and back-office support services across the globe.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Links</h4>
+          <ul class="space-y-3">
+            <li><a href="index.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Home</a></li>
+            <li><a href="aboutUs.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">About Us</a></li>
+            <li><a href="services.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Services</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Our Services</h4>
+          <ul class="space-y-3">
+            <li><a href="services.html#back-office" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Back Office Operation</a></li>
+            <li><a href="services.html#data-annotation" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Data Annotation</a></li>
+            <li><a href="services.html#qa-qc" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">QA/QC Monitoring</a></li>
+            <li><a href="services.html#customer-support" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Customer Support</a></li>
+            <li><a href="services.html#ml-annotation" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">ML Annotation Services</a></li>
+            <li><a href="services.html#case-studies" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Case Studies</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Contact Info</h4>
+          <div class="flex items-start gap-3 mb-4">
+            <span style="color:white;margin-top:2px;">📍</span>
+            <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.65;margin:0;">918, 9th Floor Tower 2, Assotech Business Cresterra, Sec 135, Noida, 201305</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span style="color:white;">✉️</span>
+            <a href="mailto:connect@workgensolutions.com" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">connect@workgensolutions.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.15);padding:16px 0;text-align:center;">
+      <p style="color:rgba(255,255,255,0.7);font-size:0.85rem;margin:0;">© 2026 Workgen Solutions. All Copyright Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    AOS.init({ duration: 800, once: true, offset: 80 });
+  </script>
+</body>
+</html>

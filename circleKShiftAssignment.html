@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Circle K – Shift Assignment & Workforce Operations Management - Workgen Solutions</title>
+  <meta name="description" content="How Workgen Solutions managed end-to-end shift assignment and workforce operations for Circle K — ensuring accurate scheduling, optimised coverage, and seamless day-to-day execution across hundreds of locations."/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'dark-blue': '#1e40af',
+            'light-blue': '#60a5fa',
+            'very-light-blue': '#eff6ff',
+          },
+          fontFamily: { sans: ['Josefin Sans', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    #mobile-menu { max-height:0; overflow:hidden; transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1),opacity 0.3s ease; opacity:0; }
+    #mobile-menu.open { max-height:420px; opacity:1; }
+    .ham-line { display:block; width:24px; height:2px; background:#1e40af; border-radius:2px; transition:all 0.3s ease; transform-origin:center; }
+    #hamburger.active .ham-line:nth-child(1) { transform:translateY(8px) rotate(45deg); }
+    #hamburger.active .ham-line:nth-child(2) { opacity:0; transform:scaleX(0); }
+    #hamburger.active .ham-line:nth-child(3) { transform:translateY(-8px) rotate(-45deg); }
+
+    .svc-hero {
+      background: linear-gradient(135deg,#020818 0%,#071232 30%,#0a1a4a 60%,#060e28 100%);
+      position:relative; overflow:hidden;
+    }
+    .hero-grid {
+      position:absolute; inset:0;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+      background-size:55px 55px; pointer-events:none;
+    }
+    .section-tag {
+      display:inline-block; background:#eff6ff; color:#1e40af;
+      font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+      padding:5px 16px; border-radius:999px; border:1px solid #bfdbfe; margin-bottom:14px;
+    }
+    nav { background:#ffffff; box-shadow:0 1px 3px rgba(0,0,0,0.1); }
+    nav a { text-decoration:none; }
+    .nav-link { color:#475569; transition:color 0.2s; }
+    .nav-link:hover { color:#1e40af; }
+    .step-card { background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:28px; transition:box-shadow 0.2s, transform 0.2s; }
+    .step-card:hover { box-shadow:0 8px 30px rgba(30,64,175,0.1); transform:translateY(-2px); }
+  </style>
+</head>
+<body class="font-sans text-gray-900">
+
+  <!-- NAVBAR -->
+  <nav class="sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4 max-w-7xl flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="workgenLogo.jpg" alt="Workgen Solutions" style="height:40px;width:auto;object-fit:contain;">
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="nav-link font-semibold">Home</a>
+        <a href="aboutUs.html" class="nav-link font-semibold">About</a>
+        <a href="services.html" class="nav-link font-semibold">Services</a>
+        <a href="services.html#case-studies" class="nav-link font-semibold text-dark-blue">Case Studies</a>
+      </div>
+      <button id="hamburger" class="md:hidden" onclick="document.getElementById('mobile-menu').classList.toggle('open'); this.classList.toggle('active');">
+        <div class="ham-line"></div><div class="ham-line"></div><div class="ham-line"></div>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden bg-white border-t">
+      <a href="index.html" class="block px-6 py-3 nav-link">Home</a>
+      <a href="aboutUs.html" class="block px-6 py-3 nav-link">About</a>
+      <a href="services.html" class="block px-6 py-3 nav-link">Services</a>
+      <a href="services.html#case-studies" class="block px-6 py-3 nav-link text-dark-blue font-semibold">Case Studies</a>
+    </div>
+  </nav>
+
+  <!-- BACK BUTTON -->
+  <a href="services.html#case-studies" class="fixed z-40 inline-flex items-center gap-2 group" style="top:112px;left:20px;background:rgba(15,32,80,0.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(96,165,250,0.35);color:white;font-size:0.78rem;font-weight:700;padding:7px 15px;border-radius:999px;text-decoration:none;letter-spacing:0.03em;box-shadow:0 2px 14px rgba(0,0,0,0.3);transition:all 0.2s;" onmouseover="this.style.background='rgba(30,64,175,0.95)';this.style.borderColor='rgba(96,165,250,0.7)'" onmouseout="this.style.background='rgba(15,32,80,0.82)';this.style.borderColor='rgba(96,165,250,0.35)'">
+    <i class="fa-solid fa-arrow-left text-xs group-hover:-translate-x-1 transition-transform"></i> Back to Case Studies
+  </a>
+
+  <!-- HERO -->
+  <section class="svc-hero py-16 relative overflow-hidden">
+    <div class="hero-grid"></div>
+    <div class="container mx-auto px-6 lg:px-12 max-w-6xl relative z-10">
+      <div class="text-center max-w-4xl mx-auto" data-aos="fade-down">
+        <span class="section-tag">BACK OFFICE TRANSFORMATION</span>
+        <h1 class="text-5xl lg:text-6xl font-black text-white mt-6 leading-tight">
+          <span class="bg-gradient-to-r from-blue-300 via-blue-200 to-cyan-300 bg-clip-text text-transparent">Circle K</span><br>
+          <span class="text-white">Shift Assignment &amp; Workforce Operations Management</span>
+        </h1>
+        <p class="text-xl text-blue-100 mt-8 max-w-3xl mx-auto leading-relaxed">End-to-end backend shift assignment operations for one of the world's largest convenience store chains — ensuring every location is staffed accurately, on time, and in compliance with operational standards.</p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6 mt-20 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">Multi</div>
+          <div class="text-sm text-blue-200 mt-2">Location Coverage</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">↑</div>
+          <div class="text-sm text-blue-200 mt-2">Schedule Accuracy</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">↓</div>
+          <div class="text-sm text-blue-200 mt-2">Assignment Errors</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="py-24 bg-gray-50">
+    <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
+
+      <!-- Overview -->
+      <div class="mb-20" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-8">Project Overview</h2>
+        <div class="grid md:grid-cols-5 gap-10 items-start">
+          <div class="md:col-span-3">
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+              Circle K operates one of the world's largest networks of convenience stores, spanning thousands of locations across multiple countries. Managing workforce operations at this scale demands more than a scheduling tool — it requires a <span class="font-bold text-dark-blue">dedicated backend operations team</span> that can process high volumes of shift assignments accurately, resolve conflicts swiftly, and keep every location adequately staffed at all times.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed">
+              Workgen Solutions provides that layer — handling the <span class="font-bold text-dark-blue">end-to-end shift assignment and workforce operations management</span> for Circle K, working within their workforce management systems to ensure shifts are assigned to the right individuals, at the right locations, within defined scheduling rules and compliance boundaries.
+            </p>
+          </div>
+          <div class="md:col-span-2 bg-white rounded-2xl border border-gray-200 shadow-md p-7" data-aos="fade-left">
+            <h3 class="text-sm font-bold text-dark-blue uppercase tracking-wider mb-5">Engagement Snapshot</h3>
+            <div class="space-y-4 text-sm">
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-briefcase text-dark-blue w-4 flex-shrink-0"></i>
+                <div><span class="text-gray-400">Category:</span> <span class="font-semibold text-gray-800">Back Office Operations</span></div>
+              </div>
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-store text-dark-blue w-4 flex-shrink-0"></i>
+                <div><span class="text-gray-400">Client:</span> <span class="font-semibold text-gray-800">Circle K (Global Convenience Retail)</span></div>
+              </div>
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-list-check text-dark-blue w-4 flex-shrink-0"></i>
+                <div><span class="text-gray-400">Focus:</span> <span class="font-semibold text-gray-800">Shift assignment, scheduling accuracy, conflict resolution</span></div>
+              </div>
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-location-dot text-dark-blue w-4 flex-shrink-0"></i>
+                <div><span class="text-gray-400">Scope:</span> <span class="font-semibold text-gray-800">Multi-location, high-volume assignments</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Challenges -->
+      <div class="mb-20">
+        <h2 class="text-4xl font-bold text-dark-blue mb-10" data-aos="fade-up">Key Challenges</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+
+          <div class="bg-white p-7 rounded-2xl border-l-4 border-blue-500 shadow-md" data-aos="fade-up">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-layer-group text-blue-500 text-xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="font-bold text-dark-blue mb-2">High-Volume Assignment Processing</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Processing large volumes of daily shift assignments across hundreds of store locations required a structured, repeatable workflow to maintain speed and accuracy simultaneously.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-7 rounded-2xl border-l-4 border-orange-500 shadow-md" data-aos="fade-up" data-aos-delay="75">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-puzzle-piece text-orange-500 text-xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="font-bold text-dark-blue mb-2">Scheduling Conflicts &amp; Rule Complexity</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Balancing employee availability, skill requirements, shift preferences, and compliance rules across multiple regions introduced frequent conflicts that required careful manual resolution.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-7 rounded-2xl border-l-4 border-red-500 shadow-md" data-aos="fade-up" data-aos-delay="150">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-clock text-red-500 text-xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="font-bold text-dark-blue mb-2">Turnaround Time Pressure</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Shift assignments needed to be confirmed and communicated within tight windows to allow employees sufficient notice — placing constant pressure on the operations team to process accurately at speed.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-7 rounded-2xl border-l-4 border-purple-500 shadow-md" data-aos="fade-up" data-aos-delay="225">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-scale-balanced text-purple-500 text-xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="font-bold text-dark-blue mb-2">Compliance &amp; Policy Adherence</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">All assignments had to comply with labor policies, overtime thresholds, and Circle K's internal workforce standards — requiring the team to apply consistent checks on every assignment processed.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Our Approach -->
+      <div class="mb-20">
+        <h2 class="text-4xl font-bold text-dark-blue mb-4" data-aos="fade-up">Our Approach</h2>
+        <p class="text-lg text-gray-500 mb-10" data-aos="fade-up">Workgen built a structured shift assignment workflow tailored to Circle K's operational requirements — combining systematic processing with active conflict resolution and compliance verification.</p>
+        <div class="grid md:grid-cols-2 gap-6">
+
+          <div class="step-card" data-aos="fade-up">
+            <div class="flex gap-4 items-start">
+              <div class="w-11 h-11 rounded-xl bg-dark-blue text-white flex items-center justify-center flex-shrink-0 font-bold">1</div>
+              <div>
+                <h3 class="font-bold text-dark-blue mb-2">Shift Queue Intake &amp; Prioritisation</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Incoming shift assignment requests were reviewed, categorised by urgency and location, and queued in priority order — ensuring critical coverage needs were addressed before standard assignments.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card" data-aos="fade-up" data-aos-delay="75">
+            <div class="flex gap-4 items-start">
+              <div class="w-11 h-11 rounded-xl bg-dark-blue text-white flex items-center justify-center flex-shrink-0 font-bold">2</div>
+              <div>
+                <h3 class="font-bold text-dark-blue mb-2">Availability &amp; Eligibility Matching</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Each shift was matched against eligible employees based on availability, role qualifications, location proximity, and hours-worked thresholds — preventing non-compliant or unsuitable assignments.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card" data-aos="fade-up" data-aos-delay="150">
+            <div class="flex gap-4 items-start">
+              <div class="w-11 h-11 rounded-xl bg-dark-blue text-white flex items-center justify-center flex-shrink-0 font-bold">3</div>
+              <div>
+                <h3 class="font-bold text-dark-blue mb-2">Conflict Identification &amp; Resolution</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Scheduling conflicts — such as double-bookings, consecutive-shift violations, or location mismatches — were identified during processing and resolved through defined resolution protocols before assignments were confirmed.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card" data-aos="fade-up" data-aos-delay="225">
+            <div class="flex gap-4 items-start">
+              <div class="w-11 h-11 rounded-xl bg-dark-blue text-white flex items-center justify-center flex-shrink-0 font-bold">4</div>
+              <div>
+                <h3 class="font-bold text-dark-blue mb-2">Assignment Confirmation &amp; Record Logging</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Confirmed assignments were logged in Circle K's workforce management system with full details, ensuring each record was accurate, traceable, and ready for downstream scheduling and payroll processes.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="mb-20" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-10">Results &amp; Impact</h2>
+        <div class="bg-gradient-to-r from-dark-blue via-blue-700 to-light-blue text-white rounded-3xl p-12 shadow-2xl">
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-circle-check text-green-300 text-2xl flex-shrink-0 mt-0.5"></i>
+              <div>
+                <div class="font-bold text-lg mb-1">Higher Assignment Accuracy</div>
+                <p class="text-blue-100 text-sm leading-relaxed">Structured eligibility checks and conflict resolution reduced assignment errors significantly, improving daily schedule quality and reducing the need for last-minute corrections.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-circle-check text-green-300 text-2xl flex-shrink-0 mt-0.5"></i>
+              <div>
+                <div class="font-bold text-lg mb-1">Faster Processing Turnaround</div>
+                <p class="text-blue-100 text-sm leading-relaxed">Standardised workflows enabled the team to process high volumes of shift assignments within defined turnaround windows, ensuring employees received timely scheduling confirmations.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-circle-check text-green-300 text-2xl flex-shrink-0 mt-0.5"></i>
+              <div>
+                <div class="font-bold text-lg mb-1">Reduced Scheduling Conflicts</div>
+                <p class="text-blue-100 text-sm leading-relaxed">Proactive conflict identification at the point of assignment — rather than after confirmation — significantly reduced the downstream disruption caused by scheduling errors.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-circle-check text-green-300 text-2xl flex-shrink-0 mt-0.5"></i>
+              <div>
+                <div class="font-bold text-lg mb-1">Consistent Policy Compliance</div>
+                <p class="text-blue-100 text-sm leading-relaxed">Every assignment processed through the Workgen team was validated against Circle K's labor policies and overtime rules — maintaining compliance consistency across all locations.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conclusion -->
+      <div class="text-center py-16" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-8">Reliable Workforce Assignment at Scale</h2>
+        <p class="max-w-3xl mx-auto text-lg text-gray-700 leading-relaxed mb-12">
+          This engagement demonstrates Workgen Solutions' ability to manage <span class="font-bold text-dark-blue">high-volume, high-accuracy back office workforce operations</span> for large-scale retail chains. By combining structured processes with active conflict management and policy compliance, Workgen delivers scheduling reliability that keeps Circle K locations consistently staffed and operationally ready.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="services.html#case-studies" class="inline-block bg-dark-blue text-white font-bold px-12 py-4 rounded-full text-lg hover:shadow-2xl hover:-translate-y-1 transition">All Case Studies</a>
+          <a href="services.html" class="inline-block border-2 border-dark-blue text-dark-blue font-bold px-12 py-4 rounded-full text-lg hover:bg-dark-blue hover:text-white transition">Explore Our Services</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#163498;">
+    <div class="container mx-auto px-6 lg:px-12 py-14 max-w-7xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div class="lg:col-span-1">
+          <img src="workgenLogo.jpg" alt="Workgen Solutions" style="height:52px;width:auto;object-fit:contain;margin-bottom:16px;background:white;padding:4px 8px;border-radius:8px;">
+          <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.75;">Workgen, founded in 2017, came into existence with a vision of providing high-quality business process outsourcing and back-office support services across the globe.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Links</h4>
+          <ul class="space-y-3">
+            <li><a href="index.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Home</a></li>
+            <li><a href="aboutUs.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">About Us</a></li>
+            <li><a href="services.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Services</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Our Services</h4>
+          <ul class="space-y-3">
+            <li><a href="services.html#back-office" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Back Office Operation</a></li>
+            <li><a href="services.html#data-annotation" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Data Annotation</a></li>
+            <li><a href="services.html#qa-qc" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">QA/QC Monitoring</a></li>
+            <li><a href="services.html#customer-support" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Customer Support</a></li>
+            <li><a href="services.html#ml-annotation" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">ML Annotation Services</a></li>
+            <li><a href="services.html#case-studies" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Case Studies</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Contact Info</h4>
+          <div class="flex items-start gap-3 mb-4">
+            <span style="color:white;margin-top:2px;">📍</span>
+            <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.65;margin:0;">918, 9th Floor Tower 2, Assotech Business Cresterra, Sec 135, Noida, 201305</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span style="color:white;">✉️</span>
+            <a href="mailto:connect@workgensolutions.com" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">connect@workgensolutions.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.15);padding:16px 0;text-align:center;">
+      <p style="color:rgba(255,255,255,0.7);font-size:0.85rem;margin:0;">© 2026 Workgen Solutions. All Copyright Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    AOS.init({ duration: 800, once: true, offset: 80 });
+  </script>
+</body>
+</html>
