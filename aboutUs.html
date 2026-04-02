@@ -37,6 +37,7 @@
   </script>
 
   <style>
+    html, body { overflow-x: hidden; }
     /* ===== NAVBAR ===== */
     #mobile-menu {
       max-height: 0;
@@ -211,7 +212,7 @@
 </head>
 <body class="bg-white font-sans antialiased">
 
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md" style="-webkit-transform:translateZ(0);transform:translateZ(0);will-change:transform;">
     <div class="container mx-auto px-4 lg:px-8 py-3 flex items-center justify-between max-w-7xl">
       <a href="index.html">
         <img src="workgenLogo.jpg" alt="Workgen Solutions" style="height:54px;width:auto;object-fit:contain;">

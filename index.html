@@ -38,6 +38,7 @@
 <body class="bg-white font-sans antialiased">
 
   <style>
+    html, body { overflow-x: hidden; }
     #mobile-menu {
       max-height: 0;
       overflow: hidden;
@@ -199,12 +200,15 @@
       font-size: 0.8rem;
       font-weight: 600;
       white-space: nowrap;
-      display: flex;
+      display: none;
       align-items: center;
       gap: 9px;
       animation: cardFloat ease-in-out infinite;
       pointer-events: none;
       z-index: 2;
+    }
+    @media (min-width: 1024px) {
+      .metric-card { display: flex; }
     }
     .metric-card .mc-dot {
       width: 8px; height: 8px;

@@ -31,6 +31,7 @@
   </script>
 
   <style>
+    html, body { overflow-x: hidden; }
     /* Navbar */
     #mobile-menu { max-height:0; overflow:hidden; transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1),opacity 0.3s ease; opacity:0; }
     #mobile-menu.open { max-height:420px; opacity:1; }
@@ -209,11 +210,14 @@
     .ow-project-sub {
       font-size:0.88rem; color:#64748b; margin:0 0 20px;
       display:flex; align-items:center; gap:8px;
+      flex-wrap:wrap;
     }
     .ow-badge {
-      display:inline-block; background:#eff6ff; color:#1e40af;
+      display:inline-flex; align-items:center; justify-content:center;
+      background:#eff6ff; color:#1e40af;
       font-size:0.72rem; font-weight:700; padding:3px 10px;
       border-radius:999px; border:1px solid #bfdbfe;
+      white-space:nowrap; max-width:100%;
     }
 
     /* KPI row */
@@ -259,6 +263,8 @@
       .ow-tabs { padding:14px 16px 0; }
       .ow-content { padding:20px 16px 28px; }
       .ow-tab { padding:7px 13px; font-size:0.75rem; }
+      .ow-project-sub { flex-direction:column; align-items:flex-start; gap:6px; }
+      .ow-badge { max-width:100%; text-align:center; }
     }
   </style>
 </head>
