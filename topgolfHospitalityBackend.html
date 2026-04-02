@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Topgolf – Hospitality Backend Support & Reservation Operations | Workgen Solutions</title>
+  <meta name="description" content="How Workgen delivered structured, end-to-end backend support for Topgolf's high-volume hospitality operations — streamlining reservations, event management, billing and guest support."/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'dark-blue': '#1e40af',
+            'light-blue': '#60a5fa',
+            'very-light-blue': '#eff6ff',
+          },
+          fontFamily: { sans: ['Josefin Sans', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Navbar */
+    #mobile-menu { max-height:0; overflow:hidden; transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1),opacity 0.3s ease; opacity:0; }
+    #mobile-menu.open { max-height:420px; opacity:1; }
+    .ham-line { display:block; width:24px; height:2px; background:#1e40af; border-radius:2px; transition:all 0.3s ease; transform-origin:center; }
+    #hamburger.active .ham-line:nth-child(1) { transform:translateY(8px) rotate(45deg); }
+    #hamburger.active .ham-line:nth-child(2) { opacity:0; transform:scaleX(0); }
+    #hamburger.active .ham-line:nth-child(3) { transform:translateY(-8px) rotate(-45deg); }
+
+    /* Hero */
+    .svc-hero {
+      background: linear-gradient(135deg,#020818 0%,#071232 30%,#0a1a4a 60%,#060e28 100%);
+      position:relative; overflow:hidden;
+    }
+    .hero-grid {
+      position:absolute; inset:0;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+      background-size:55px 55px; pointer-events:none;
+    }
+    .hero-cta { position:relative; transition:all 0.3s ease; z-index:0; }
+    .hero-cta::before {
+      content:''; position:absolute; inset:-3px; border-radius:999px;
+      background:linear-gradient(90deg,#60a5fa,#a5b4fc,#60a5fa); background-size:200% auto;
+      opacity:0; transition:opacity 0.35s; animation:glowSpin 3s linear infinite; z-index:-1;
+    }
+    @keyframes glowSpin { 0%{background-position:0% center} 100%{background-position:200% center} }
+    .hero-cta:hover::before { opacity:1; }
+    .hero-cta:hover { transform:translateY(-3px); box-shadow:0 14px 40px rgba(96,165,250,0.35); }
+
+    /* Section tag */
+    .section-tag {
+      display:inline-block; background:#eff6ff; color:#1e40af;
+      font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+      padding:5px 16px; border-radius:999px; border:1px solid #bfdbfe; margin-bottom:14px;
+    }
+
+    nav { background:#ffffff; box-shadow:0 1px 3px rgba(0,0,0,0.1); }
+    nav a { text-decoration:none; }
+    .nav-link { color:#475569; transition:color 0.2s; }
+    .nav-link:hover { color:#1e40af; }
+
+    /* Pillar card */
+    .pillar-card {
+      background:white; border-radius:20px; border:1px solid #e8eef6;
+      overflow:hidden; transition:all 0.3s;
+    }
+    .pillar-card:hover {
+      border-color:#bfdbfe;
+      box-shadow:0 12px 36px rgba(30,64,175,0.1);
+      transform:translateY(-4px);
+    }
+
+    /* Outcome card */
+    .outcome-card {
+      background:white; border-radius:20px; padding:28px;
+      border:1px solid #e8eef6; transition:all 0.3s;
+    }
+    .outcome-card:hover {
+      border-color:#bfdbfe;
+      box-shadow:0 10px 32px rgba(30,64,175,0.1);
+      transform:translateY(-4px);
+    }
+  </style>
+</head>
+<body class="font-sans text-gray-900">
+
+  <!-- NAVBAR -->
+  <nav class="sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4 max-w-7xl flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="workgenLogo.jpg" alt="Workgen Solutions" style="height:40px;width:auto;object-fit:contain;">
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="nav-link font-semibold">Home</a>
+        <a href="aboutUs.html" class="nav-link font-semibold">About</a>
+        <a href="services.html" class="nav-link font-semibold">Services</a>
+        <a href="services.html#case-studies" class="nav-link font-semibold text-dark-blue">Case Studies</a>
+      </div>
+      <button id="hamburger" class="md:hidden" onclick="document.getElementById('mobile-menu').classList.toggle('open'); this.classList.toggle('active');">
+        <div class="ham-line"></div><div class="ham-line"></div><div class="ham-line"></div>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden bg-white border-t">
+      <a href="index.html" class="block px-6 py-3 nav-link">Home</a>
+      <a href="aboutUs.html" class="block px-6 py-3 nav-link">About</a>
+      <a href="services.html" class="block px-6 py-3 nav-link">Services</a>
+      <a href="services.html#case-studies" class="block px-6 py-3 nav-link text-dark-blue font-semibold">Case Studies</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="svc-hero py-16 relative overflow-hidden">
+    <div class="hero-grid"></div>
+    <div class="container mx-auto px-6 lg:px-12 max-w-6xl relative z-10">
+      <a href="services.html#case-studies" class="fixed z-40 inline-flex items-center gap-2 group p-[7px] sm:px-[15px]" style="top:112px;left:20px;background:rgba(15,32,80,0.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(96,165,250,0.35);color:white;font-size:0.78rem;font-weight:700;border-radius:999px;text-decoration:none;letter-spacing:0.03em;box-shadow:0 2px 14px rgba(0,0,0,0.3);transition:all 0.2s;" onmouseover="this.style.background='rgba(30,64,175,0.95)';this.style.borderColor='rgba(96,165,250,0.7)'" onmouseout="this.style.background='rgba(15,32,80,0.82)';this.style.borderColor='rgba(96,165,250,0.35)'">
+        <i class="fa-solid fa-arrow-left text-xs"></i><span class="hidden sm:inline"> Back to Case Studies</span>
+      </a>
+
+      <div class="text-center max-w-4xl mx-auto" data-aos="fade-down">
+        <span class="section-tag">BACK OFFICE TRANSFORMATION</span>
+        <h1 class="text-5xl lg:text-7xl font-black text-white mt-6 leading-tight">
+          <span class="bg-gradient-to-r from-blue-300 via-blue-200 to-cyan-300 bg-clip-text text-transparent">Topgolf</span><br>
+          <span class="text-white">Hospitality Backend Support</span>
+        </h1>
+        <p class="text-xl text-blue-100 mt-8 max-w-3xl mx-auto leading-relaxed">Structured, end-to-end backend operations for Topgolf's high-volume hospitality environment — streamlining reservations, event management, billing, and guest support at scale.</p>
+      </div>
+
+      <!-- Hero stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">5</div>
+          <div class="text-sm text-blue-200 mt-2">Core Functions</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">CRM</div>
+          <div class="text-sm text-blue-200 mt-2">Driven Workflows</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">5-Step</div>
+          <div class="text-sm text-blue-200 mt-2">Operational Workflow</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">↑</div>
+          <div class="text-sm text-blue-200 mt-2">Guest Satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDY DETAIL -->
+  <section class="py-24 bg-gray-50">
+    <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
+
+      <!-- Overview -->
+      <div class="mb-24" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-8">Project Overview</h2>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+              Workgen Solutions partnered with <span class="font-bold text-dark-blue">Topgolf</span> to deliver structured, end-to-end backend support for its high-volume hospitality and entertainment operations.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+              The objective was to streamline <span class="font-bold">reservation management, event coordination, billing processes and guest support workflows</span> while ensuring alignment with Topgolf's premium, guest-centric service standards.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed">
+              Operating as an extension of the client's internal teams, Workgen managed critical backend functions that enabled venue teams to focus on delivering <span class="font-bold text-dark-blue">high-energy, on-site guest experiences</span> while backend operations were executed with accuracy, speed and consistency.
+            </p>
+          </div>
+          <div data-aos="fade-left">
+            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&h=400&fit=crop" alt="Hospitality operations team" class="rounded-3xl shadow-2xl object-cover w-full h-96">
+          </div>
+        </div>
+      </div>
+
+      <!-- Operational Environment -->
+      <div class="mb-24" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-8">Operational Environment</h2>
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-md p-10">
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="text-center p-6">
+              <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-bolt text-dark-blue text-2xl"></i>
+              </div>
+              <h3 class="font-bold text-gray-900 mb-2">Fast-Paced Environment</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">Real-time coordination between backend systems and on-ground teams was critical to seamless guest operations.</p>
+            </div>
+            <div class="text-center p-6">
+              <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-database text-dark-blue text-2xl"></i>
+              </div>
+              <h3 class="font-bold text-gray-900 mb-2">SevenRooms CRM</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">All guest interactions and reservations were managed through SevenRooms with structured workflows for communication and billing.</p>
+            </div>
+            <div class="text-center p-6">
+              <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-users text-dark-blue text-2xl"></i>
+              </div>
+              <h3 class="font-bold text-gray-900 mb-2">Multi-Stakeholder Coordination</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">Seamless coordination across guests, venue staff, and internal departments with high accuracy and rapid turnaround.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Challenges -->
+      <div class="mb-24">
+        <h2 class="text-4xl font-bold text-dark-blue mb-12" data-aos="fade-up">Key Challenges</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white p-8 rounded-2xl border-l-4 border-orange-500 shadow-lg" data-aos="fade-up">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-triangle-exclamation text-orange-500 text-2xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="text-xl font-bold text-dark-blue mb-3">High-Volume Operations</h3>
+                <p class="text-gray-700">Handling large volumes of reservation modifications, cancellations, and event bookings with accuracy and speed, without impacting guest experience.</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white p-8 rounded-2xl border-l-4 border-red-500 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-receipt text-red-500 text-2xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="text-xl font-bold text-dark-blue mb-3">Billing Accuracy &amp; Refunds</h3>
+                <p class="text-gray-700">Ensuring billing accuracy and minimizing refund-related discrepancies across a high volume of financial transactions under tight timelines.</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white p-8 rounded-2xl border-l-4 border-yellow-500 shadow-lg" data-aos="fade-up" data-aos-delay="200">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-clock text-yellow-500 text-2xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="text-xl font-bold text-dark-blue mb-3">Time-Sensitive Guest Management</h3>
+                <p class="text-gray-700">Managing guest expectations in time-sensitive scenarios — last-minute changes, large group requests, and urgent escalations — without disruption.</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white p-8 rounded-2xl border-l-4 border-blue-500 shadow-lg" data-aos="fade-up" data-aos-delay="300">
+            <div class="flex items-start gap-4">
+              <i class="fa-solid fa-sitemap text-blue-500 text-2xl flex-shrink-0 mt-1"></i>
+              <div>
+                <h3 class="text-xl font-bold text-dark-blue mb-3">Multi-Team Coordination</h3>
+                <p class="text-gray-700">Maintaining consistent communication standards while coordinating effectively with multiple venue teams, stakeholders, and internal departments.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Our Approach -->
+      <div class="mb-24" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-4">Our Approach</h2>
+        <p class="text-lg text-gray-600 mb-12">Workgen implemented a structured backend operations framework across five core functional pillars, each designed for efficiency, accuracy, and guest satisfaction.</p>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Event Management -->
+          <div class="pillar-card" data-aos="fade-up">
+            <div class="bg-gradient-to-r from-dark-blue to-blue-700 px-7 py-5 flex items-center gap-4">
+              <div class="w-11 h-11 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-calendar-plus text-white text-lg"></i>
+              </div>
+              <h3 class="text-base font-bold text-white leading-tight">End-to-End Event Management</h3>
+            </div>
+            <div class="p-6">
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0 text-sm"></i>
+                  <span class="text-gray-700 text-sm">Managed full lifecycle — creation, modification and cancellations</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0 text-sm"></i>
+                  <span class="text-gray-700 text-sm">Escalated complex or urgent requests to venue teams</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0 text-sm"></i>
+                  <span class="text-gray-700 text-sm">Ensured timely confirmations through standardized workflows</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Reservation Management -->
+          <div class="pillar-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="bg-gradient-to-r from-indigo-700 to-indigo-500 px-7 py-5 flex items-center gap-4">
+              <div class="w-11 h-11 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-calendar-check text-white text-lg"></i>
+              </div>
+              <h3 class="text-base font-bold text-white leading-tight">Reservation Management</h3>
+            </div>
+            <div class="p-6">
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0 text-sm"></i>
+                  <span class="text-gray-700 text-sm">Booking updates, cancellations &amp; guest profiles via SevenRooms</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0 text-sm"></i>
+                  <span class="text-gray-700 text-sm">Maintained audit trails for all changes ensuring accountability</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0 text-sm"></i>
+                  <span class="text-gray-700 text-sm">Confirmation workflows including reminders to reduce no-shows</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Billing & Refunds -->
+          <div class="pillar-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="bg-gradient-to-r from-cyan-700 to-cyan-500 px-7 py-5 flex items-center gap-4">
+              <div class="w-11 h-11 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-file-invoice-dollar text-white text-lg"></i>
+              </div>
+              <h3 class="text-base font-bold text-white leading-tight">Billing &amp; Refund Operations</h3>
+            </div>
+            <div class="p-6">
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0 text-sm"></i>
+                  <span class="text-gray-700 text-sm">Validated transactions and investigated billing discrepancies</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0 text-sm"></i>
+                  <span class="text-gray-700 text-sm">Processed refunds in compliance with company policies</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0 text-sm"></i>
+                  <span class="text-gray-700 text-sm">Maintained detailed logs for financial tracking and audit purposes</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Guest Experience -->
+          <div class="pillar-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="bg-gradient-to-r from-blue-600 to-sky-500 px-7 py-5 flex items-center gap-4">
+              <div class="w-11 h-11 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-star text-white text-lg"></i>
+              </div>
+              <h3 class="text-base font-bold text-white leading-tight">Guest Experience &amp; Escalations</h3>
+            </div>
+            <div class="p-6">
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0 text-sm"></i>
+                  <span class="text-gray-700 text-sm">Managed complaints and service recovery with structured workflows</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0 text-sm"></i>
+                  <span class="text-gray-700 text-sm">Lost &amp; found tracking and coordination</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0 text-sm"></i>
+                  <span class="text-gray-700 text-sm">Routed high-priority issues to relevant stakeholders immediately</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Internal Support -->
+          <div class="pillar-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="bg-gradient-to-r from-violet-700 to-violet-500 px-7 py-5 flex items-center gap-4">
+              <div class="w-11 h-11 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-people-group text-white text-lg"></i>
+              </div>
+              <h3 class="text-base font-bold text-white leading-tight">Internal &amp; Associate Support</h3>
+            </div>
+            <div class="p-6">
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0 text-sm"></i>
+                  <span class="text-gray-700 text-sm">Handled onboarding queries and operational requests</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0 text-sm"></i>
+                  <span class="text-gray-700 text-sm">Internal coordination for scheduling, policies and support needs</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i class="fa-solid fa-check text-dark-blue mt-1 flex-shrink-0 text-sm"></i>
+                  <span class="text-gray-700 text-sm">Centralized tracking of all requests for visibility and follow-up</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Operational Workflow -->
+      <div class="mb-24" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-4">Operational Workflow</h2>
+        <p class="text-lg text-gray-600 mb-12">Every request — whether from a guest or internal team — followed a structured five-step process ensuring accuracy, accountability, and timely resolution.</p>
+
+        <div class="space-y-6">
+          <div class="flex gap-8 items-start" data-aos="fade-up">
+            <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">1</div>
+            <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+              <h3 class="text-xl font-bold text-dark-blue mb-3">Request Intake</h3>
+              <p class="text-gray-700">Guest and internal requests were received via CRM systems, email workflows, and support channels, ensuring no request was missed or delayed.</p>
+            </div>
+          </div>
+          <div class="flex gap-8 items-start" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">2</div>
+            <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+              <h3 class="text-xl font-bold text-dark-blue mb-3">Validation &amp; Processing</h3>
+              <p class="text-gray-700">Requests were reviewed for accuracy, eligibility, and policy compliance before execution — preventing errors from reaching downstream systems.</p>
+            </div>
+          </div>
+          <div class="flex gap-8 items-start" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">3</div>
+            <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+              <h3 class="text-xl font-bold text-dark-blue mb-3">System Updates</h3>
+              <p class="text-gray-700">All changes were processed and updated within <span class="font-bold">SevenRooms</span> with complete audit trails, maintaining full accountability for every action taken.</p>
+            </div>
+          </div>
+          <div class="flex gap-8 items-start" data-aos="fade-up" data-aos-delay="300">
+            <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">4</div>
+            <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+              <h3 class="text-xl font-bold text-dark-blue mb-3">Communication &amp; Coordination</h3>
+              <p class="text-gray-700">Guests and internal teams were informed through standardized communication templates and workflows, ensuring clarity and consistency in every interaction.</p>
+            </div>
+          </div>
+          <div class="flex gap-8 items-start" data-aos="fade-up" data-aos-delay="400">
+            <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">5</div>
+            <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+              <h3 class="text-xl font-bold text-dark-blue mb-3">Escalation &amp; Resolution</h3>
+              <p class="text-gray-700">Complex or high-priority cases were escalated to venue leadership and tracked through to full resolution with complete documentation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Program Management -->
+      <div class="mb-24" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-4">Program Management</h2>
+        <p class="text-lg text-gray-600 mb-10">To ensure consistency and operational efficiency, Workgen embedded structured management practices throughout the engagement.</p>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex items-start gap-4" data-aos="fade-up">
+            <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-list-check text-dark-blue"></i>
+            </div>
+            <p class="text-gray-700 text-sm leading-relaxed">Structured tracking of all reservations, events and guest interactions</p>
+          </div>
+          <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex items-start gap-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-chart-line text-dark-blue"></i>
+            </div>
+            <p class="text-gray-700 text-sm leading-relaxed">Daily monitoring of request volumes and processing timelines</p>
+          </div>
+          <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex items-start gap-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-file-lines text-dark-blue"></i>
+            </div>
+            <p class="text-gray-700 text-sm leading-relaxed">Standardized templates for communication and escalation handling</p>
+          </div>
+          <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex items-start gap-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-handshake text-dark-blue"></i>
+            </div>
+            <p class="text-gray-700 text-sm leading-relaxed">Continuous coordination with venue teams and stakeholders</p>
+          </div>
+          <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex items-start gap-4" data-aos="fade-up" data-aos-delay="400">
+            <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-table-list text-dark-blue"></i>
+            </div>
+            <p class="text-gray-700 text-sm leading-relaxed">Centralized logging and reporting for performance tracking</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools & Technology -->
+      <div class="mb-24" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-10">Tools &amp; Technology</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-md p-8 text-center hover:border-blue-200 hover:shadow-xl transition-all duration-300">
+            <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-5">
+              <i class="fa-solid fa-database text-dark-blue text-2xl"></i>
+            </div>
+            <h3 class="font-bold text-gray-900 text-lg mb-2">SevenRooms</h3>
+            <p class="text-gray-500 text-sm">Reservation and guest management — the primary CRM platform for all booking and profile operations</p>
+          </div>
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-md p-8 text-center hover:border-blue-200 hover:shadow-xl transition-all duration-300">
+            <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-5">
+              <i class="fa-solid fa-table-list text-dark-blue text-2xl"></i>
+            </div>
+            <h3 class="font-bold text-gray-900 text-lg mb-2">Internal Tracking Systems</h3>
+            <p class="text-gray-500 text-sm">Request logging and workflow management for maintaining full operational visibility</p>
+          </div>
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-md p-8 text-center hover:border-blue-200 hover:shadow-xl transition-all duration-300">
+            <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-5">
+              <i class="fa-solid fa-envelope text-dark-blue text-2xl"></i>
+            </div>
+            <h3 class="font-bold text-gray-900 text-lg mb-2">Communication Tools</h3>
+            <p class="text-gray-500 text-sm">Email and communication platforms for guest and internal team coordination with standardized templates</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="mb-24" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-4">Results &amp; Business Impact</h2>
+        <p class="text-lg text-gray-600 mb-12">By combining structured workflows, CRM-driven processes and proactive communication, Workgen ensured reliable backend operations that directly supported Topgolf's premium guest experience.</p>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="outcome-card" data-aos="fade-up">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+              <i class="fa-solid fa-gauge-high text-dark-blue text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Streamlined Operations</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">High-volume reservation and event operations streamlined with significantly reduced processing delays.</p>
+          </div>
+          <div class="outcome-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+              <i class="fa-solid fa-star text-green-600 text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Improved Guest Satisfaction</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Faster, accurate handling of requests and issues elevated the overall guest experience.</p>
+          </div>
+          <div class="outcome-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mb-4">
+              <i class="fa-solid fa-file-invoice-dollar text-indigo-600 text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Enhanced Financial Accuracy</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Billing errors and refund discrepancies minimized through rigorous validation and audit logging.</p>
+          </div>
+          <div class="outcome-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
+              <i class="fa-solid fa-bolt text-red-500 text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Faster Escalation Handling</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Improved response time for critical guest concerns with structured routing and tracking.</p>
+          </div>
+          <div class="outcome-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="w-12 h-12 bg-cyan-100 rounded-xl flex items-center justify-center mb-4">
+              <i class="fa-solid fa-arrow-trend-up text-cyan-600 text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Increased Operational Efficiency</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Venue teams freed from backend workload to focus entirely on delivering exceptional on-site experiences.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conclusion -->
+      <div data-aos="fade-up">
+        <div style="background:linear-gradient(135deg,#020818 0%,#071232 30%,#0a1a4a 60%,#060e28 100%);border-radius:28px;padding:56px;position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:45px 45px;pointer-events:none;"></div>
+          <div class="relative z-10">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-6">Conclusion</h2>
+            <p class="text-lg text-blue-100 leading-relaxed mb-6">
+              This engagement highlights Workgen Solutions' expertise in delivering <span class="font-bold text-white">scalable backend operations support</span> for hospitality and entertainment brands like Topgolf.
+            </p>
+            <p class="text-lg text-blue-100 leading-relaxed mb-10">
+              Through structured reservation management, efficient billing processes and responsive guest support, Workgen enabled seamless coordination across systems and teams — ensuring <span class="font-bold text-white">operational excellence, protecting revenue and enhancing overall guest satisfaction</span> in a high-volume, experience-driven environment.
+            </p>
+            <a href="contact.html" class="hero-cta inline-block bg-white font-bold px-10 py-4 rounded-full text-lg shadow-xl" style="color:#1e40af;">Work With Us</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#163498;">
+    <div class="container mx-auto px-6 lg:px-12 py-14 max-w-7xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div class="lg:col-span-1">
+          <img src="workgenLogo.jpg" alt="Workgen Solutions" style="height:52px;width:auto;object-fit:contain;margin-bottom:16px;background:white;padding:4px 8px;border-radius:8px;">
+          <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.75;">Workgen, founded in 2017, came into existence with a vision of providing high-quality business process outsourcing and back-office support services across the globe.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Links</h4>
+          <ul class="space-y-3">
+            <li><a href="index.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Home</a></li>
+            <li><a href="aboutUs.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">About Us</a></li>
+            <li><a href="services.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Services</a></li>
+            <li><a href="contact.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Our Services</h4>
+          <ul class="space-y-3">
+            <li><a href="services.html#back-office" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Back Office Operation</a></li>
+            <li><a href="services.html#data-annotation" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Data Annotation</a></li>
+            <li><a href="services.html#qa-qc" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">QA/QC Monitoring</a></li>
+            <li><a href="services.html#customer-support" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Customer Support</a></li>
+            <li><a href="services.html#ml-annotation" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">ML Annotation Services</a></li>
+            <li><a href="services.html#case-studies" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Case Studies</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Contact Info</h4>
+          <div class="flex items-start gap-3 mb-4">
+            <span style="color:white;margin-top:2px;">📍</span>
+            <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.65;margin:0;">918, 9th Floor Tower 2, Assotech Business Cresterra, Sec 135, Noida, 201305</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span style="color:white;">✉️</span>
+            <a href="mailto:info@workgen.in" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">info@workgen.in</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.15);padding:16px 0;text-align:center;">
+      <p style="color:rgba(255,255,255,0.7);font-size:0.85rem;margin:0;">© 2026 Workgen Solutions. All Copyright Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    AOS.init({ once: true, duration: 800 });
+  </script>
+
+</body>
+</html>
