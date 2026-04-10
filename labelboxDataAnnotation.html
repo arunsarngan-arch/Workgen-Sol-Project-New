@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LabelBox Dataset Validation - Workgen Solutions</title>
+  <meta name="description" content="How Workgen built and validated bounding box datasets for cooler refill detection, enabling automated stock monitoring for PepsiCo retail operations."/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'dark-blue': '#1e40af',
+            'light-blue': '#60a5fa',
+            'very-light-blue': '#eff6ff',
+          },
+          fontFamily: { sans: ['Josefin Sans', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html, body { overflow-x: hidden; }
+    #mobile-menu { max-height:0; overflow:hidden; transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1),opacity 0.3s ease; opacity:0; }
+    #mobile-menu.open { max-height:420px; opacity:1; }
+    .ham-line { display:block; width:24px; height:2px; background:#1e40af; border-radius:2px; transition:all 0.3s ease; transform-origin:center; }
+    #hamburger.active .ham-line:nth-child(1) { transform:translateY(8px) rotate(45deg); }
+    #hamburger.active .ham-line:nth-child(2) { opacity:0; transform:scaleX(0); }
+    #hamburger.active .ham-line:nth-child(3) { transform:translateY(-8px) rotate(-45deg); }
+
+    .svc-hero {
+      background: linear-gradient(135deg,#020818 0%,#071232 30%,#0a1a4a 60%,#060e28 100%);
+      position:relative; overflow:hidden;
+    }
+    .hero-grid {
+      position:absolute; inset:0;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+      background-size:55px 55px; pointer-events:none;
+    }
+    .hero-cta { position:relative; transition:all 0.3s ease; z-index:0; }
+    .hero-cta::before {
+      content:''; position:absolute; inset:-3px; border-radius:999px;
+      background:linear-gradient(90deg,#60a5fa,#a5b4fc,#60a5fa); background-size:200% auto;
+      opacity:0; transition:opacity 0.35s; animation:glowSpin 3s linear infinite; z-index:-1;
+    }
+    @keyframes glowSpin { 0%{background-position:0% center} 100%{background-position:200% center} }
+    .hero-cta:hover::before { opacity:1; }
+    .hero-cta:hover { transform:translateY(-3px); box-shadow:0 14px 40px rgba(96,165,250,0.35); }
+
+    .section-tag {
+      display:inline-block; background:#eff6ff; color:#1e40af;
+      font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+      padding:5px 16px; border-radius:999px; border:1px solid #bfdbfe; margin-bottom:14px;
+    }
+
+    /* Stock level pill badges */
+    .stock-full  { background:#dcfce7; color:#15803d; border:1px solid #bbf7d0; }
+    .stock-partial { background:#fef9c3; color:#a16207; border:1px solid #fde047; }
+    .stock-empty { background:#fee2e2; color:#b91c1c; border:1px solid #fca5a5; }
+
+    nav { background:#ffffff; box-shadow:0 1px 3px rgba(0,0,0,0.1); }
+    nav a { text-decoration:none; }
+    .nav-link { color:#475569; transition:color 0.2s; }
+    .nav-link:hover { color:#1e40af; }
+  </style>
+</head>
+<body class="font-sans text-gray-900">
+
+  <!-- NAVBAR -->
+  <nav class="fixed top-0 left-0 right-0 z-50">
+    <div class="container mx-auto px-6 py-4 max-w-7xl flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="workgenLogo.jpg" alt="Workgen Solutions" style="height:40px;width:auto;object-fit:contain;">
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="nav-link font-semibold">Home</a>
+        <a href="aboutUs.html" class="nav-link font-semibold">About</a>
+        <a href="services.html" class="nav-link font-semibold">Services</a>
+        <a href="services.html#case-studies" class="nav-link font-semibold text-dark-blue">Case Studies</a>
+      </div>
+      <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg focus:outline-none" aria-label="Toggle menu" onclick="document.getElementById('mobile-menu').classList.toggle('open'); this.classList.toggle('active');">
+        <div class="ham-line"></div><div class="ham-line"></div><div class="ham-line"></div>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden bg-white border-t">
+      <a href="index.html" class="block px-6 py-3 nav-link">Home</a>
+      <a href="aboutUs.html" class="block px-6 py-3 nav-link">About</a>
+      <a href="services.html" class="block px-6 py-3 nav-link">Services</a>
+      <a href="services.html#case-studies" class="block px-6 py-3 nav-link text-dark-blue font-semibold">Case Studies</a>
+    </div>
+  </nav>
+  <div style="height:72px;"></div>
+
+  <!-- HERO -->
+  <section class="svc-hero py-16 relative overflow-hidden">
+    <div class="hero-grid"></div>
+    <div class="container mx-auto px-6 lg:px-12 max-w-6xl relative z-10">
+      <a href="services.html#case-studies" class="fixed z-40 inline-flex items-center gap-2 group p-[7px] sm:px-[15px]" style="top:112px;left:20px;background:rgba(15,32,80,0.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(96,165,250,0.35);color:white;font-size:0.78rem;font-weight:700;border-radius:999px;text-decoration:none;letter-spacing:0.03em;box-shadow:0 2px 14px rgba(0,0,0,0.3);transition:all 0.2s;" onmouseover="this.style.background='rgba(30,64,175,0.95)';this.style.borderColor='rgba(96,165,250,0.7)'" onmouseout="this.style.background='rgba(15,32,80,0.82)';this.style.borderColor='rgba(96,165,250,0.35)'">
+        <i class="fa-solid fa-arrow-left text-xs group-hover:-translate-x-1 transition-transform"></i><span class="hidden sm:inline"> Back to Case Studies</span>
+      </a>
+      <div class="text-center max-w-4xl mx-auto" data-aos="fade-down">
+        <span class="section-tag">Data Annotation</span>
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white mt-6 leading-tight">
+          <span class="bg-gradient-to-r from-blue-300 via-blue-200 to-cyan-300 bg-clip-text text-transparent">LabelBox &#8212; Cooler Refill</span><br>
+          <span class="text-white">Detection &amp; Dataset Validation</span>
+        </h1>
+        <p class="text-xl text-blue-100 mt-8 max-w-3xl mx-auto leading-relaxed">Bounding box annotation and dataset validation to train and improve automated stock detection models &#8212; enabling data-driven restocking decisions for retail operations at scale.</p>
+      </div>
+
+      <!-- Hero stats -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-20 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">3</div>
+          <div class="text-sm text-blue-200 mt-2">Stock Classifications</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">BBox</div>
+          <div class="text-sm text-blue-200 mt-2">Annotation Method</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">&#8593; Accuracy</div>
+          <div class="text-sm text-blue-200 mt-2">Model Performance</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center text-white">
+          <div class="text-3xl font-bold">&#8595; Manual</div>
+          <div class="text-sm text-blue-200 mt-2">Verification Effort</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDY DETAIL -->
+  <section class="py-24 bg-gray-50">
+    <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
+
+      <!-- Project Overview -->
+      <div class="mb-24" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-8">Project Overview</h2>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+              Workgen Solutions worked on a <span class="font-bold text-dark-blue">structured bounding box annotation and dataset validation project</span> using LabelBox &#8212; a leading data labeling platform &#8212; to support the development and accuracy improvement of automated cooler refill detection models.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+              The objective was to build clean, accurately labeled image datasets that automation models could use to reliably identify <span class="font-bold text-dark-blue">product restocking levels inside retail coolers</span>, reducing dependence on manual verification and enabling smarter, data-driven restocking workflows.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed">
+              Each cooler image was precisely annotated with bounding boxes and classified into one of three stock-level categories, producing a <span class="font-bold text-dark-blue">high-quality, structured dataset</span> ready for model training and validation.
+            </p>
+          </div>
+          <div data-aos="fade-left">
+            <div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-lg">
+              <h3 class="text-lg font-bold text-dark-blue mb-5">Platform &amp; Method</h3>
+              <div class="space-y-4">
+                <div class="flex items-start gap-4 p-4 bg-blue-50 rounded-xl border border-blue-100">
+                  <div class="w-10 h-10 bg-dark-blue rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-tag text-white text-sm"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold text-gray-900">LabelBox Platform</div>
+                    <div class="text-sm text-gray-500 mt-1">Industry-standard data labeling and dataset management tool</div>
+                  </div>
+                </div>
+                <div class="flex items-start gap-4 p-4 bg-blue-50 rounded-xl border border-blue-100">
+                  <div class="w-10 h-10 bg-dark-blue rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-vector-square text-white text-sm"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold text-gray-900">Bounding Box Annotation</div>
+                    <div class="text-sm text-gray-500 mt-1">Precise rectangular region marking around cooler units and product areas</div>
+                  </div>
+                </div>
+                <div class="flex items-start gap-4 p-4 bg-blue-50 rounded-xl border border-blue-100">
+                  <div class="w-10 h-10 bg-dark-blue rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-layer-group text-white text-sm"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold text-gray-900">3-Class Classification</div>
+                    <div class="text-sm text-gray-500 mt-1">Full, Partial, and Empty stock levels with validated dataset output</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Classification System -->
+      <div class="mb-24">
+        <h2 class="text-4xl font-bold text-dark-blue mb-4">Stock Level Classification System</h2>
+        <p class="text-lg text-gray-600 mb-12">Every annotated cooler image was assigned one of three clearly defined stock-level categories to ensure model training data was unambiguous and consistent.</p>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Full -->
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-md overflow-hidden" data-aos="fade-up">
+            <div class="bg-green-500 px-8 py-6 text-white text-center">
+              <div class="text-5xl mb-3 font-black">&#11044;</div>
+              <div class="text-2xl font-bold">Full</div>
+              <div class="text-green-100 text-sm mt-1">Fully Restocked</div>
+            </div>
+            <div class="px-8 py-6">
+              <p class="text-gray-700 text-sm mb-5">Cooler shelves are completely stocked with products. No visible gaps or empty slots. Products are standing upright and neatly arranged.</p>
+              <ul class="space-y-2 text-sm text-gray-600">
+                <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-green-500 mt-0.5 flex-shrink-0"></i>All shelf positions occupied</li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-green-500 mt-0.5 flex-shrink-0"></i>Products clearly visible and upright</li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-green-500 mt-0.5 flex-shrink-0"></i>No restocking action required</li>
+              </ul>
+              <div class="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold stock-full">
+                <span>&#9679;</span> Full &#8212; No Action Needed
+              </div>
+            </div>
+          </div>
+
+          <!-- Partial -->
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-md overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+            <div class="bg-yellow-500 px-8 py-6 text-white text-center">
+              <div class="text-5xl mb-3 font-black">&#11044;</div>
+              <div class="text-2xl font-bold">Partial</div>
+              <div class="text-yellow-100 text-sm mt-1">Partially Restocked</div>
+            </div>
+            <div class="px-8 py-6">
+              <p class="text-gray-700 text-sm mb-5">Cooler shelves are partially stocked. Visible gaps exist but some product remains. Restocking is needed but not urgent depending on level.</p>
+              <ul class="space-y-2 text-sm text-gray-600">
+                <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-yellow-500 mt-0.5 flex-shrink-0"></i>Some empty shelf positions present</li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-yellow-500 mt-0.5 flex-shrink-0"></i>Remaining product visible but insufficient</li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-yellow-500 mt-0.5 flex-shrink-0"></i>Restocking recommended soon</li>
+              </ul>
+              <div class="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold stock-partial">
+                <span>&#9679;</span> Partial &#8212; Restock Soon
+              </div>
+            </div>
+          </div>
+
+          <!-- Empty -->
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-md overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+            <div class="bg-red-500 px-8 py-6 text-white text-center">
+              <div class="text-5xl mb-3 font-black">&#11044;</div>
+              <div class="text-2xl font-bold">Empty</div>
+              <div class="text-red-100 text-sm mt-1">No Stock Available</div>
+            </div>
+            <div class="px-8 py-6">
+              <p class="text-gray-700 text-sm mb-5">Cooler shelves are bare or near-empty. Immediate restocking is required. This classification triggers priority restocking workflows.</p>
+              <ul class="space-y-2 text-sm text-gray-600">
+                <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-red-500 mt-0.5 flex-shrink-0"></i>Shelves visibly bare or nearly empty</li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-red-500 mt-0.5 flex-shrink-0"></i>No usable product visible to customers</li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-red-500 mt-0.5 flex-shrink-0"></i>Immediate restocking required</li>
+              </ul>
+              <div class="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold stock-empty">
+                <span>&#9679;</span> Empty &#8212; Restock Immediately
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Annotation Process -->
+      <div class="mb-24">
+        <h2 class="text-4xl font-bold text-dark-blue mb-12">Annotation &amp; Validation Process</h2>
+        <div class="space-y-6">
+          <div class="flex gap-8 items-start" data-aos="fade-up">
+            <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">1</div>
+            <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+              <h3 class="text-xl font-bold text-dark-blue mb-3">Image Ingestion &amp; Dataset Setup</h3>
+              <p class="text-gray-700">Cooler refill images were ingested into LabelBox and organized into structured batches for annotation. Each image was associated with metadata including store location and shift context.</p>
+            </div>
+          </div>
+          <div class="flex gap-8 items-start" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">2</div>
+            <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+              <h3 class="text-xl font-bold text-dark-blue mb-3">Bounding Box Annotation</h3>
+              <p class="text-gray-700">Each cooler unit and relevant product region within the image was precisely annotated using bounding boxes &#8212; defining the exact area the model should evaluate for stock level detection.</p>
+            </div>
+          </div>
+          <div class="flex gap-8 items-start" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">3</div>
+            <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+              <h3 class="text-xl font-bold text-dark-blue mb-3">Stock Level Classification</h3>
+              <p class="text-gray-700">Each annotated region was assigned one of three stock-level labels &#8212; Full, Partial, or Empty &#8212; based on clearly defined visual criteria, ensuring consistent labeling across the entire dataset.</p>
+            </div>
+          </div>
+          <div class="flex gap-8 items-start" data-aos="fade-up" data-aos-delay="300">
+            <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">4</div>
+            <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+              <h3 class="text-xl font-bold text-dark-blue mb-3">Dataset Quality Validation</h3>
+              <p class="text-gray-700">Completed annotations underwent structured quality validation to identify and correct mislabeled samples, poor bounding box alignment, or ambiguous classifications &#8212; ensuring model-ready dataset accuracy.</p>
+            </div>
+          </div>
+          <div class="flex gap-8 items-start" data-aos="fade-up" data-aos-delay="400">
+            <div class="w-16 h-16 bg-dark-blue text-white rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-2xl">5</div>
+            <div class="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-md">
+              <h3 class="text-xl font-bold text-dark-blue mb-3">Dataset Export &amp; Model Integration</h3>
+              <p class="text-gray-700">Validated datasets were exported in structured formats compatible with the client&#8217;s automation pipeline, providing clean, labeled training data to improve cooler refill detection model accuracy.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools & Technology -->
+      <div class="mb-24">
+        <h2 class="text-4xl font-bold text-dark-blue mb-12 text-center">Tools &amp; Technology</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-10 rounded-2xl text-center shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2" data-aos="fade-up">
+            <i class="fa-solid fa-tag text-5xl mb-6"></i>
+            <h3 class="text-2xl font-bold mb-3">LabelBox</h3>
+            <p class="text-blue-100">Industry-standard data labeling platform used for bounding box annotation, dataset management, and quality review</p>
+          </div>
+          <div class="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white p-10 rounded-2xl text-center shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+            <i class="fa-solid fa-vector-square text-5xl mb-6"></i>
+            <h3 class="text-2xl font-bold mb-3">Bounding Box Methodology</h3>
+            <p class="text-indigo-100">Precise rectangular region annotation to define cooler and product boundaries for automated model detection</p>
+          </div>
+          <div class="bg-gradient-to-br from-cyan-500 to-cyan-600 text-white p-10 rounded-2xl text-center shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+            <i class="fa-solid fa-database text-5xl mb-6"></i>
+            <h3 class="text-2xl font-bold mb-3">Structured Dataset Export</h3>
+            <p class="text-cyan-100">Validated datasets exported in structured formats for direct integration into client automation model training pipelines</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results & Impact -->
+      <div class="mb-24">
+        <h2 class="text-4xl font-bold text-dark-blue mb-12 text-center">Results &amp; Impact</h2>
+        <div class="bg-gradient-to-r from-dark-blue via-blue-600 to-light-blue text-white p-16 rounded-3xl shadow-2xl">
+          <p class="text-xl text-blue-100 text-center mb-12">Clean, validated annotation datasets directly improved the performance of automated cooler stock detection systems.</p>
+          <div class="grid md:grid-cols-2 gap-10">
+            <div class="flex gap-4 items-start">
+              <div class="text-4xl flex-shrink-0">&#10003;</div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">Improved Model Accuracy</h3>
+                <p class="text-blue-100">Higher quality labeled datasets directly improved the accuracy of automated cooler refill stock detection models</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="text-4xl flex-shrink-0">&#10003;</div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">Reduced Manual Verification</h3>
+                <p class="text-blue-100">Automation models trained on clean data required significantly less manual review and correction in downstream operations</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="text-4xl flex-shrink-0">&#10003;</div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">Data-Driven Restocking</h3>
+                <p class="text-blue-100">Enabled smarter, classification-driven restocking decisions by providing reliable Full/Partial/Empty detection at scale</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="text-4xl flex-shrink-0">&#10003;</div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">Enhanced Retail Execution Monitoring</h3>
+                <p class="text-blue-100">Automation-powered monitoring improved visibility into real-time cooler stock levels across retail locations</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conclusion -->
+      <div class="text-center py-16" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-dark-blue mb-8">Why This Matters</h2>
+        <p class="max-w-3xl mx-auto text-lg text-gray-700 leading-relaxed mb-12">
+          This project demonstrates <span class="font-bold text-dark-blue">Workgen Solutions' capability to deliver production-grade ML annotation datasets</span> using industry tools like LabelBox. By applying structured bounding box annotation and rigorous dataset validation, our team created the clean, consistent labeled data that automation models need to perform reliably &#8212; directly enabling smarter retail execution at scale.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="index.html" class="inline-block bg-dark-blue text-white font-bold px-12 py-4 rounded-full text-lg hover:shadow-2xl hover:-translate-y-1 transition">Back to Home</a>
+          <a href="services.html" class="inline-block border-2 border-dark-blue text-dark-blue font-bold px-12 py-4 rounded-full text-lg hover:bg-dark-blue hover:text-white transition">Explore Our Services</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer style="background:#163498;">
+    <div class="container mx-auto px-6 lg:px-12 py-14 max-w-7xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div class="lg:col-span-1">
+          <img src="workgenLogo.jpg" alt="Workgen Solutions" style="height:52px;width:auto;object-fit:contain;margin-bottom:16px;background:white;padding:4px 8px;border-radius:8px;">
+          <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.75;">Workgen, founded in 2017, came into existence with a vision of providing high-quality business process outsourcing and back-office support services across the globe.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Links</h4>
+          <ul class="space-y-3">
+            <li><a href="index.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Home</a></li>
+            <li><a href="aboutUs.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">About Us</a></li>
+            <li><a href="services.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Services</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Our Services</h4>
+          <ul class="space-y-3">
+            <li><a href="services.html#back-office" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Back Office Operation</a></li>
+            <li><a href="services.html#data-annotation" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Data Annotation</a></li>
+            <li><a href="services.html#qa-qc" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">QA/QC Monitoring</a></li>
+            <li><a href="services.html#customer-support" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Customer Support</a></li>
+            <li><a href="services.html#case-studies" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Case Studies</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-lg mb-5">Contact Info</h4>
+          <div class="flex items-start gap-3 mb-4">
+            <span style="color:white;margin-top:2px;">&#128205;</span>
+            <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.65;margin:0;">918, 9th Floor Tower 2, Assotech Business Cresterra, Sec 135, Noida, 201305</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span style="color:white;">&#9993;&#65039;</span>
+            <a href="contact.html" style="color:rgba(255,255,255,0.8);font-size:1rem;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.15);padding:16px 0;text-align:center;">
+      <p style="color:rgba(255,255,255,0.7);font-size:0.85rem;margin:0;">&#169; 2026 Workgen Solutions. All Copyright Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    AOS.init({ once: true, duration: 800 });
+  </script>
+</body>
+</html>

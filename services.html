@@ -260,11 +260,15 @@
     @media(max-width:600px){
       .ow-header { padding:24px 20px 20px; }
       .ow-header h2 { font-size:1.2rem; }
-      .ow-tabs { padding:14px 16px 0; }
+      .ow-tabs { padding:14px 16px 0; gap:6px; }
       .ow-content { padding:20px 16px 28px; }
       .ow-tab { padding:7px 13px; font-size:0.75rem; }
+      .ow-project-title { font-size:1.1rem; }
       .ow-project-sub { flex-direction:column; align-items:flex-start; gap:6px; }
       .ow-badge { max-width:100%; text-align:center; }
+      .ow-kpi-row { gap:8px; }
+      .ow-kpi { min-width:calc(50% - 4px); flex:1 1 calc(50% - 4px); }
+      .ow-grid { grid-template-columns:1fr; }
     }
   </style>
 </head>
@@ -549,7 +553,7 @@
             <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#eff6ff;"><i class="fa-solid fa-check text-sm" style="color:#1e40af;"></i></div><span class="text-gray-600 text-sm">Custom Annotation Workflows</span></div>
           </div>
           <div class="flex flex-wrap gap-4 items-center">
-            <button class="our-work-btn" style="opacity:0.5;cursor:not-allowed;" disabled><i class="fa-solid fa-folder-open text-sm"></i> Our Work</button>
+            <button onclick="openOurWork('data-annotation')" class="our-work-btn"><i class="fa-solid fa-folder-open text-sm"></i> Our Work</button>
             <a href="contact.html" class="hero-cta inline-flex items-center gap-2 bg-dark-blue text-white font-semibold px-8 py-4 rounded-full shadow-md">Get a Quote <i class="fa-solid fa-arrow-right text-sm"></i></a>
           </div>
         </div>
@@ -833,6 +837,47 @@
                 <div class="text-center"><div class="text-xl font-bold" style="color:#1e40af;">&#8593; Compliance</div><div class="text-gray-400 text-xs">Audit Accuracy</div></div>
               </div>
               <a href="samsClubInspectionQA.html" class="inline-flex items-center gap-2 text-dark-blue font-semibold text-sm hover:gap-3 transition-all">Read Case Study <i class="fa-solid fa-arrow-right text-xs"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Annotation -->
+      <div class="mb-14" data-aos="fade-up">
+        <div class="flex items-center gap-3 mb-7">
+          <div style="width:36px;height:36px;border-radius:10px;background:#eff6ff;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <i class="fa-solid fa-tags" style="color:#1e40af;font-size:0.9rem;"></i>
+          </div>
+          <span class="text-sm font-bold text-dark-blue uppercase" style="letter-spacing:0.07em;">Data Annotation &mdash; Precision Labeling at Scale</span>
+          <div style="flex:1;height:1px;background:#dbeafe;"></div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="svc-detail-card" data-aos="fade-up" data-aos-delay="0">
+            <div class="svc-detail-header">
+              <div class="svc-icon-lg"><i class="fa-solid fa-store text-2xl" style="color:#1e40af;"></i></div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">PepsiCo &#8211; Workforce Quality &amp; Merchandising Audit</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">Structured image-based annotation and compliance validation for PepsiCo&#8217;s PFNA &amp; PBNA merchandising operations &#8212; evaluating partner execution across backstock, aisles, coolers, and putaway.</p>
+            </div>
+            <div class="svc-detail-body">
+              <div class="flex gap-4 mb-5">
+                <div class="text-center"><div class="text-xl font-bold" style="color:#1e40af;">4</div><div class="text-gray-400 text-xs">Task Sections</div></div>
+                <div class="text-center"><div class="text-xl font-bold" style="color:#1e40af;">&#8593; Fraud</div><div class="text-gray-400 text-xs">Detection Rate</div></div>
+              </div>
+              <a href="pepsicoMerchandisingAudit.html" class="inline-flex items-center gap-2 text-dark-blue font-semibold text-sm hover:gap-3 transition-all">Read Case Study <i class="fa-solid fa-arrow-right text-xs"></i></a>
+            </div>
+          </div>
+          <div class="svc-detail-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="svc-detail-header">
+              <div class="svc-icon-lg"><i class="fa-solid fa-vector-square text-2xl" style="color:#1e40af;"></i></div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">LabelBox &#8211; Cooler Refill Detection &amp; Dataset Validation</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">Bounding box annotation and dataset validation on cooler refill images &#8212; classifying stock levels into Full, Partial, and Empty to power automated retail stock detection models.</p>
+            </div>
+            <div class="svc-detail-body">
+              <div class="flex gap-4 mb-5">
+                <div class="text-center"><div class="text-xl font-bold" style="color:#1e40af;">3</div><div class="text-gray-400 text-xs">Classifications</div></div>
+                <div class="text-center"><div class="text-xl font-bold" style="color:#1e40af;">&#8593; Model</div><div class="text-gray-400 text-xs">Accuracy</div></div>
+              </div>
+              <a href="labelboxDataAnnotation.html" class="inline-flex items-center gap-2 text-dark-blue font-semibold text-sm hover:gap-3 transition-all">Read Case Study <i class="fa-solid fa-arrow-right text-xs"></i></a>
             </div>
           </div>
         </div>
@@ -1383,6 +1428,93 @@
   </div><!-- /modal-customer-support -->
 
 
+  <!-- DATA ANNOTATION MODAL -->
+  <div id="modal-data-annotation" class="ow-overlay" onclick="closeOnBackdrop(event,'data-annotation')">
+    <div class="ow-modal">
+      <div class="ow-header">
+        <span class="ow-badge" style="margin-bottom:10px;display:inline-block;">Data Annotation</span>
+        <h2>Our Work &mdash; Data Annotation</h2>
+        <p>Image labeling, bounding box annotation, and compliance validation at scale.</p>
+        <button class="ow-close" onclick="closeOurWork('data-annotation')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="ow-tabs" id="tabs-data-annotation">
+        <button class="ow-tab active" onclick="switchTab('data-annotation',0,this)">PepsiCo Merchandising</button>
+        <button class="ow-tab" onclick="switchTab('data-annotation',1,this)">LabelBox &ndash; Cooler Detection</button>
+      </div>
+      <div class="ow-content">
+
+        <!-- Project 1 -->
+        <div class="ow-project active" id="data-annotation-p0">
+          <div class="ow-project-title">PepsiCo &ndash; Workforce Quality &amp; Merchandising Audit</div>
+          <div class="ow-project-sub"><span class="ow-badge">PFNA &amp; PBNA</span> Shiftsmart &middot; Retail Execution</div>
+          <div class="ow-kpi-row">
+            <div class="ow-kpi"><div class="ow-kpi-val">4</div><div class="ow-kpi-lbl">Task Sections</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">Yes/No</div><div class="ow-kpi-lbl">Binary Labels</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">2</div><div class="ow-kpi-lbl">Business Units</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">&#8593; Fraud</div><div class="ow-kpi-lbl">Detection</div></div>
+          </div>
+          <div class="ow-grid">
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-bullseye"></i> What We Did</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Reviewed pre-task and post-task store images submitted by Shiftsmart partners via the partner portal</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Applied structured Yes/No annotation criteria across four task sections per shift</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Classified brands by priority levels to ensure focused quality checks on PepsiCo products</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Identified discrepancies and flagged potentially fraudulent image submissions</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-gears"></i> How We Did It</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Detailed photo audits via the Shiftsmart partner portal with structured binary labeling</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Section-specific criteria: backstock, aisle stocking, cooler restocking, and putaway</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Execution accuracy verified through image-based validation with fraud detection logic</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-chart-line"></i> Impact Delivered</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Improved merchandising compliance and in-store brand visibility for PepsiCo products</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Reduced discrepancies and fraudulent submissions across partner network</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Enabled smarter allocation of future shifts to high-performing partners</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Strengthened retail execution quality for PFNA &amp; PBNA product lines</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="ow-project" id="data-annotation-p1">
+          <div class="ow-project-title">LabelBox &ndash; Cooler Refill Detection &amp; Dataset Validation</div>
+          <div class="ow-project-sub"><span class="ow-badge">ML Annotation</span> LabelBox &middot; Bounding Box &middot; Computer Vision</div>
+          <div class="ow-kpi-row">
+            <div class="ow-kpi"><div class="ow-kpi-val">3</div><div class="ow-kpi-lbl">Classifications</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">BBox</div><div class="ow-kpi-lbl">Annotation Method</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">&#8593; Accuracy</div><div class="ow-kpi-lbl">Model Performance</div></div>
+            <div class="ow-kpi"><div class="ow-kpi-val">&#8595; Manual</div><div class="ow-kpi-lbl">Verification</div></div>
+          </div>
+          <div class="ow-grid">
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-bullseye"></i> What We Did</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Annotated cooler refill images using bounding box methodology via LabelBox platform</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Classified each dataset image into Full, Partial, or Empty stock-level categories</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Validated dataset quality to ensure automation models correctly identified restocking levels</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-gears"></i> How We Did It</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Precise bounding box annotation on cooler units and product regions within each image</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Structured 3-class labeling taxonomy: &#9679; Full &nbsp;&#9679; Partial &nbsp;&#9679; Empty</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Quality validation pass to correct mislabeled samples and poor bounding box alignment</span></div>
+            </div>
+            <div class="ow-section-card">
+              <h4><i class="fa-solid fa-chart-line"></i> Impact Delivered</h4>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Improved accuracy of automated cooler stock detection systems</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Reduced manual verification effort in downstream restocking operations</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Enabled data-driven, classification-powered restocking decisions at scale</span></div>
+              <div class="ow-bullet"><div class="ow-bullet-dot"></div><span>Enhanced retail execution monitoring through automation model improvement</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /ow-content -->
+    </div><!-- /ow-modal -->
+  </div><!-- /modal-data-annotation -->
+
+
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     AOS.init({ once: true, duration: 800 });
 
@@ -1421,7 +1553,7 @@
     // Close modal on ESC key
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
-        ['back-office','qa-qc','customer-support'].forEach(closeOurWork);
+        ['back-office','qa-qc','customer-support','data-annotation'].forEach(closeOurWork);
       }
     });
 
