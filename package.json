@@ -1,0 +1,8 @@
+{
+  "name": "workgen-website",
+  "version": "1.0.0",
+  "description": "Workgen Solutions Website",
+  "scripts": {
+    "dev": "php -S 127.0.0.1:8000"
+  }
+}
